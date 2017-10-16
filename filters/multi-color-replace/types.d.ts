@@ -1,9 +1,8 @@
 /// <reference types="pixi.js" />
 declare namespace PIXI.filters {
     class MultiColorReplaceFilter extends PIXI.Filter {
-        constructor(originalColors:number[]|Array[], newColors:number[]|Array[], epsilon?:number);
-        originalColor:number[]|Array[];
-        newColor:number[]|Array[];
+        constructor(colorPairs:Array[], epsilon?:number);
+        colorPairs:Array[];
         epsilon:number;
     }
 }

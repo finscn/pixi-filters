@@ -359,42 +359,43 @@
                 folder.addColor(colorReplaceFilter, 'newColor');
                 folder.add(colorReplaceFilter, 'epsilon', 0, 1);
 
-                var originalColors = [3238359, 938417, 1464209];
-                var targetColors = [16711680, 65280, 16776960];
-                var multiColorReplaceFilter = new PIXI.filters.MultiColorReplaceFilter(
-                    originalColors,targetColors, 0.2
-                );
+                var colorPairs = [
+                    [3238359, 16711680],
+                    [938417, 65280],
+                    [1464209, 16776960],
+                ];
+                var multiColorReplaceFilter = new PIXI.filters.MultiColorReplaceFilter(colorPairs, 0.2);
                 multiColorReplaceFilter.enabled = false;
                 folder = gui.addFolder('MultiColorReplaceFilter');
                 folder.add(multiColorReplaceFilter, 'enabled').onChange(trackEvent.bind(folder));
-                folder.addColor(originalColors, '0').name('original.0').onChange(
+                folder.addColor(colorPairs[0], '0').name('original.0').onChange(
                     function(){
-                        multiColorReplaceFilter.originalColors = originalColors;
+                        multiColorReplaceFilter.colorPairs = colorPairs;
                     }
                 );
-                folder.addColor(targetColors, '0').name('target.0').onChange(
+                folder.addColor(colorPairs[0], '1').name('target.0').onChange(
+                    function(){
+                        multiColorReplaceFilter.colorPairs = colorPairs;
+                    }
+                );
+                folder.addColor(colorPairs[1], '0').name('original.1').onChange(
+                    function(){
+                        multiColorReplaceFilter.colorPairs = colorPairs;
+                    }
+                );
+                folder.addColor(colorPairs[1], '1').name('target.1').onChange(
                     function(){
                         multiColorReplaceFilter.targetColors = targetColors;
                     }
                 );
-                folder.addColor(originalColors, '1').name('original.1').onChange(
+                folder.addColor(colorPairs[2], '0').name('original.2').onChange(
                     function(){
-                        multiColorReplaceFilter.originalColors = originalColors;
+                        multiColorReplaceFilter.colorPairs = colorPairs;
                     }
                 );
-                folder.addColor(targetColors, '1').name('target.1').onChange(
+                folder.addColor(colorPairs[2], '1').name('target.2').onChange(
                     function(){
-                        multiColorReplaceFilter.targetColors = targetColors;
-                    }
-                );
-                folder.addColor(originalColors, '2').name('original.2').onChange(
-                    function(){
-                        multiColorReplaceFilter.originalColors = originalColors;
-                    }
-                );
-                folder.addColor(targetColors, '2').name('target.2').onChange(
-                    function(){
-                        multiColorReplaceFilter.targetColors = targetColors;
+                        multiColorReplaceFilter.colorPairs = colorPairs;
                     }
                 );
                 folder.add(multiColorReplaceFilter, 'epsilon', 0, 1);
