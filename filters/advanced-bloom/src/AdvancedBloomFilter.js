@@ -44,7 +44,7 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
 
 
         /**
-         * The strength of the brightness, higher values is more intense brightness.
+         * To adjust the strength of the bloom. Higher values is more intense brightness.
          *
          * @member {number}
          * @default 1.0
@@ -117,4 +117,3 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
 
 // Export to PixiJS namespace
 PIXI.filters.AdvancedBloomFilter = AdvancedBloomFilter;
-
