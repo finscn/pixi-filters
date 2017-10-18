@@ -15,6 +15,11 @@ import fragment from './multi-color-replace.frag';
  * @param {number} [epsilon=0.05] - Tolerance/sensitivity of the floating-point comparison between colors
  *                                  (lower = more exact, higher = more inclusive)
  *
+ * @param {number} [maxColorCount] - TODO
+ *
+ * Notice: If arguments.length == 2 , the 2nd one will be dynamic.
+ *         If it is [0, 1], it's `epsilon`, If `>1` ,it's `maxColorCount`.
+ *
  * @example
  *  // replaces pure red with pure blue, and replaces pure green with pure white
  *  someSprite.filters = [new MultiColorReplaceFilter(
@@ -37,21 +42,34 @@ import fragment from './multi-color-replace.frag';
  */
 export default class MultiColorReplaceFilter extends PIXI.Filter
 {
-    constructor(replacements, epsilon = 0.05)
+    constructor(replacements, epsilon = 0.05, maxColorCount)
     {
         const colorCount = replacements.length;
 
+        if (!maxColorCount)
+        {
+            if (epsilon > 1.0)
+            {
+                maxColorCount = epsilon;
+                epsilon = 0.05;
+            }
+            else
+            {
+                maxColorCount = colorCount;
+            }
+        }
+
         super(
             vertex,
-            fragment.replace(/%colorCount%/g, colorCount)
+            fragment.replace(/%maxColorCount%/g, maxColorCount)
         );
 
         this.epsilon = epsilon;
-        this.colorCount = colorCount;
+        this.maxColorCount = maxColorCount;
 
         this._replacements = null;
-        this.uniforms.originalColors = new Float32Array(colorCount * 3);
-        this.uniforms.targetColors = new Float32Array(colorCount * 3);
+        this.uniforms.originalColors = new Float32Array(maxColorCount * 3);
+        this.uniforms.targetColors = new Float32Array(maxColorCount * 3);
 
         this.replacements = replacements;
     }
@@ -65,7 +83,19 @@ export default class MultiColorReplaceFilter extends PIXI.Filter
         const arr = this.uniforms.originalColors;
         const targetArr = this.uniforms.targetColors;
 
-        for (let i = 0; i < this.colorCount; i++)
+        let colorCount = value.length;
+
+        if (colorCount > this.maxColorCount)
+        {
+            colorCount = this.maxColorCount;
+            // TODO: Give a warning if value.length > this.maxColorCount ???
+        }
+        else
+        {
+            arr[colorCount * 3] = -0.1;
+        }
+
+        for (let i = 0; i < colorCount; i++)
         {
             const pair = value[i];
 
@@ -101,6 +131,7 @@ export default class MultiColorReplaceFilter extends PIXI.Filter
         }
 
         this._replacements = value;
+        this.uniforms.colorCount = colorCount;
     }
 
     get replacements()

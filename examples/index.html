@@ -159,7 +159,7 @@
                 folder.add(displacementFilter.scale, 'y', 1, 200).name('scale.y');
 
                 // Setup gui for displacement
-                var blurFilter = new PIXI.filters.BlurFilter();
+                var blurFilter = new PIXI.filters.BlurXFilter();
                 blurFilter.enabled = false;
                 folder = gui.addFolder('BlurFilter (pixi.js)');
                 folder.add(blurFilter, 'enabled').onChange(trackEvent.bind(folder));
@@ -362,10 +362,12 @@
                     [938417, 65280],
                     [1464209, 16776960],
                 ];
-                var multiColorReplaceFilter = new PIXI.filters.MultiColorReplaceFilter(replacements, 0.2);
+                var multiColorReplaceFilter = new PIXI.filters.MultiColorReplaceFilter(replacements, 0.2, 8);
                 multiColorReplaceFilter.enabled = false;
+
                 folder = gui.addFolder('MultiColorReplaceFilter');
                 folder.add(multiColorReplaceFilter, 'enabled').onChange(trackEvent.bind(folder));
+
                 folder.addColor(replacements[0], '0').name('original.0').onChange(
                     function(){
                         multiColorReplaceFilter.replacements = replacements;
@@ -397,6 +399,8 @@
                     }
                 );
                 folder.add(multiColorReplaceFilter, 'epsilon', 0, 1);
+
+
 
                 var lightmap = resources.lightmap.texture;
                 var simpleLightmapFilter = new PIXI.filters.SimpleLightmapFilter(lightmap, 0x666666);
