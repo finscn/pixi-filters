@@ -14,7 +14,6 @@ import fragment from './multi-color-replace.frag';
  *                       In the pair, the first one is original color , the second one is target color.
  * @param {number} [epsilon=0.05] - Tolerance/sensitivity of the floating-point comparison between colors
  *                                  (lower = more exact, higher = more inclusive)
- *
  * @param {number} [maxColorCount] - TODO
  *
  * Notice: If arguments.length == 2 , the 2nd one will be dynamic.
