@@ -25,7 +25,7 @@ All filters work with PixiJS v4.
 | **Godray**<br>_@pixi/filter-godray_ | ![godray](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/godray.gif?v=2) |
 | **EmbossFilter**<br>_@pixi/filter-emboss_ | ![emboss](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/emboss.png?v=2) |
 | **MotionBlurFilter**<br>_@pixi/filter-motion-blur_ | ![motion-blur](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/motion-blur.png?v=1) |
-| **MultiColorReplaceFilter**<br>_@pixi/filter-multi-color-replace_ | ![multi-color](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/multi-color-replace.png?v=1) |
+| **MultiColorReplaceFilter**<br>_@pixi/filter-multi-color-replace_ | ![multi-color-replace](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/multi-color-replace.png?v=1) |
 | **OutlineFilter**<br>_@pixi/filter-outline_ | ![outline](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/outline.png?v=2) |
 | **PixelateFilter**<br>_@pixi/filter-pixelate_ | ![pixelate](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/pixelate.png?v=2) |
 | **RGBSplitFilter**<br>_@pixi/filter-rgb_ | ![rgb split](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/rgb.png?v=2) |
