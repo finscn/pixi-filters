@@ -46,6 +46,12 @@
             .dg.ac {
                 top:89px !important;
             }
+            .dg .title {
+                color: #999;
+            }
+            .dg.enabled .title {
+                color: #fff;
+            }
             #logo img {
                 display: block;
             }
@@ -93,6 +99,12 @@
                     enabled ? 'enabled' : 'disabled'
                 );
                 app.render();
+                if (enabled) {
+                    this.domElement.className += ' enabled';
+                }
+                else {
+                    this.domElement.className = this.domElement.className.replace(' enabled', '');
+                }
             }
 
             // Preload the assets needed
@@ -159,6 +171,7 @@
                 folder.add(displacementFilter, 'enabled').onChange(trackEvent.bind(folder));
                 folder.add(displacementFilter.scale, 'x', 1, 200).name('scale.x');
                 folder.add(displacementFilter.scale, 'y', 1, 200).name('scale.y');
+                folder.domElement.className += ' enabled';
 
                 // Setup gui for displacement
                 var blurFilter = new PIXI.filters.BlurFilter();
@@ -396,6 +409,22 @@
                 folder.add(godrayFilter, 'gain', 0, 1);
                 folder.add(godrayFilter, 'lacunarity', 0, 5);
 
+
+                // Apply filters
+                var velocity = [50, 50];
+                var motionBlurFilter = new PIXI.filters.MotionBlurFilter(velocity, 25);
+                motionBlurFilter.enabled = !false;
+                folder = gui.addFolder('MotionBlurFilter');
+                folder.add(motionBlurFilter, 'enabled').onChange(trackEvent.bind(folder));
+                folder.add(velocity, '0', -90, 90).name('velocity.x').onChange(function(){
+                        motionBlurFilter.velocity = velocity;
+                    });
+                folder.add(velocity, '1', -90, 90).name('velocity.y').onChange(function(){
+                        motionBlurFilter.velocity = velocity;
+                    });
+                folder.add(motionBlurFilter, 'kernelSize',
+                    [3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25]).name('kernelSize');
+
 				// Apply filters
                 var zoomBlurFilter = new PIXI.filters.ZoomBlurFilter(0.1, [stageWidth / 2, stageHeight / 2], 80);
                 zoomBlurFilter.enabled = false;
@@ -413,6 +442,7 @@
                 pond.filters = [
                     displacementFilter,
                     blurFilter,
+                    motionBlurFilter,
                     noiseFilter,
                     colorFilter,
                     twistFilter,
