@@ -15,6 +15,7 @@ export {MotionBlurFilter} from '@pixi/filter-motion-blur';
 export {MultiColorReplaceFilter} from '@pixi/filter-multi-color-replace';
 export {OutlineFilter} from '@pixi/filter-outline';
 export {PixelateFilter} from '@pixi/filter-pixelate';
+export {RadialBlurFilter} from '@pixi/filter-radial-blur';
 export {RGBSplitFilter} from '@pixi/filter-rgb-split';
 export {ShockwaveFilter} from '@pixi/filter-shockwave';
 export {SimpleLightmapFilter} from '@pixi/filter-simple-lightmap';

@@ -229,6 +229,15 @@
             ]
         },
         {
+            "name": "RadialBlurFilter",
+            "filename": "radial-blur",
+            "arguments": [
+                5,
+                [130, 80],
+                9
+            ]
+        },
+        {
             "name": "MultiColorReplaceFilter",
             "filename": "multi-color-replace",
             "arguments": [

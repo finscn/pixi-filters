@@ -1,0 +1,18 @@
+// radial-blur
+
+FilterMakers.push(function() {
+    var filter;
+    // filter = new PIXI.filters.RadialBlurFilter(5, [stageWidth / 2, stageHeight / 2], 9);
+    filter = new PIXI.filters.RadialBlurFilter(170, [200, 200], 9, 200);
+    filter.enabled = !false;
+
+    var folder = gui.addFolder('RadialBlurFilter');
+    folder.add(filter, 'enabled').onChange(trackEvent.bind(folder));
+    folder.add(filter, 'angle', -180, 180);
+    folder.add(filter.center, '0', 0, stageWidth).name('center.x');
+    folder.add(filter.center, '1', 0, stageHeight).name('center.y');
+    folder.add(filter, 'radius', 10, 10000);
+    folder.add(filter, 'kernelSize', [3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25]).name('kernelSize');
+
+    return filter;
+});

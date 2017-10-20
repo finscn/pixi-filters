@@ -23,6 +23,7 @@ Filters include:
 * **MultiColorFilter** _@pixi/filter-multi-color-replace_
 * **OutlineFilter** _@pixi/filter-outline_
 * **PixelateFilter** _@pixi/filter-pixelate_
+* **RadialBlurFilter** _@pixi/filter-radial-blur_
 * **RGBSplitFilter** _@pixi/filter-rgb_
 * **ShockwaveFilter** _@pixi/filter-shockwave_
 * **SimpleLightmapFilter** _@pixi/filter-simple-lightmap_
