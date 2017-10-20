@@ -29,7 +29,7 @@ void main(void)
     }
 
     for(int i = 0; i < ITERATION; i++) {
-        if (i == uKernelSize) {
+        if (i == int(k)) {
             break;
         }
         vec2 bias = velocity * (float(i) / k + offset);
