@@ -2,9 +2,8 @@
 
 FilterMakers.push(function() {
     var filter;
-    // filter = new PIXI.filters.RadialBlurFilter(5, [stageWidth / 2, stageHeight / 2], 9);
-    filter = new PIXI.filters.RadialBlurFilter(170, [200, 200], 9, 200);
-    filter.enabled = !false;
+    filter = new PIXI.filters.RadialBlurFilter(20, [stageWidth / 2, stageHeight / 2], 15, 300);
+    filter.enabled = false;
 
     var folder = gui.addFolder('RadialBlurFilter');
     folder.add(filter, 'enabled').onChange(trackEvent.bind(folder));

@@ -232,9 +232,10 @@
             "name": "RadialBlurFilter",
             "filename": "radial-blur",
             "arguments": [
-                5,
+                30,
                 [130, 80],
-                9
+                15,
+                60
             ]
         },
         {
