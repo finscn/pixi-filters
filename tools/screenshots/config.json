@@ -212,12 +212,20 @@
             }
         },
         {
+            "name": "KawaseBlurFilter",
+            "filename": "kawase-blur",
+            "arguments": [
+                [4, 3, 2, 1],
+                [1, 1]
+            ]
+        },
+        {
             "name": "MotionBlurFilter",
             "filename": "motion-blur",
             "arguments": [
                 [40, 40],
                 15,
-		0
+                0
             ]
         },
         {

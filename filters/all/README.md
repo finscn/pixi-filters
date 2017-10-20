@@ -18,6 +18,7 @@ Filters include:
 * **GlowFilter** _@pixi/filter-glow_
 * **GodrayFilter** _@pixi/filter-godray_
 * **EmbossFilter** _@pixi/filter-emboss_
+* **KawaseBlurFilter** _@pixi/filter-kawase-blur_
 * **MotionBlurFilter** _@pixi/filter-motion-blur_
 * **MultiColorFilter** _@pixi/filter-multi-color-replace_
 * **OutlineFilter** _@pixi/filter-outline_

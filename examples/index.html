@@ -188,6 +188,38 @@
                 folder.add(blurFilter, 'blur', 0, 100);
                 folder.add(blurFilter, 'quality', 1, 10);
 
+                var kernels = [4, 3, 2, 1];
+                var pixelSize = [1, 1];
+                var kawaseBlurFilter = new PIXI.filters.KawaseBlurFilter(kernels, pixelSize);
+                kawaseBlurFilter.enabled = false;
+                folder = gui.addFolder('KawaseBlurFilter');
+                folder.add(kawaseBlurFilter, 'enabled').onChange(trackEvent.bind(folder));
+
+                folder.add(kernels, '0', 0, 8).name('kernels[0]')
+                    .onChange(function(){
+                        kawaseBlurFilter.kernels = kernels;
+                    });
+                folder.add(kernels, '1', 0, 8).name('kernels[1]')
+                    .onChange(function(){
+                        kawaseBlurFilter.kernels = kernels;
+                    });
+                folder.add(kernels, '2', 0, 8).name('kernels[2]')
+                    .onChange(function(){
+                        kawaseBlurFilter.kernels = kernels;
+                    });
+                folder.add(kernels, '3', 0, 8).name('kernels[3]')
+                    .onChange(function(){
+                        kawaseBlurFilter.kernels = kernels;
+                    });
+                folder.add(pixelSize, '0', [0, 1, 2, 3, 4]).name('pixelSize.x')
+                    .onChange(function(){
+                        kawaseBlurFilter.pixelSize = pixelSize;
+                    });
+                folder.add(pixelSize, '1', [0, 1, 2, 3, 4]).name('pixelSize.y')
+                    .onChange(function(){
+                        kawaseBlurFilter.pixelSize = pixelSize;
+                    });
+
                 var velocity = [40, 40];
                 var motionBlurFilter = new PIXI.filters.MotionBlurFilter(velocity, 15);
                 motionBlurFilter.enabled = false;
@@ -448,6 +480,7 @@
                 pond.filters = [
                     displacementFilter,
                     blurFilter,
+                    kawaseBlurFilter,
                     motionBlurFilter,
                     zoomBlurFilter,
                     noiseFilter,
