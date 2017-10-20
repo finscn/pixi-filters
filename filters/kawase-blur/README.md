@@ -14,7 +14,7 @@ npm install @pixi/filter-kawase-blur
 import { KawaseBlurFilter } from '@pixi/filter-kawase-blur';
 
 const container = new PIXI.Container();
-container.filters = [new KawaseBlurFilter([4, 3, 2, 1], [1, 1]);
+container.filters = [new KawaseBlurFilter([4, 3, 2, 1], [1, 1])];
 ```
 
 ## Documentation

@@ -6,6 +6,7 @@ FilterMakers.push(function(){
     var velocity = [40, 40];
     filter = new PIXI.filters.MotionBlurFilter(velocity, 15);
     filter.enabled = false;
+
     var folder = gui.addFolder('MotionBlurFilter');
     folder.add(filter, 'enabled').onChange(trackEvent.bind(folder));
     folder.add(velocity, '0', -90, 90).name('velocity.x').onChange(function() {
