@@ -22,7 +22,7 @@ FilterMakers.push(function(){
         filter.y = count * 10;
     });
 
-    filter.enabled = true;
+    filter.enabled = !true;
     filter.scale.x = 50;
     filter.scale.y = 50;
 
