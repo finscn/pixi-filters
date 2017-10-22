@@ -35,7 +35,7 @@ void main() {
     if (dist < innerRadius) {
         delta = innerRadius - dist;
         gap = minGradient;
-    } else if (dist > radius) {
+    } else if (radius >= 0.0 && dist > radius) { // radius < 0 means it's infinity
         delta = dist - radius;
         gap = gradient;
     }
