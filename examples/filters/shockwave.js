@@ -6,7 +6,7 @@ FilterMakers.push(function() {
     filter = new PIXI.filters.ShockwaveFilter([stageWidth / 2, stageHeight / 2]);
     filter.enabled = false;
 
-    var maxTime = 1500;
+    var maxTime = 1200;
 
     // var time = 0;
     // var startTime = Date.now();

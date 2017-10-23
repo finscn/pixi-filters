@@ -36,7 +36,7 @@ void main()
         fade = 1.0 - pow(currentRadius / maxRadius, 2.0);
     }
 
-    if (dist < currentRadius - halfWavelength || dist > currentRadius + halfWavelength) {
+    if (dist <= 0.0 || dist < currentRadius - halfWavelength || dist > currentRadius + halfWavelength) {
         gl_FragColor = texture2D(uSampler, vTextureCoord);
         return;
     }
@@ -47,12 +47,10 @@ void main()
 
     float p = 1.0 - pow(abs(diff), 2.0);
 
-    // float powDiff = diff * pow(p, 2.0) * amplitude;
-    float powDiff = 1.25 * sin(diff * PI) * p * amplitude * fade;
+    // float powDiff = diff * pow(p, 2.0) * ( amplitude * fade );
+    float powDiff = 1.25 * sin(diff * PI) * p * ( amplitude * fade );
 
     vec2 offset = diffUV * powDiff / filterArea.xy;
-
-    // gl_FragColor = texture2D(uSampler, vTextureCoord + offset);
 
     // Do clamp :
     vec2 coord = vTextureCoord + offset;
@@ -61,6 +59,8 @@ void main()
     if (coord != clampedCoord) {
         gl_FragColor *= max(0.0, 1.0 - length(coord - clampedCoord));
     }
+
+    // gl_FragColor = texture2D(uSampler, vTextureCoord + offset);
 
     gl_FragColor.rgb *= 1.0 + (brightness - 1.0) * p * fade;
 }
