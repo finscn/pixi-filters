@@ -4,7 +4,7 @@ FilterMakers.push(function(){
     var filter;
 
     filter = new PIXI.filters.OldFilmFilter();
-    filter.enabled = !false;
+    filter.enabled = false;
 
     emitter.addListener('tick', function(delta, count) {
         filter.randomValue = Math.random();
