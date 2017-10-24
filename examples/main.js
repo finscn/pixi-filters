@@ -137,7 +137,7 @@ function init(_resources) {
     app.ticker.add(function(delta) {
         count += 0.1 * delta;
 
-        if (!window.paused) {
+        if (!window.freezed) {
             // Animate the overlay
             overlay.tilePosition.x = count * -10;
             overlay.tilePosition.y = count * -10;

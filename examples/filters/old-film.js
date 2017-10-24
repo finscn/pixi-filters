@@ -11,7 +11,7 @@ FilterMakers.push(function(){
     });
 
     var folder = gui.addFolder('OldFilmFilter');
-    folder.open();
+    // folder.open();
     folder.add(filter, 'enabled').onChange(trackEvent.bind(folder));
     // folder.add(filter, 'randomValue', 0, 1);
     folder.add(filter, 'sepia', 0, 1);
