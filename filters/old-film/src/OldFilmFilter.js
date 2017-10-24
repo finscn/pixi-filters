@@ -14,6 +14,7 @@ import fragment from './old-film.frag';
  *                        When options is a number , it will be `randomValue`.
  * @param {number} [options.sepia=0.3] - TODO
  * @param {number} [options.noise=0.3] - TODO
+ * @param {number} [options.noiseSize=1.0] - TODO
  * @param {number} [options.scratch=0.3] - TODO
  * @param {number} [options.scratchWidth=1.0] - TODO
  * @param {number} [options.vignetting=0.3] - TODO
@@ -36,6 +37,7 @@ export default class OldFilmFilter extends PIXI.Filter
         options = Object.assign({
             sepia: 0.3,
             noise: 0.3,
+            noiseSize: 1.0,
             scratch: 0.3,
             scratchWidth: 1.0,
             vignetting: 0.3,
@@ -44,6 +46,7 @@ export default class OldFilmFilter extends PIXI.Filter
 
         this.sepia = options.sepia;
         this.noise = options.noise;
+        this.noiseSize = options.noiseSize;
         this.scratch = options.scratch;
         this.scratchWidth = options.scratchWidth;
         this.vignetting = options.vignetting;
@@ -97,6 +100,22 @@ export default class OldFilmFilter extends PIXI.Filter
     get noise()
     {
         return this.uniforms.noise;
+    }
+
+    /**
+     * The noiseSize of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set noiseSize(value)
+    {
+        this.uniforms.noiseSize = value;
+    }
+
+    get noiseSize()
+    {
+        return this.uniforms.noiseSize;
     }
 
     /**

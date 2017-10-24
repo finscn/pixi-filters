@@ -5,6 +5,7 @@ uniform vec2 dimensions;
 
 uniform float sepia;
 uniform float noise;
+uniform float noiseSize;
 uniform float scratch;
 uniform float scratchWidth;
 uniform float vignetting;
@@ -41,9 +42,14 @@ void main()
         color = grayscale + sepia * (color - grayscale);
     }
 
+
     if (noise > 0.0)
     {
-        float _noise = snoise(vTextureCoord * vec2(1024.0 + randomValue * 512.0, 1024.0 + randomValue * 512.0)) * 0.5;
+        vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
+        pixelCoord.x = floor(pixelCoord.x / noiseSize);
+        pixelCoord.y = floor(pixelCoord.y / noiseSize);
+        vec2 d = pixelCoord * noiseSize * vec2(1024.0 + randomValue * 512.0, 1024.0 - randomValue * 512.0);
+        float _noise = snoise(d) * 0.5;
         color += _noise * noise;
     }
 

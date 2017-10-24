@@ -15,7 +15,7 @@ import fragment from './radial-blur.frag';
  */
 export default class RadialBlurFilter extends PIXI.Filter
 {
-    constructor(angle = 0, center = [0, 0], kernelSize = 5, radius = 1E8)
+    constructor(angle = 0, center = [0, 0], kernelSize = 5, radius = -1)
     {
         super(vertex, fragment);
 
@@ -86,13 +86,16 @@ export default class RadialBlurFilter extends PIXI.Filter
      * Outer radius of the effect. The default value is very very big.
      *
      * @member {number}
-     * @default 1E8
+     * @default -1
      */
     get radius() {
         return this.uniforms.uRadius;
     }
 
     set radius(value) {
+        if (value < 0 || value === Infinity) {
+            value = -1;
+        }
         this.uniforms.uRadius = value;
     }
 }

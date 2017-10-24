@@ -101,6 +101,7 @@ declare namespace PIXI.filters {
         constructor(randomValue?: number);
         sepia: number;
         noise: number;
+        noiseSize: number;
         scratch: number;
         scratchWidth: number;
         vignetting: number;
@@ -110,6 +111,7 @@ declare namespace PIXI.filters {
     interface OldFilmOptions {
         sepia?: number;
         noise?: number;
+        noiseSize?: number;
         scratch?: number;
         scratchWidth?: number;
         vignetting?: number;

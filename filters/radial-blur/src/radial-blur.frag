@@ -39,11 +39,10 @@ void main(void)
     float dist = length(vec2(dir.x, dir.y * aspect));
 
     float radianStep;
-    float gap;
-    float delta = 0.0;
-    if (dist > radius) {
-        delta = dist - radius;
-        gap = gradient;
+
+    if (radius >= 0.0 && dist > radius) {
+        float delta = dist - radius;
+        float gap = gradient;
         float scale = 1.0 - abs(delta / gap);
         if (scale <= 0.0) {
             return;
