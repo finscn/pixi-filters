@@ -18,6 +18,7 @@ import fragment from './old-film.frag';
  * @param {number} [options.scratch=0.3] - TODO
  * @param {number} [options.scratchWidth=1.0] - TODO
  * @param {number} [options.vignetting=0.3] - TODO
+ * @param {number} [options.vignettingAlpha=1.0] - TODO
  * @param {number} [options.vignettingBlur=0.3] - TODO
  * @param {number} [randomValue=0.3] - TODO
  */
@@ -41,6 +42,7 @@ export default class OldFilmFilter extends PIXI.Filter
             scratch: 0.3,
             scratchWidth: 1.0,
             vignetting: 0.3,
+            vignettingAlpha: 1.0,
             vignettingBlur: 0.3,
         }, options);
 
@@ -50,6 +52,7 @@ export default class OldFilmFilter extends PIXI.Filter
         this.scratch = options.scratch;
         this.scratchWidth = options.scratchWidth;
         this.vignetting = options.vignetting;
+        this.vignettingAlpha = options.vignettingAlpha;
         this.vignettingBlur = options.vignettingBlur;
     }
 
@@ -164,6 +167,22 @@ export default class OldFilmFilter extends PIXI.Filter
     get vignetting()
     {
         return this.uniforms.vignetting;
+    }
+
+    /**
+     * The vignettingAlpha of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignettingAlpha(value)
+    {
+        this.uniforms.vignettingAlpha = value;
+    }
+
+    get vignettingAlpha()
+    {
+        return this.uniforms.vignettingAlpha;
     }
 
     /**

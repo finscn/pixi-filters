@@ -105,6 +105,7 @@ declare namespace PIXI.filters {
         scratch: number;
         scratchWidth: number;
         vignetting: number;
+        vignettingAlpha: number;
         vignettingBlur: number;
         randomValue: number;
     }
@@ -115,6 +116,7 @@ declare namespace PIXI.filters {
         scratch?: number;
         scratchWidth?: number;
         vignetting?: number;
+        vignettingAlpha?: number;
         vignettingBlur?: number;
     }
     class OutlineFilter extends PIXI.Filter {
