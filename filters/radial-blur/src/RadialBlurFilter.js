@@ -13,10 +13,8 @@ import fragment from './radial-blur.frag';
  * @param {number} [kernelSize=5] - The kernelSize of the blur filter. Options: the `odd number` >= 5.
  * @param {number} [offset=0] - The offset of the blur filter.
  */
-export default class RadialBlurFilter extends PIXI.Filter
-{
-    constructor(angle = 0, center = [0, 0], kernelSize = 5, radius = -1)
-    {
+export default class RadialBlurFilter extends PIXI.Filter {
+    constructor(angle = 0, center = [0, 0], kernelSize = 5, radius = -1) {
         super(vertex, fragment);
 
         this._angle = 0;
@@ -33,16 +31,13 @@ export default class RadialBlurFilter extends PIXI.Filter
      * Override existing apply method in PIXI.Filter
      * @private
      */
-    apply(filterManager, input, output, clear)
-    {
+    apply(filterManager, input, output, clear) {
         const angle = this._angle;
 
-        if (angle !== 0)
-        {
+        if (angle !== 0) {
             this.uniforms.uKernelSize = this.kernelSize;
         }
-        else
-        {
+        else {
             this.uniforms.uKernelSize = 0;
         }
 
@@ -55,16 +50,14 @@ export default class RadialBlurFilter extends PIXI.Filter
      * @member {PIXI.Point|number[]}
      * @default [0, 0]
      */
-    set angle(value)
-    {
+    set angle(value) {
         this._angle = value;
         this.radian = value * Math.PI / 180;
 
         this.uniforms.uRadian = this.radian;
     }
 
-    get angle()
-    {
+    get angle() {
         return this._angle;
     }
 

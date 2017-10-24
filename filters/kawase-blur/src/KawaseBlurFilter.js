@@ -1,10 +1,8 @@
 import vertex from './kawase-blur.vert';
 import fragment from './kawase-blur.frag';
 
-export default class KawaseBlurFilter extends PIXI.Filter
-{
-    constructor(kernels = [0], pixelSize = [1.0, 1.0])
-    {
+export default class KawaseBlurFilter extends PIXI.Filter {
+    constructor(kernels = [0], pixelSize = [1.0, 1.0]) {
         super(
             vertex,
             fragment
@@ -18,19 +16,16 @@ export default class KawaseBlurFilter extends PIXI.Filter
         this.pixelSize = pixelSize;
     }
 
-    apply(filterManager, input, output, clear)
-    {
+    apply(filterManager, input, output, clear) {
         // pixelSize / filterArea_Size
         this.uniforms.uPixelSize[0] = this.pixelSize.x / input.size.width;
         this.uniforms.uPixelSize[1] = this.pixelSize.y / input.size.height;
 
-        if (this.passes === 1)
-        {
+        if (this.passes === 1) {
             this.uniforms.offset = this._kernels[0];
             filterManager.applyFilter(this, input, output, clear);
         }
-        else
-        {
+        else {
             const renderTarget = filterManager.getRenderTarget(true);
 
             let source = input;
@@ -39,8 +34,7 @@ export default class KawaseBlurFilter extends PIXI.Filter
 
             const last = this.passes - 1;
 
-            for (let i = 0; i < last; i++)
-            {
+            for (let i = 0; i < last; i++) {
                 this.uniforms.offset = this._kernels[i];
                 filterManager.applyFilter(this, source, target, true);
 
@@ -55,13 +49,11 @@ export default class KawaseBlurFilter extends PIXI.Filter
         }
     }
 
-    get kernels() // eslint-disable-line require-jsdoc
-    {
+    get kernels() {// eslint-disable-line require-jsdoc
         return this._kernels;
     }
 
-    set kernels(value) // eslint-disable-line require-jsdoc
-    {
+    set kernels(value) { // eslint-disable-line require-jsdoc
         this._kernels = value;
         this.passes = value.length;
     }
@@ -72,27 +64,22 @@ export default class KawaseBlurFilter extends PIXI.Filter
      * @member {PIXI.Point|number[]}
      * @default [0, 0]
      */
-    set pixelSize(value)
-    {
-        if (typeof value === 'number')
-        {
+    set pixelSize(value) {
+        if (typeof value === 'number') {
             this._pixelSize.x = value;
             this._pixelSize.y = value;
         }
-        else if (Array.isArray(value))
-        {
+        else if (Array.isArray(value)) {
             this._pixelSize.x = value[0];
             this._pixelSize.y = value[1];
         }
-        else if (value instanceof PIXI.Point)
-        {
+        else if (value instanceof PIXI.Point) {
             this._pixelSize.x = value.x;
             this._pixelSize.y = value.y;
         }
     }
 
-    get pixelSize()
-    {
+    get pixelSize() {
         return this._pixelSize;
     }
 }

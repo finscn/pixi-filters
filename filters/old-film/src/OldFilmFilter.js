@@ -22,16 +22,15 @@ import fragment from './old-film.frag';
  * @param {number} [options.vignettingBlur=0.3] - TODO
  * @param {number} [randomValue=0.3] - TODO
  */
-export default class OldFilmFilter extends PIXI.Filter
-{
-    constructor(options, randomValue = 0.0)
-    {
-        super(vertex, fragment.replace("$\{noise2D\}", noise2D));
+export default class OldFilmFilter extends PIXI.Filter {
+    constructor(options, randomValue = 0.0) {
+        super(vertex, fragment.replace('${noise2D}', noise2D));
 
         if (typeof options === 'number') {
             this.randomValue = options;
             options = null;
-        } else {
+        }
+        else {
             this.randomValue = randomValue;
         }
 
@@ -60,8 +59,7 @@ export default class OldFilmFilter extends PIXI.Filter
      * Override existing apply method in PIXI.Filter
      * @private
      */
-    apply(filterManager, input, output, clear)
-    {
+    apply(filterManager, input, output, clear) {
         this.uniforms.dimensions[0] = input.sourceFrame.width;
         this.uniforms.dimensions[1] = input.sourceFrame.height;
 
@@ -79,13 +77,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set sepia(value)
-    {
+    set sepia(value) {
         this.uniforms.sepia = value;
     }
 
-    get sepia()
-    {
+    get sepia() {
         return this.uniforms.sepia;
     }
 
@@ -95,13 +91,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set noise(value)
-    {
+    set noise(value) {
         this.uniforms.noise = value;
     }
 
-    get noise()
-    {
+    get noise() {
         return this.uniforms.noise;
     }
 
@@ -111,13 +105,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set noiseSize(value)
-    {
+    set noiseSize(value) {
         this.uniforms.noiseSize = value;
     }
 
-    get noiseSize()
-    {
+    get noiseSize() {
         return this.uniforms.noiseSize;
     }
 
@@ -127,13 +119,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set scratch(value)
-    {
+    set scratch(value) {
         this.uniforms.scratch = value;
     }
 
-    get scratch()
-    {
+    get scratch() {
         return this.uniforms.scratch;
     }
 
@@ -143,13 +133,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set scratchWidth(value)
-    {
+    set scratchWidth(value) {
         this.uniforms.scratchWidth = value;
     }
 
-    get scratchWidth()
-    {
+    get scratchWidth() {
         return this.uniforms.scratchWidth;
     }
 
@@ -159,13 +147,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set vignetting(value)
-    {
+    set vignetting(value) {
         this.uniforms.vignetting = value;
     }
 
-    get vignetting()
-    {
+    get vignetting() {
         return this.uniforms.vignetting;
     }
 
@@ -175,13 +161,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set vignettingAlpha(value)
-    {
+    set vignettingAlpha(value) {
         this.uniforms.vignettingAlpha = value;
     }
 
-    get vignettingAlpha()
-    {
+    get vignettingAlpha() {
         return this.uniforms.vignettingAlpha;
     }
 
@@ -191,13 +175,11 @@ export default class OldFilmFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set vignettingBlur(value)
-    {
+    set vignettingBlur(value) {
         this.uniforms.vignettingBlur = value;
     }
 
-    get vignettingBlur()
-    {
+    get vignettingBlur() {
         return this.uniforms.vignettingBlur;
     }
 }

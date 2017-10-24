@@ -12,10 +12,8 @@ import fragment from './motion-blur.frag';
  * @param {number} [kernelSize=5] - The kernelSize of the blur filter. Options: the `odd number` >= 5.
  * @param {number} [offset=0] - The offset of the blur filter.
  */
-export default class MotionBlurFilter extends PIXI.Filter
-{
-    constructor(velocity = [0, 0], kernelSize = 5, offset = 0)
-    {
+export default class MotionBlurFilter extends PIXI.Filter {
+    constructor(velocity = [0, 0], kernelSize = 5, offset = 0) {
         super(vertex, fragment);
 
         this._velocity = new PIXI.Point(0,0);
@@ -29,17 +27,14 @@ export default class MotionBlurFilter extends PIXI.Filter
      * Override existing apply method in PIXI.Filter
      * @private
      */
-    apply(filterManager, input, output, clear)
-    {
+    apply(filterManager, input, output, clear) {
         const velX = this.velocity.x;
         const velY = this.velocity.y;
 
-        if (velX !== 0 || velY !== 0)
-        {
+        if (velX !== 0 || velY !== 0) {
             this.uniforms.uKernelSize = this.kernelSize;
         }
-        else
-        {
+        else {
             this.uniforms.uKernelSize = 0;
         }
 
@@ -52,15 +47,12 @@ export default class MotionBlurFilter extends PIXI.Filter
      * @member {PIXI.Point|number[]}
      * @default [0, 0]
      */
-    set velocity(value)
-    {
-        if (Array.isArray(value))
-        {
+    set velocity(value) {
+        if (Array.isArray(value)) {
             this._velocity.x = value[0];
             this._velocity.y = value[1];
         }
-        else if (value instanceof PIXI.Point)
-        {
+        else if (value instanceof PIXI.Point) {
             this._velocity.x = value.x;
             this._velocity.y = value.y;
         }
@@ -69,8 +61,7 @@ export default class MotionBlurFilter extends PIXI.Filter
         this.uniforms.uVelocity[1] = this._velocity.y;
     }
 
-    get velocity()
-    {
+    get velocity() {
         return this._velocity;
     }
 
@@ -80,13 +71,11 @@ export default class MotionBlurFilter extends PIXI.Filter
      * @member {number}
      * @default 0
      */
-    set offset(value)
-    {
+    set offset(value) {
         this.uniforms.uOffset = value;
     }
 
-    get offset()
-    {
+    get offset() {
         return this.uniforms.uOffset;
     }
 }
