@@ -1,0 +1,168 @@
+import noise2D from './noise2D.frag';
+import vertex from './old-film.vert';
+import fragment from './old-film.frag';
+
+/**
+ * The OldFilmFilter applies a Old film effect to an object.
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/old-film.png)
+ *
+ * @class
+ * @extends PIXI.Filter
+ * @memberof PIXI.filters
+ *
+ * @param {object|number} [options] - The optional parameters of old film effect.
+ *                        When options is a number , it will be `randomValue`.
+ * @param {number} [options.sepia=0.3] - TODO
+ * @param {number} [options.noise=0.3] - TODO
+ * @param {number} [options.scratch=0.3] - TODO
+ * @param {number} [options.scratchWidth=1.0] - TODO
+ * @param {number} [options.vignetting=0.3] - TODO
+ * @param {number} [options.vignettingBlur=0.3] - TODO
+ * @param {number} [randomValue=0.3] - TODO
+ */
+export default class OldFilmFilter extends PIXI.Filter
+{
+    constructor(options, randomValue = 0.0)
+    {
+        super(vertex, fragment.replace("$\{noise2D\}", noise2D));
+
+        if (typeof options === 'number') {
+            this.randomValue = options;
+            options = null;
+        } else {
+            this.randomValue = randomValue;
+        }
+
+        options = Object.assign({
+            sepia: 0.3,
+            noise: 0.3,
+            scratch: 0.3,
+            scratchWidth: 1.0,
+            vignetting: 0.3,
+            vignettingBlur: 0.3,
+        }, options);
+
+        this.sepia = options.sepia;
+        this.noise = options.noise;
+        this.scratch = options.scratch;
+        this.scratchWidth = options.scratchWidth;
+        this.vignetting = options.vignetting;
+        this.vignettingBlur = options.vignettingBlur;
+    }
+
+    /**
+     * Override existing apply method in PIXI.Filter
+     * @private
+     */
+    apply(filterManager, input, output, clear)
+    {
+        this.uniforms.dimensions[0] = input.sourceFrame.width;
+        this.uniforms.dimensions[1] = input.sourceFrame.height;
+
+        // named `randomValue` because in the most programming languages,
+        // `random` used for "the function for generating random value".
+        this.uniforms.randomValue = this.randomValue;
+
+        filterManager.applyFilter(this, input, output, clear);
+    }
+
+
+    /**
+     * The sepia of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set sepia(value)
+    {
+        this.uniforms.sepia = value;
+    }
+
+    get sepia()
+    {
+        return this.uniforms.sepia;
+    }
+
+    /**
+     * The noise of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set noise(value)
+    {
+        this.uniforms.noise = value;
+    }
+
+    get noise()
+    {
+        return this.uniforms.noise;
+    }
+
+    /**
+     * The scratch of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set scratch(value)
+    {
+        this.uniforms.scratch = value;
+    }
+
+    get scratch()
+    {
+        return this.uniforms.scratch;
+    }
+
+    /**
+     * The scratchWidth of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set scratchWidth(value)
+    {
+        this.uniforms.scratchWidth = value;
+    }
+
+    get scratchWidth()
+    {
+        return this.uniforms.scratchWidth;
+    }
+
+    /**
+     * The vignetting of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignetting(value)
+    {
+        this.uniforms.vignetting = value;
+    }
+
+    get vignetting()
+    {
+        return this.uniforms.vignetting;
+    }
+
+    /**
+     * The vignettingBlur of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignettingBlur(value)
+    {
+        this.uniforms.vignettingBlur = value;
+    }
+
+    get vignettingBlur()
+    {
+        return this.uniforms.vignettingBlur;
+    }
+}
+
+// Export to PixiJS namespace
+PIXI.filters.OldFilmFilter = OldFilmFilter;

@@ -45,13 +45,21 @@ app.loader
     .add('fish4', 'images/displacement_fish4.png')
     .add('lightmap', 'images/lightmap.png')
     .load(function(loader, resources) {
-        gui.add(window, 'paused').name('<i class="fa fa-pause"></i> Pause stage');
+        gui.add(window, 'paused').name('<i class="fa fa-pause"></i> Pause').onChange(function(value){
+            if (value){
+                app.stop();
+            }else{
+                app.start();
+            }
+        });
+        gui.add(window, 'freezed').name('<i class="fa fa-pause"></i> Freeze stage');
         init(resources);
         app.start();
     });
 
 
 window.paused = false;
+window.freezed = false;
 
 window.FilterMakers = [];
 window.filters = [];

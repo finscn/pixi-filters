@@ -27,6 +27,7 @@ All filters work with PixiJS v4.
 | **KawaseBlurFilter**<br>_@pixi/filter-kawase-blur_ | ![kawase-blur](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/kawase-blur.png?v=1) |
 | **MotionBlurFilter**<br>_@pixi/filter-motion-blur_ | ![motion-blur](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/motion-blur.png?v=1) |
 | **MultiColorReplaceFilter**<br>_@pixi/filter-multi-color-replace_ | ![multi-color-replace](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/multi-color-replace.png?v=1) |
+| **OldFilmFilter**<br>_@pixi/filter-old-film_ | ![old-film](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/old-film.png?v=2) |
 | **OutlineFilter**<br>_@pixi/filter-outline_ | ![outline](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/outline.png?v=2) |
 | **PixelateFilter**<br>_@pixi/filter-pixelate_ | ![pixelate](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/pixelate.png?v=2) |
 | **RadialBlurFilter**<br>_@pixi/filter-radial-blur_ | ![radial-blur](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/radial-blur.png?v=2) |

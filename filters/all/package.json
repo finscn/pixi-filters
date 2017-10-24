@@ -47,6 +47,7 @@
     "@pixi/filter-kawase-blur": "^2.2.0",
     "@pixi/filter-motion-blur": "^2.2.0",
     "@pixi/filter-multi-color-replace": "^2.2.0",
+    "@pixi/filter-old-film": "^2.2.0",
     "@pixi/filter-outline": "^2.2.0",
     "@pixi/filter-pixelate": "^2.2.0",
     "@pixi/filter-radial-blur": "^2.2.0",

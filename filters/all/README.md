@@ -21,6 +21,7 @@ Filters include:
 * **KawaseBlurFilter** _@pixi/filter-kawase-blur_
 * **MotionBlurFilter** _@pixi/filter-motion-blur_
 * **MultiColorFilter** _@pixi/filter-multi-color-replace_
+* **OldFilmFilter** _@pixi/filter-old-film_
 * **OutlineFilter** _@pixi/filter-outline_
 * **PixelateFilter** _@pixi/filter-pixelate_
 * **RadialBlurFilter** _@pixi/filter-radial-blur_
