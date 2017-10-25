@@ -62,7 +62,7 @@ void main()
         float outter = SQRT_2 - vignetting * SQRT_2;
         vec2 dir = vec2(vec2(0.5, 0.5) - coord);
         dir.y *= dimensions.y / dimensions.x;
-        float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.000001 + vignettingBlur * SQRT_2), 0.0, 1.0);
+        float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);
         color.rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);
     }
 

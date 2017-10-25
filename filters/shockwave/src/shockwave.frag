@@ -60,6 +60,7 @@ void main()
         gl_FragColor *= max(0.0, 1.0 - length(coord - clampedCoord));
     }
 
+    // No clamp :
     // gl_FragColor = texture2D(uSampler, vTextureCoord + offset);
 
     gl_FragColor.rgb *= 1.0 + (brightness - 1.0) * p * fade;
