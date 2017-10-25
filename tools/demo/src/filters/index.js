@@ -25,6 +25,8 @@ export {default as lightmap} from './lightmap';
 export {default as godray} from './godray';
 export {default as zoomBlur} from './zoom-blur';
 export {default as kawaseBlur} from './kawase-blur';
+export {default as blurFish} from './fish-blur';
+export {default as kawaseBlurFish} from './fish-kawase-blur';
 export {default as motionBlur} from './motion-blur';
 export {default as radialBlur} from './radial-blur';
 export {default as oldFilm} from './old-film';
