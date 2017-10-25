@@ -3,6 +3,7 @@ export default function() {
     app.addFilter('OldFilmFilter', {
         enabled: false,
         global: false,
+        opened: false,
         args: [[app.initWidth / 2, app.initHeight / 2]],
         oncreate(folder) {
             const filter = this;
