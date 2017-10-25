@@ -7,6 +7,7 @@ declare namespace PIXI.filters {
         noise: number;
         noiseSize: number;
         scratch: number;
+        scratchDensity: number;
         scratchWidth: number;
         vignetting: number;
         vignettingAlpha: number;
@@ -18,6 +19,7 @@ declare namespace PIXI.filters {
         noise?: number;
         noiseSize?: number;
         scratch?: number;
+        scratchDensity?: number;
         scratchWidth?: number;
         vignetting?: number;
         vignettingAlpha?: number;

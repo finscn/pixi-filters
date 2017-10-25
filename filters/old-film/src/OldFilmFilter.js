@@ -15,7 +15,8 @@ import fragment from './old-film.frag';
  * @param {number} [options.sepia=0.3] - TODO
  * @param {number} [options.noise=0.3] - TODO
  * @param {number} [options.noiseSize=1.0] - TODO
- * @param {number} [options.scratch=0.3] - TODO
+ * @param {number} [options.scratch=0.5] - TODO
+ * @param {number} [options.scratchDensity=0.3] - TODO
  * @param {number} [options.scratchWidth=1.0] - TODO
  * @param {number} [options.vignetting=0.3] - TODO
  * @param {number} [options.vignettingAlpha=1.0] - TODO
@@ -38,7 +39,8 @@ export default class OldFilmFilter extends PIXI.Filter {
             sepia: 0.3,
             noise: 0.3,
             noiseSize: 1.0,
-            scratch: 0.3,
+            scratch: 0.5,
+            scratchDensity: 0.3,
             scratchWidth: 1.0,
             vignetting: 0.3,
             vignettingAlpha: 1.0,
@@ -49,6 +51,7 @@ export default class OldFilmFilter extends PIXI.Filter {
         this.noise = options.noise;
         this.noiseSize = options.noiseSize;
         this.scratch = options.scratch;
+        this.scratchDensity = options.scratchDensity;
         this.scratchWidth = options.scratchWidth;
         this.vignetting = options.vignetting;
         this.vignettingAlpha = options.vignettingAlpha;
@@ -125,6 +128,20 @@ export default class OldFilmFilter extends PIXI.Filter {
 
     get scratch() {
         return this.uniforms.scratch;
+    }
+
+    /**
+     * The scratchDensity of the filter.
+     *
+     * @member {number}
+     * @default 0
+     */
+    set scratchDensity(value) {
+        this.uniforms.scratchDensity = value;
+    }
+
+    get scratchDensity() {
+        return this.uniforms.scratchDensity;
     }
 
     /**
