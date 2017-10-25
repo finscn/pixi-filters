@@ -65,7 +65,7 @@ void main()
         float d = distance(coord, vec2(randomValue * dist, abs(s - randomValue * dist)));
         if (d < randomValue * 0.4 + 0.4)
         {
-            float period = scratch * 10.0;
+            highp float period = scratch * 10.0;
 
             float xx = coord.x * period + phase;
             float aa = abs(mod(xx, 0.5) * 4.0);
@@ -73,12 +73,12 @@ void main()
             float yy = 2.0 - (1.0 - bb) * aa - bb * (2.0 - aa);
 
             float kk = 2.0 * period;
-            float dw = ceil(scratchWidth * (0.75 + randomValue)) / dimensions.x;
+            float dw = scratchWidth / dimensions.x * (0.75 + randomValue);
             float dh = dw * kk;
             float vScratch = yy - dh;
 
             if (vScratch < 0.0){
-                vScratch = vScratch / period - 0.60;
+                vScratch = vScratch / period - 0.65;
             }
             vScratch = clamp(vScratch + 1.0, 0.0, 1.0);
             color.rgb *= vScratch;
