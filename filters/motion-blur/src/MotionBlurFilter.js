@@ -2,7 +2,7 @@ import vertex from './motion-blur.vert';
 import fragment from './motion-blur.frag';
 
 /**
- * The MotionBlurFilter applies a Motion blur to an object.
+ * The MotionBlurFilter applies a Motion blur to an object.<br>
  * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/motion-blur.png)
  *
  * @class

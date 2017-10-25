@@ -3,7 +3,7 @@ import vertex from './old-film.vert';
 import fragment from './old-film.frag';
 
 /**
- * The OldFilmFilter applies a Old film effect to an object.
+ * The OldFilmFilter applies a Old film effect to an object.<br>
  * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/old-film.png)
  *
  * @class

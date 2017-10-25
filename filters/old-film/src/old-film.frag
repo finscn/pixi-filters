@@ -44,7 +44,7 @@ void main()
     }
 
 
-    if (noise > 0.0)
+    if (noise > 0.0 && noiseSize > 0.0)
     {
         vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
         pixelCoord.x = floor(pixelCoord.x / noiseSize);

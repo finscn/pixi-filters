@@ -2,7 +2,7 @@ import vertex from './radial-blur.vert';
 import fragment from './radial-blur.frag';
 
 /**
- * The RadialBlurFilter applies a Motion blur to an object.
+ * The RadialBlurFilter applies a Motion blur to an object.<br>
  * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/radial-blur.png)
  *
  * @class

@@ -2,7 +2,7 @@ import {vertex} from '@tools/fragments';
 import fragment from './shockwave.frag';
 
 /**
- * The ShockwaveFilter class lets you apply a shockwave effect.
+ * The ShockwaveFilter class lets you apply a shockwave effect.<br>
  * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/shockwave.gif)
  *
  * @class
