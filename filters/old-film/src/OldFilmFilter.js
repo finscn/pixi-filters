@@ -1,4 +1,3 @@
-import noise2D from './noise2D.frag';
 import vertex from './old-film.vert';
 import fragment from './old-film.frag';
 
@@ -25,7 +24,7 @@ import fragment from './old-film.frag';
  */
 export default class OldFilmFilter extends PIXI.Filter {
     constructor(options, randomValue = 0.0) {
-        super(vertex, fragment.replace('${noise2D}', noise2D));
+        super(vertex, fragment);
 
         if (typeof options === 'number') {
             this.randomValue = options;

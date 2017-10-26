@@ -17,7 +17,9 @@ uniform float randomValue;
 const float SQRT_2 = 1.414213;
 const vec3 SEPIA_RGB = vec3(112.0 / 255.0, 66.0 / 255.0, 20.0 / 255.0);
 
-${noise2D}
+float rand(vec2 co) {
+    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
+}
 
 vec3 Overlay(vec3 src, vec3 dst)
 {
@@ -50,8 +52,9 @@ void main()
         vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
         pixelCoord.x = floor(pixelCoord.x / noiseSize);
         pixelCoord.y = floor(pixelCoord.y / noiseSize);
-        vec2 d = pixelCoord * noiseSize * vec2(1024.0 + randomValue * 512.0, 1024.0 - randomValue * 512.0);
-        float _noise = snoise(d) * 0.5;
+        // vec2 d = pixelCoord * noiseSize * vec2(1024.0 + randomValue * 512.0, 1024.0 - randomValue * 512.0);
+        // float _noise = snoise(d) * 0.5;
+        float _noise = rand(pixelCoord * noiseSize * randomValue) - 0.5;
         color += _noise * noise;
     }
 
