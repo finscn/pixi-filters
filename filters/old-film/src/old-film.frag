@@ -69,9 +69,8 @@ void main()
     if (scratchDensity > randomValue && scratch != 0.0)
     {
         float phase = randomValue * 256.0;
-
-        float dist = 1.0 / scratchDensity;
         float s = mod(floor(phase), 2.0);
+        float dist = 1.0 / scratchDensity;
         float d = distance(coord, vec2(randomValue * dist, abs(s - randomValue * dist)));
         if (d < randomValue * 0.6 + 0.4)
         {
@@ -89,13 +88,11 @@ void main()
             float tine = (yy - (2.0 - dh));
 
             if (tine > 0.0) {
-                if (scratch > 0.0) {
-                    tine = tine / period + scratch + 0.1;
-                    tine = clamp(tine + 1.0, 1.0, 2.0);
-                } else {
-                    tine = -tine / period + scratch - 0.1;
-                    tine = clamp(tine + 1.0, 0.0, 1.0);
-                }
+                float _sign = sign(scratch);
+
+                tine = s * tine / period + scratch + 0.1;
+                tine = clamp(tine + 1.0, 0.5 + _sign * 0.5, 1.5 + _sign * 0.5);
+
                 color.rgb *= tine;
             }
         }

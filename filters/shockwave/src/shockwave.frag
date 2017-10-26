@@ -22,10 +22,6 @@ void main()
     float maxRadius = radius / filterArea.x;
     float currentRadius = time * speed / filterArea.x;
 
-    vec2 dir = vec2(vTextureCoord - center / filterArea.xy);
-    dir.y *= filterArea.y / filterArea.x;
-    float dist = length(dir);
-
     float fade = 1.0;
 
     if (maxRadius > 0.0) {
@@ -35,6 +31,10 @@ void main()
         }
         fade = 1.0 - pow(currentRadius / maxRadius, 2.0);
     }
+
+    vec2 dir = vec2(vTextureCoord - center / filterArea.xy);
+    dir.y *= filterArea.y / filterArea.x;
+    float dist = length(dir);
 
     if (dist <= 0.0 || dist < currentRadius - halfWavelength || dist > currentRadius + halfWavelength) {
         gl_FragColor = texture2D(uSampler, vTextureCoord);
