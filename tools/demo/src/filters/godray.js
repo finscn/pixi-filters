@@ -2,8 +2,8 @@ export default function() {
     const app = this;
 
     this.addFilter('GodrayFilter', {
-        enabled: true,
-        opened: true,
+        enabled: false,
+        opened: false,
         oncreate: function(folder) {
             const filter = this;
 

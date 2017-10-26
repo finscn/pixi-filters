@@ -17,7 +17,7 @@ export default function() {
             folder.add(this, 'noiseSize', 1, 10);
             folder.add(this, 'scratch', -1, 1);
             folder.add(this, 'scratchDensity', 0, 1);
-            folder.add(this, 'scratchWidth', 1, 30);
+            folder.add(this, 'scratchWidth', 1, 20);
             folder.add(this, 'vignetting', 0, 1);
             folder.add(this, 'vignettingAlpha', 0, 1);
             folder.add(this, 'vignettingBlur', 0, 1);
