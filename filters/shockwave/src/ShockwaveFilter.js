@@ -9,7 +9,7 @@ import fragment from './shockwave.frag';
  * @extends PIXI.Filter
  * @memberof PIXI.filters
  *
- * @param {PIXI.Point} [center=[0.5, 0.5]] See `center` property.
+ * @param {PIXI.Point|number[]} [center=[0.5, 0.5]] See `center` property.
  * @param {object} [options] - The optional parameters of shockwave filter.
  * @param {number} [options.amplitude=0.5] - See `amplitude`` property.
  * @param {number} [options.wavelength=1.0] - See `wavelength` property.

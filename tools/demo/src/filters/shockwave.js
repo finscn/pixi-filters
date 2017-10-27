@@ -1,5 +1,6 @@
 export default function() {
     const app = this;
+
     this.addFilter('ShockwaveFilter', {
         enabled: false,
         global: false,
