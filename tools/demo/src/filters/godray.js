@@ -12,7 +12,7 @@ export default function() {
             this.lacunarity = 2.5;
 
             app.events.on('animate', function(delta){
-                filter.time += app.elapsedMS * 0.005;
+                filter.time += app.ticker.elapsedMS * 0.005;
             });
 
             folder.add(this, 'time', 0, 1);
