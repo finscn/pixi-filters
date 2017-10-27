@@ -11,8 +11,8 @@ export default function() {
             this.gain = 0.5;
             this.lacunarity = 2.5;
 
-            app.events.on('animate', function(delta){
-                filter.time += app.ticker.elapsedMS * 0.005;
+            app.events.on('animate', function(){
+                filter.time += app.ticker.elapsedMS / 1000;
             });
 
             folder.add(this, 'time', 0, 1);

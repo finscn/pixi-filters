@@ -5,17 +5,28 @@ export default function() {
         global: false,
         args: [[app.initWidth / 2, app.initHeight / 2]],
         oncreate(folder) {
-            const maxTime = 1200;
 
             const filter = this;
-            const startTime = Date.now();
-            let time = 0;
-            app.events.on('animate', function() {
-                time = (Date.now() - startTime) % maxTime;
-                filter.time = time;
+            const maxTime = 2.5;
+
+            filter.manually = false;
+
+            app.events.on('toggle', function(enabled) {
+                filter.disabled = !enabled;
+                if (enabled && !filter.manually) {
+                    filter.time = 0;
+                }
             });
 
-            // folder.add(this, 'time', 0, maxTime);
+            app.events.on('animate', function() {
+                if (!filter.manually){
+                    filter.time += app.ticker.elapsedMS / 1000;
+                    filter.time %= maxTime;
+                }
+            });
+
+            folder.add(this, 'manually').name(' * play manually');
+            folder.add(this, 'time', 0, maxTime);
             folder.add(this, 'amplitude', 1, 100);
             folder.add(this, 'wavelength', 2, 400);
             folder.add(this, 'brightness', 0.2, 2.0);
