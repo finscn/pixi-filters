@@ -8,11 +8,11 @@ export default function() {
             const filter = this;
 
             this.angle = 30;
-            this.gain = 0.7;
-            this.lacunarity = 3;
+            this.gain = 0.5;
+            this.lacunarity = 2.5;
 
             app.events.on('animate', function(delta){
-                filter.time += delta / 1000.0 * 0.5;
+                filter.time += app.elapsedMS * 0.005;
             });
 
             folder.add(this, 'time', 0, 1);
