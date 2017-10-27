@@ -13,7 +13,7 @@ import fragment from './shockwave.frag';
  * @param {object} [options] - The optional parameters of shockwave filter.
  * @param {number} [options.amplitude=0.5] - See `amplitude`` property.
  * @param {number} [options.wavelength=1.0] - See `wavelength` property.
- * @param {number} [options.speed=1.0] - See `speed` property.
+ * @param {number} [options.speed=500.0] - See `speed` property.
  * @param {number} [options.brightness=8] - See `brightness` property.
  * @param {number} [options.radius=4] - See `radius` property.
  * @param {number} [time=0] - See `time` property.
@@ -29,7 +29,7 @@ export default class ShockwaveFilter extends PIXI.Filter {
             amplitude: 30.0,
             wavelength: 160.0,
             brightness: 1.0,
-            speed: 1.0,
+            speed: 500.0,
             radius: -1.0,
         }, options);
 
@@ -114,6 +114,7 @@ export default class ShockwaveFilter extends PIXI.Filter {
 
     /**
      * The speed about the shockwave ripples out.
+     * The unit is `pixel/second`
      *
      * @member {number}
      */
