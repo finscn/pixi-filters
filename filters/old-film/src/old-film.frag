@@ -46,18 +46,6 @@ void main()
         color = grayscale + sepia * (color - grayscale);
     }
 
-
-    if (noise > 0.0 && noiseSize > 0.0)
-    {
-        vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
-        pixelCoord.x = floor(pixelCoord.x / noiseSize);
-        pixelCoord.y = floor(pixelCoord.y / noiseSize);
-        // vec2 d = pixelCoord * noiseSize * vec2(1024.0 + randomValue * 512.0, 1024.0 - randomValue * 512.0);
-        // float _noise = snoise(d) * 0.5;
-        float _noise = rand(pixelCoord * noiseSize * randomValue) - 0.5;
-        color += _noise * noise;
-    }
-
     vec2 coord = vTextureCoord * filterArea.xy / dimensions.xy;
 
     if (vignetting > 0.0)
@@ -99,6 +87,17 @@ void main()
                 color.rgb *= tine;
             }
         }
+    }
+
+    if (noise > 0.0 && noiseSize > 0.0)
+    {
+        vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
+        pixelCoord.x = floor(pixelCoord.x / noiseSize);
+        pixelCoord.y = floor(pixelCoord.y / noiseSize);
+        // vec2 d = pixelCoord * noiseSize * vec2(1024.0 + randomValue * 512.0, 1024.0 - randomValue * 512.0);
+        // float _noise = snoise(d) * 0.5;
+        float _noise = rand(pixelCoord * noiseSize * randomValue) - 0.5;
+        color += _noise * noise;
     }
 
     gl_FragColor.rgb = color;
