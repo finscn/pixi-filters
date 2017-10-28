@@ -1,6 +1,6 @@
 /// <reference types="pixi.js" />
 declare namespace PIXI.filters {
-    class RadialBlurFilter extends PIXI.Filter {
+    class RadialBlurFilter extends PIXI.Filter<{}> {
         constructor(angle?:number, kernelSize?:number);
         angle:number;
         kernelSize:number;

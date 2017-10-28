@@ -1,6 +1,6 @@
 /// <reference types="pixi.js" />
 declare namespace PIXI.filters {
-    class KawaseBlurFilter extends PIXI.Filter {
+    class KawaseBlurFilter extends PIXI.Filter<{}> {
         constructor(kernels:number[], pixelSize?:number|PIXI.Point|number[]);
         kernels:number[];
         pixelSize:number|PIXI.Point|number[];

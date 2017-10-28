@@ -1,6 +1,6 @@
 /// <reference types="pixi.js" />
 declare namespace PIXI.filters {
-    class OldFilmFilter extends PIXI.Filter {
+    class OldFilmFilter extends PIXI.Filter<{}> {
         constructor(options?: OldFilmOptions, randomValue?: number);
         constructor(randomValue?: number);
         sepia: number;
