@@ -1,6 +1,6 @@
 {
   "name": "@pixi/filter-old-film",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "main": "lib/filter-old-film.js",
   "description": "Old Film effect filter",
   "author": "finscn",
