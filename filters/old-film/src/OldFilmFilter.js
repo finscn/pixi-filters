@@ -1,4 +1,4 @@
-import vertex from './old-film.vert';
+import {vertex} from '@tools/fragments';
 import fragment from './old-film.frag';
 
 /**
