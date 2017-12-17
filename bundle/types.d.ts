@@ -85,9 +85,10 @@ declare namespace PIXI.filters {
         pixelSize:number|PIXI.Point|number[];
     }
     class MotionBlurFilter extends PIXI.Filter<{}> {
-        constructor(velocity:PIXI.Point|number[], kernelSize?:number);
+        constructor(velocity:PIXI.Point|number[], kernelSize?:number, offset?:number);
         velocity:PIXI.Point|number[];
         kernelSize:number;
+        offset:number;
     }
     class MultiColorReplaceFilter extends PIXI.Filter<{}> {
         constructor(replacements:Array<number[]|number[][]>, epsilon?:number, maxColors?:number);
@@ -131,9 +132,11 @@ declare namespace PIXI.filters {
         size:PIXI.Point|number[]|number;
     }
     class RadialBlurFilter extends PIXI.Filter<{}> {
-        constructor(angle?:number, kernelSize?:number);
+        constructor(angle?:number, center?:number[]|PIXI.Point, kernelSize?:number, radius?:number);
         angle:number;
+        center:number[]|PIXI.Point;
         kernelSize:number;
+        radius:number;
     }
     class RGBSplitFilter extends PIXI.Filter<{}> {
         constructor(red?:PIXI.Point, green?:PIXI.Point, blue?:PIXI.Point);
