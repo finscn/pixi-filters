@@ -3,11 +3,11 @@ varying vec2 vTextureCoord;
 uniform sampler2D uSampler;
 
 uniform vec2 uPixelSize;
-uniform float offset;
+uniform float uOffset;
 
 void main(void)
 {
-    vec2 dUV = uPixelSize * (vec2(offset, offset) + 0.5);
+    vec2 dUV = uPixelSize * (vec2(uOffset, uOffset) + 0.5);
 
     vec4 color = vec4(0.0);
 

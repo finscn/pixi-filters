@@ -22,7 +22,7 @@ export default class KawaseBlurFilter extends PIXI.Filter {
         this.uniforms.uPixelSize[1] = this.pixelSize.y / input.size.height;
 
         if (this._passes === 1) {
-            this.uniforms.offset = this._kernels[0];
+            this.uniforms.uOffset = this._kernels[0];
             filterManager.applyFilter(this, input, output, clear);
         }
         else {
@@ -35,14 +35,14 @@ export default class KawaseBlurFilter extends PIXI.Filter {
             const last = this._passes - 1;
 
             for (let i = 0; i < last; i++) {
-                this.uniforms.offset = this._kernels[i];
+                this.uniforms.uOffset = this._kernels[i];
                 filterManager.applyFilter(this, source, target, true);
 
                 tmp = source;
                 source = target;
                 target = tmp;
             }
-            this.uniforms.offset = this._kernels[last];
+            this.uniforms.uOffset = this._kernels[last];
             filterManager.applyFilter(this, source, output, clear);
 
             filterManager.returnRenderTarget(renderTarget);
