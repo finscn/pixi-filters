@@ -1,4 +1,4 @@
-import vertex from './kawase-blur.vert';
+import {vertex} from '@tools/fragments';
 import fragment from './kawase-blur.frag';
 
 export default class KawaseBlurFilter extends PIXI.Filter {
@@ -8,7 +8,7 @@ export default class KawaseBlurFilter extends PIXI.Filter {
             fragment
         );
 
-        this.passes = 0;
+        this._passes = 0;
         this._kernels = null;
         this.kernels = kernels;
 
@@ -21,7 +21,7 @@ export default class KawaseBlurFilter extends PIXI.Filter {
         this.uniforms.uPixelSize[0] = this.pixelSize.x / input.size.width;
         this.uniforms.uPixelSize[1] = this.pixelSize.y / input.size.height;
 
-        if (this.passes === 1) {
+        if (this._passes === 1) {
             this.uniforms.offset = this._kernels[0];
             filterManager.applyFilter(this, input, output, clear);
         }
@@ -32,7 +32,7 @@ export default class KawaseBlurFilter extends PIXI.Filter {
             let target = renderTarget;
             let tmp;
 
-            const last = this.passes - 1;
+            const last = this._passes - 1;
 
             for (let i = 0; i < last; i++) {
                 this.uniforms.offset = this._kernels[i];
@@ -49,13 +49,13 @@ export default class KawaseBlurFilter extends PIXI.Filter {
         }
     }
 
-    get kernels() {// eslint-disable-line require-jsdoc
+    get kernels() { // eslint-disable-line require-jsdoc
         return this._kernels;
     }
 
     set kernels(value) { // eslint-disable-line require-jsdoc
         this._kernels = value;
-        this.passes = value.length;
+        this._passes = value.length;
     }
 
     /**
@@ -86,4 +86,3 @@ export default class KawaseBlurFilter extends PIXI.Filter {
 
 // Export to PixiJS namespace
 PIXI.filters.KawaseBlurFilter = KawaseBlurFilter;
-
