@@ -12,17 +12,19 @@ export default class KawaseBlurFilter extends PIXI.Filter {
         this._kernels = null;
         this.kernels = kernels;
 
-        this._pixelSize = new PIXI.Point(0,0);
+        this._pixelSize = new PIXI.Point(0, 0);
         this.pixelSize = pixelSize;
     }
 
     apply(filterManager, input, output, clear) {
-        // pixelSize / filterArea_Size
-        this.uniforms.uPixelSize[0] = this.pixelSize.x / input.size.width;
-        this.uniforms.uPixelSize[1] = this.pixelSize.y / input.size.height;
+        const uvX = this.pixelSize.x / input.size.width;
+        const uvY = this.pixelSize.y / input.size.height;
+        let offset;
 
         if (this._passes === 1) {
-            this.uniforms.uOffset = this._kernels[0];
+            offset = this._kernels[0] + 0.5;
+            this.uniforms.uOffset[0] = offset * uvX;
+            this.uniforms.uOffset[1] = offset * uvY;
             filterManager.applyFilter(this, input, output, clear);
         }
         else {
@@ -35,14 +37,18 @@ export default class KawaseBlurFilter extends PIXI.Filter {
             const last = this._passes - 1;
 
             for (let i = 0; i < last; i++) {
-                this.uniforms.uOffset = this._kernels[i];
+                offset = this._kernels[i] + 0.5;
+                this.uniforms.uOffset[0] = offset * uvX;
+                this.uniforms.uOffset[1] = offset * uvY;
                 filterManager.applyFilter(this, source, target, true);
 
                 tmp = source;
                 source = target;
                 target = tmp;
             }
-            this.uniforms.uOffset = this._kernels[last];
+            offset = this._kernels[last] + 0.5;
+            this.uniforms.uOffset[0] = offset * uvX;
+            this.uniforms.uOffset[1] = offset * uvY;
             filterManager.applyFilter(this, source, output, clear);
 
             filterManager.returnRenderTarget(renderTarget);
