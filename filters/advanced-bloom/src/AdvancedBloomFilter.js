@@ -60,11 +60,11 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
          */
         this.brightness = options.brightness;
 
-        const { blur, kawase, quality, resolution, kernelSize } = options;
+        const { kawase, blur, quality, kernelSize, resolution } = options;
         const { KawaseBlurFilter, BlurXFilter, BlurYFilter } = PIXI.filters;
 
-        this._blur = blur;
         this._kawase = kawase;
+        this._blur = blur;
         this._resolution = resolution;
 
         this._extract = new ExtractBrightnessFilter(options.threshold);
