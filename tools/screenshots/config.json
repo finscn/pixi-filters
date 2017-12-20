@@ -483,6 +483,17 @@
                 15,
                 60
             ]
+        },
+        {
+            "name": "GlitchFilter",
+            "filename": "glitch",
+            "arguments": [
+                {
+                    "rowCount": 5,
+                    "maxOffset": 40
+                },
+                0.5
+            ]
         }
     ]
 }

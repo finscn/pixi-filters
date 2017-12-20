@@ -65,6 +65,17 @@ declare namespace PIXI.filters {
         constructor(strength?:number);
         strength:number;
     }
+    class GlitchFilter extends PIXI.Filter<{}> {
+        constructor(options?:GlitchOptions, seed?:number);
+        seed:number;
+        maxOffset:number;
+    }
+    interface GlitchOptions {
+        rowCount?: number;
+        maxOffset?: number;
+        splitRGB?: boolean;
+        vertical?: boolean;
+    }
     class GlowFilter extends PIXI.Filter<{}> {
         constructor(distance?:number, outerStrength?:number, innerStrength?:number, color?:number, quality?:number);
         color:number;
