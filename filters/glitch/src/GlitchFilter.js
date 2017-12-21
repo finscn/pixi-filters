@@ -14,7 +14,8 @@ export default class GlitchFilter extends PIXI.Filter {
     constructor(options = {}) {
 
         const bandsWidth = options.bandsWidth || null;
-        const bandCount = bandsWidth ? bandsWidth.length : (options.bandCount || 1);
+        const bandsOffset = options.bandsOffset || null;
+        const bandCount = bandsWidth ? bandsWidth.length : (options.bandCount || 4);
 
         super(vertex,
             fragment.replace(/%BAND_COUNT%/gi, bandCount)
@@ -38,8 +39,13 @@ export default class GlitchFilter extends PIXI.Filter {
             this.initBandsWidth(this.average);
         }
 
-        this.bandsOffset = new Float32Array(bandCount);
-        this.initBandsOffset();
+        if (bandsOffset) {
+            this.bandsOffset = new Float32Array(bandsOffset);
+        }
+        else {
+            this.bandsOffset = new Float32Array(bandCount);
+            this.initBandsOffset();
+        }
 
         this.uniforms.bandsWidth = this.bandsWidth;
         this.uniforms.bandsOffset = this.bandsOffset;
