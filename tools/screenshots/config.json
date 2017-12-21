@@ -487,13 +487,7 @@
         {
             "name": "GlitchFilter",
             "filename": "glitch",
-            "arguments": [
-                {
-                    "rowCount": 5,
-                    "maxOffset": 40
-                },
-                0.5
-            ]
+            "arguments": [5, 50]
         }
     ]
 }

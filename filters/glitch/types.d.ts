@@ -2,6 +2,7 @@
 declare namespace PIXI.filters {
     class GlitchFilter extends PIXI.Filter<{}> {
         constructor(options?:GlitchOptions);
+        bandCount:number,
         offset:number,
         seed:number,
         red:PIXI.Point,
@@ -9,8 +10,7 @@ declare namespace PIXI.filters {
         blue:PIXI.Point,
     }
     interface GlitchOptions {
-        bandsWidth:Array<number>,
-        bandsOffset:Array<number>,
+        maxBandCount:number,
         bandCount:number,
         average:boolean,
         offset:number,

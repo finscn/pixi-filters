@@ -4,8 +4,9 @@ uniform sampler2D uSampler;
 uniform vec4 filterArea;
 uniform vec4 filterClamp;
 
-uniform float bandsWidth[%BAND_COUNT%];
-uniform float bandsOffset[%BAND_COUNT%];
+uniform float bandsWidth[%MAX_BAND_COUNT%];
+uniform float bandsOffset[%MAX_BAND_COUNT%];
+uniform int bandCount;
 
 uniform float seed;
 uniform float offset;
@@ -16,7 +17,6 @@ uniform vec2 blue;
 
 void main(void)
 {
-
     float y = vTextureCoord.y / ratio.y;
 
     if (y > 1.0) {
@@ -30,7 +30,10 @@ void main(void)
 
     vec2 tear;
     float min = 0.;
-    for (int i = 0; i < %BAND_COUNT%; i++) {
+    for (int i = 0; i < %MAX_BAND_COUNT%; i++) {
+        if (i >= bandCount) {
+            break;
+        }
         float width = bandsWidth[i];
         float max = min + width;
         if (y >= min && y < max) {

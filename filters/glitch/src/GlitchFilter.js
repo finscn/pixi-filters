@@ -11,46 +11,28 @@ import fragment from './glitch.frag';
  * @param {object} options - The optional parameters of the filter.
  */
 export default class GlitchFilter extends PIXI.Filter {
-    constructor(options = {}) {
+    constructor(bandCount = 3, offset = 100, options = {}) {
 
-        const bandsWidth = options.bandsWidth || null;
-        const bandsOffset = options.bandsOffset || null;
-        const bandCount = bandsWidth ? bandsWidth.length : (options.bandCount || 4);
+        const maxBandCount = Math.max(options.maxBandCount || 0 , bandCount);
 
         super(vertex,
-            fragment.replace(/%BAND_COUNT%/gi, bandCount)
+            fragment.replace(/%MAX_BAND_COUNT%/gi, maxBandCount)
         );
 
         Object.assign(this, {
             average: false,
-            offset: 100,
-            red: [0,0],
-            green: [0,0],
-            blue: [0,0],
-            seed: 0,
+            red: [0, 0],
+            green: [2, 0],
+            blue: [-2, 0],
+            seed: 0.5,
             vertical: false, // TODO
         }, options);
 
-        if (bandsWidth) {
-            this.bandsWidth = new Float32Array(bandsWidth);
-        }
-        else {
-            this.bandsWidth = new Float32Array(bandCount);
-            this.initBandsWidth(this.average);
-        }
+        this.offset = offset;
+        this.maxBandCount = maxBandCount;
 
-        if (bandsOffset) {
-            this.bandsOffset = new Float32Array(bandsOffset);
-        }
-        else {
-            this.bandsOffset = new Float32Array(bandCount);
-            this.initBandsOffset();
-        }
-
-        this.uniforms.bandsWidth = this.bandsWidth;
-        this.uniforms.bandsOffset = this.bandsOffset;
-
-        this.shuffle();
+        this._bandCount = 0;
+        this.bandCount = bandCount;
     }
 
     /**
@@ -73,10 +55,10 @@ export default class GlitchFilter extends PIXI.Filter {
         this.average = average === undefined ? this.average : (average || false);
 
         const arr = this.bandsWidth;
-        const last = this.bandCount - 1;
+        const last = this._bandCount - 1;
 
         if (this.average) {
-            const count = this.bandCount;
+            const count = this._bandCount;
             let rest = 1;
 
             for (let i = 0; i < last; i++) {
@@ -89,7 +71,7 @@ export default class GlitchFilter extends PIXI.Filter {
         }
         else {
             let rest = 1;
-            const ratio = Math.sqrt(1 / this.bandCount);
+            const ratio = Math.sqrt(1 / this._bandCount);
 
             for (let i = 0; i < last; i++) {
                 const v = ratio * rest * Math.random();
@@ -98,16 +80,18 @@ export default class GlitchFilter extends PIXI.Filter {
             }
             arr[last] = rest;
         }
+
+        this.shuffle();
     }
 
     initBandsOffset() {
-        for (let i = 0 ; i < this.bandCount; i++) {
+        for (let i = 0 ; i < this._bandCount; i++) {
             this.bandsOffset[i] = Math.random() * (Math.random() < 0.5 ? -1 : 1);
         }
     }
 
     setBandsWidth(bandsWidth) {
-        const len = Math.min(this.bandCount, bandsWidth.length);
+        const len = Math.min(this._bandCount, bandsWidth.length);
 
         for (let i = 0; i < len; i++){
             this.bandsWidth[i] = bandsWidth[i];
@@ -115,7 +99,7 @@ export default class GlitchFilter extends PIXI.Filter {
     }
 
     setBandsOffset(bandsOffset) {
-        const len = Math.min(this.bandCount, bandsOffset.length);
+        const len = Math.min(this._bandCount, bandsOffset.length);
 
         for (let i = 0; i < len; i++){
             this.bandsOffset[i] = bandsOffset[i];
@@ -125,13 +109,32 @@ export default class GlitchFilter extends PIXI.Filter {
     shuffle() {
         const arr = this.bandsWidth;
 
-        for (let i = this.bandCount - 1; i > 0; i--) {
+        for (let i = this._bandCount - 1; i > 0; i--) {
             const rand = (Math.random() * i) >> 0;
             const temp = arr[i];
 
             arr[i] = arr[rand];
             arr[rand] = temp;
         }
+    }
+
+    get bandCount() {
+        return this._bandCount;
+    }
+    set bandCount(value) {
+        if (this._bandCount === value) {
+            return;
+        }
+        this._bandCount = value;
+        this.uniforms.bandCount = value;
+
+        this.bandsWidth = new Float32Array(value);
+        this.initBandsWidth(this.average);
+        this.uniforms.bandsWidth = this.bandsWidth;
+
+        this.bandsOffset = new Float32Array(value);
+        this.initBandsOffset();
+        this.uniforms.bandsOffset = this.bandsOffset;
     }
 
     /**
