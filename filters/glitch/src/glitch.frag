@@ -49,8 +49,8 @@ void main(void)
                 tear.x > filterClamp.z ? filterClamp.x + (tear.x - filterClamp.z) : tear.x
             );
 
-    gl_FragColor.r = texture2D(uSampler, tear + red * (1.0 - seed * 0.3) / filterArea.xy).r;
-    gl_FragColor.g = texture2D(uSampler, tear + green * (0.9 - seed * 0.2) / filterArea.xy).g;
-    gl_FragColor.b = texture2D(uSampler, tear + blue * (0.8 - seed * 0.1) / filterArea.xy).b;
+    gl_FragColor.r = texture2D(uSampler, tear + red * (1.0 - seed * 0.4) / filterArea.xy).r;
+    gl_FragColor.g = texture2D(uSampler, tear + green * (0.9 - seed * 0.3) / filterArea.xy).g;
+    gl_FragColor.b = texture2D(uSampler, tear + blue * (0.8 - seed * 0.2) / filterArea.xy).b;
     gl_FragColor.a = texture2D(uSampler, tear).a;
 }
