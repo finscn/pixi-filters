@@ -7,7 +7,7 @@ export default function() {
         args: [{
             bandCount: 8,
             offset: app.initWidth / 4 >> 0,
-            average: true,
+            average: false,
             red: [2, 2],
             green: [-10, 4],
             blue: [10, -4],
