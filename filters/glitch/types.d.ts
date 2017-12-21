@@ -1,7 +1,7 @@
 /// <reference types="pixi.js" />
 declare namespace PIXI.filters {
     class GlitchFilter extends PIXI.Filter<{}> {
-        constructor(options?:GlitchOptions);
+        constructor(bandCount?:number, offset?:number, options?:GlitchOptions);
         bandCount:number,
         offset:number,
         seed:number,

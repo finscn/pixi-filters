@@ -66,7 +66,7 @@ declare namespace PIXI.filters {
         strength:number;
     }
     class GlitchFilter extends PIXI.Filter<{}> {
-        constructor(options?:GlitchOptions);
+        constructor(bandCount?:number, offset?:number, options?:GlitchOptions);
         bandCount:number,
         offset:number,
         seed:number,
