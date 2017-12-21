@@ -11,6 +11,7 @@ export default function() {
             green: [-10, 4],
             blue: [10, -4],
             seed: 0.5,
+            loop: true,
         }, 0],
         oncreate(folder) {
             const filter = this;
