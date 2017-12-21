@@ -4,36 +4,50 @@ uniform sampler2D uSampler;
 uniform vec4 filterArea;
 uniform vec4 filterClamp;
 
-uniform float rowsData[%ROW_COUNT%];
+uniform float bandsWidth[%BAND_COUNT%];
+uniform float bandsOffset[%BAND_COUNT%];
 
-uniform float maxOffset;
 uniform float seed;
+uniform float offset;
+uniform vec2 ratio;
+uniform vec2 red;
+uniform vec2 green;
+uniform vec2 blue;
 
 void main(void)
 {
-    // gl_FragColor = texture2D(uSampler, vTextureCoord);
-    seed;
 
-    float w = maxOffset / filterArea.x;
+    float y = vTextureCoord.y / ratio.y;
 
-    float x = vTextureCoord.x;
-    float y = vTextureCoord.y;
-
-    float offset = 0.;
-    float m = 0.;
-    for (int i = 0; i < %ROW_COUNT%; i++) {
-        float height = float(abs(rowsData[i]));
-        if (y >= m && y < m + height) {
-            offset = sign(rowsData[%ROW_COUNT% - 1 - i]) * w * (seed * 0.1 + 0.001) * float(i / 2) ;
-            break;
-        }
-        m += height;
+    if (y > 1.0) {
+        gl_FragColor = texture2D(uSampler, vTextureCoord);
+        return;
     }
 
-    float p = (seed - 0.5) * 4.0 / filterArea.x;
+    float offsetUV = offset / filterArea.x;
 
-    gl_FragColor = texture2D(uSampler, vTextureCoord);
-    gl_FragColor.r = texture2D(uSampler, vec2(x + p * 0. + offset * 1.1, y)).r;
-    gl_FragColor.g = texture2D(uSampler, vec2(x + p * 1. + offset * 1.0, y)).g;
-    gl_FragColor.b = texture2D(uSampler, vec2(x + p * -1. + offset * 0.8, y)).b;
+    float x = vTextureCoord.x;
+
+    vec2 tear;
+    float min = 0.;
+    for (int i = 0; i < %BAND_COUNT%; i++) {
+        float width = bandsWidth[i];
+        float max = min + width;
+        if (y >= min && y < max) {
+            tear.x = bandsOffset[i] * offsetUV;
+            break;
+        }
+        min = max;
+    }
+
+    tear += vTextureCoord;
+    tear.x = tear.x < filterClamp.x ? filterClamp.z + (tear.x - filterClamp.x) :
+            (
+                tear.x > filterClamp.z ? filterClamp.x + (tear.x - filterClamp.z) : tear.x
+            );
+
+    gl_FragColor.r = texture2D(uSampler, tear + red * (1.0 - seed * 0.3) / filterArea.xy).r;
+    gl_FragColor.g = texture2D(uSampler, tear + green * (0.9 - seed * 0.2) / filterArea.xy).g;
+    gl_FragColor.b = texture2D(uSampler, tear + blue * (0.8 - seed * 0.1) / filterArea.xy).b;
+    gl_FragColor.a = texture2D(uSampler, tear).a;
 }
