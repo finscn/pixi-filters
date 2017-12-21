@@ -31,6 +31,7 @@ export default function() {
                 filter.bandCount = value >> 0;
             });
             folder.add(this, 'offset', 0, app.initWidth / 2 >> 0);
+            folder.add(this, 'loop');
             folder.add(this.red, '0', -20, 20).name('red.x');
             folder.add(this.red, '1', -20, 20).name('red.y');
             folder.add(this.blue, '0', -20, 20).name('blue.x');

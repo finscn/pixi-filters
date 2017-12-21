@@ -24,6 +24,7 @@ export default class GlitchFilter extends PIXI.Filter {
             red: [0, 0],
             green: [2, 0],
             blue: [-2, 0],
+            loop: false,
             seed: 0.5,
             vertical: false, // TODO
         }, options);
@@ -48,6 +49,7 @@ export default class GlitchFilter extends PIXI.Filter {
 
         this.uniforms.seed = this.seed;
         this.uniforms.offset = this.offset;
+        this.uniforms.loop = this.loop;
         filterManager.applyFilter(this, input, output, clear);
     }
 

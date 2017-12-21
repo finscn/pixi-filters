@@ -14,6 +14,7 @@ uniform vec2 ratio;
 uniform vec2 red;
 uniform vec2 green;
 uniform vec2 blue;
+uniform bool loop;
 
 void main(void)
 {
@@ -44,6 +45,12 @@ void main(void)
     }
 
     tear += vTextureCoord;
+
+    if (!loop && (tear.x < filterClamp.x || tear.x > filterClamp.z)) {
+        gl_FragColor = vec4(0., 0., 0., 0.);
+        return;
+    }
+
     tear.x = tear.x < filterClamp.x ? filterClamp.z + (tear.x - filterClamp.x) :
             (
                 tear.x > filterClamp.z ? filterClamp.x + (tear.x - filterClamp.z) : tear.x
