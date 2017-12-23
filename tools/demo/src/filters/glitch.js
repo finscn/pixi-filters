@@ -1,7 +1,7 @@
 export default function() {
     const app = this;
     app.addFilter('GlitchFilter', {
-        enabled: false,
+        enabled: true,
         global: false,
         opened: false,
         args: [10, 200, 0, {
