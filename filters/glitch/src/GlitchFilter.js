@@ -8,10 +8,18 @@ import fragment from './glitch.frag';
  * @class
  * @extends PIXI.Filter
  * @memberof PIXI.filters
- * @param {object} options - The optional parameters of the filter.
+ * @param {number} slices - The count of slices.
+ * @param {number} offset - The max-offset of slices.
+ * @param {number} direction - The angle in degree of the offset of slices.
+ * @param {object} options - The more optional parameters of the filter.
+ * @param {number} [options.fillMode=0] - The fill mode of the space after the offset.
+ *                 0: TRANSPARENT; 1: ORIGINAL; 2: LOOP; 3: MIRROR.
+ * @param {number} [options.red=[0,0]] - Red channel offset
+ * @param {number} [options.green=[0,0]] - Green channel offset.
+ * @param {number} [options.blue=[0,0]] - Blue channel offset.
  */
 export default class GlitchFilter extends PIXI.Filter {
-    constructor(slices = 3, offset = 100, direction = 0, options = {}) {
+    constructor(slices = 5, offset = 100, direction = 0, options = {}) {
 
         super(vertex, fragment);
 
@@ -20,8 +28,8 @@ export default class GlitchFilter extends PIXI.Filter {
             average: false,
             seed: 0.5,
             red: [0, 0],
-            green: [2, 0],
-            blue: [-2, 0],
+            green: [0, 0],
+            blue: [0, 0],
             minSliceWidth: 8,
             displacementMapSize: 512,
             displacementMap: null,
@@ -167,6 +175,11 @@ export default class GlitchFilter extends PIXI.Filter {
         }
     }
 
+    /**
+     * The count of slices.
+     * @member {number}
+     * @default 5
+     */
     get slices() {
         return this._slices;
     }
@@ -180,6 +193,11 @@ export default class GlitchFilter extends PIXI.Filter {
         this.refresh();
     }
 
+    /**
+     * The angle in degree of the offset of slices.
+     * @member {number}
+     * @default 0
+     */
     get direction() {
         return this._direction;
     }
