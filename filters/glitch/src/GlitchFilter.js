@@ -188,8 +188,11 @@ export default class GlitchFilter extends PIXI.Filter {
             return;
         }
         this._direction = value;
-        this.uniforms.sinDir = Math.sin(value);
-        this.uniforms.cosDir = Math.cos(value);
+
+        const radians = value * PIXI.DEG_TO_RAD;
+
+        this.uniforms.sinDir = Math.sin(radians);
+        this.uniforms.cosDir = Math.cos(radians);
     }
 
     /**
