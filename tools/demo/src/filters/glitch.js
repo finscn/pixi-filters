@@ -30,7 +30,7 @@ export default function() {
                 filter.slices = value >> 0;
             });
             folder.add(this, 'offset', 0, app.initWidth * 0.75 >> 0);
-            folder.add(this, 'direction', 0, 3.14);
+            folder.add(this, 'direction', -3.14159, 3.14159);
             folder.add(this, 'fillMode',[0, 1, 2, 3]);
             folder.add(this.red, '0', -50, 50).name('red.x');
             folder.add(this.red, '1', -50, 50).name('red.y');
