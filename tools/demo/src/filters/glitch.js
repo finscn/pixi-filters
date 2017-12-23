@@ -4,7 +4,7 @@ export default function() {
         enabled: true,
         global: false,
         opened: false,
-        args: [8, 200, 0, {
+        args: [10, 200, 0, {
             average: false,
             red: [2, 2],
             green: [-10, 4],

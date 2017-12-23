@@ -45,7 +45,7 @@ void main(void)
 
     vec4 dc = texture2D(displacementMap, vec2(0.5, ny));
 
-    float displacement = (dc.r - 0.5) * 2.0 * (offset / filterArea.x);
+    float displacement = (dc.r - dc.g) * (offset / filterArea.x);
 
     coord += vec2(cosDir * displacement, sinDir * displacement * aspect);
 

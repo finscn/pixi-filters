@@ -98,7 +98,7 @@ export default class GlitchFilter extends PIXI.Filter {
 
     initSlicesOffset() {
         for (let i = 0 ; i < this._slices; i++) {
-            this.slicesOffset[i] = Math.random() * 255 >> 0;
+            this.slicesOffset[i] = Math.floor(Math.random() * (Math.random() < 0.5 ? -256 : 256));
         }
     }
 
@@ -138,7 +138,9 @@ export default class GlitchFilter extends PIXI.Filter {
         for (let i = 0 ; i < this._slices; i++) {
             offset = this.slicesOffset[i];
             const height = this.slicesWidth[i] * size;
-            ctx.fillStyle = 'rgba(' + offset + ', 0, 0, 1)';
+            const red = offset > 0 ? offset : 0;
+            const green = offset < 0 ? -offset : 0;
+            ctx.fillStyle = 'rgba(' + red + ', ' + green + ', 0, 1)';
             ctx.fillRect(0, y >> 0, size, height + 1 >> 0);
             y += height;
         }
