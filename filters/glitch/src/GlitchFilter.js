@@ -133,10 +133,8 @@ export default class GlitchFilter extends PIXI.Filter {
             const height = this.slicesWidth[i] * size;
             ctx.fillStyle = 'rgba(' + offset + ', 0, 0, 1)';
             ctx.fillRect(0, y >> 0, size, height + 1 >> 0);
-            // ctx.fillRect(0, y, size, height);
             y += height;
         }
-        // ctx.fillRect(0, y, size, 4);
 
         this.displaceMap._updateID++;
         this.displaceMap.baseTexture.emit('update', this.displaceMap.baseTexture);
