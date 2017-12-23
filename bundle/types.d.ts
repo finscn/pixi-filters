@@ -66,26 +66,26 @@ declare namespace PIXI.filters {
         strength:number;
     }
     class GlitchFilter extends PIXI.Filter<{}> {
-        constructor(bandCount?:number, offset?:number, options?:GlitchOptions);
-        bandCount:number,
+        constructor(slices?:number, offset?:number, direction?:number, options?:GlitchOptions);
+        slices:number,
         offset:number,
+        direction:number,
+        fillMode:number,
         seed:number,
-        loop:boolean,
         red:PIXI.Point,
         green:PIXI.Point,
-        blue:PIXI.Point,
+        blue:PIXI.Point
     }
     interface GlitchOptions {
-        maxBandCount:number,
-        bandCount:number,
+        fillMode:number,
         average:boolean,
-        offset:number,
         seed:number,
-        loop:boolean,
         red:PIXI.Point,
         green:PIXI.Point,
         blue:PIXI.Point,
-        vertical:boolean
+        minSliceWidth:number,
+        displacementMapSize:number,
+        displacementMap:PIXI.Texture,
     }
     class GlowFilter extends PIXI.Filter<{}> {
         constructor(distance?:number, outerStrength?:number, innerStrength?:number, color?:number, quality?:number);

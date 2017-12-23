@@ -16,15 +16,15 @@ export default class GlitchFilter extends PIXI.Filter {
         super(vertex, fragment);
 
         Object.assign(this, {
+            fillMode: 0,
             average: false,
+            seed: 0.5,
             red: [0, 0],
             green: [2, 0],
             blue: [-2, 0],
-            fillMode: 0,
-            seed: 0.5,
-            displacementMap: null,
-            displacementMapSize: 512,
             minSliceWidth: 8,
+            displacementMapSize: 512,
+            displacementMap: null,
         }, options);
 
         this.offset = offset;
