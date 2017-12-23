@@ -4,14 +4,12 @@ export default function() {
         enabled: true,
         global: false,
         opened: false,
-        args: [8, app.initWidth / 4 >> 0, {
-            maxBandCount: 32,
+        args: [8, app.initWidth / 4 >> 0, 0, {
             average: false,
             red: [2, 2],
             green: [-10, 4],
             blue: [10, -4],
             seed: 0.5,
-            loop: true,
         }, 0],
         oncreate(folder) {
             const filter = this;
@@ -28,17 +26,18 @@ export default function() {
 
             folder.add(this, 'animating').name('(animating)');
             folder.add(this, 'seed', 0, 1).name('shake-seed');
-            folder.add(this, 'bandCount', 4, 20).onChange(function(value) {
-                filter.bandCount = value >> 0;
+            folder.add(this, 'slices', 2, 20).onChange(function(value) {
+                filter.slices = value >> 0;
             });
-            folder.add(this, 'offset', 0, app.initWidth / 2 >> 0);
-            folder.add(this, 'loop');
-            folder.add(this.red, '0', -20, 20).name('red.x');
-            folder.add(this.red, '1', -20, 20).name('red.y');
-            folder.add(this.blue, '0', -20, 20).name('blue.x');
-            folder.add(this.blue, '1', -20, 20).name('blue.y');
-            folder.add(this.green, '0', -20, 20).name('green.x');
-            folder.add(this.green, '1', -20, 20).name('green.y');
+            folder.add(this, 'offset', 0, app.initWidth * 0.75 >> 0);
+            folder.add(this, 'direction', 0, 3.14);
+            folder.add(this, 'fillMode',[0, 1, 2, 3]);
+            folder.add(this.red, '0', -50, 50).name('red.x');
+            folder.add(this.red, '1', -50, 50).name('red.y');
+            folder.add(this.blue, '0', -50, 50).name('blue.x');
+            folder.add(this.blue, '1', -50, 50).name('blue.y');
+            folder.add(this.green, '0', -50, 50).name('green.x');
+            folder.add(this.green, '1', -50, 50).name('green.y');
         }
     });
 }

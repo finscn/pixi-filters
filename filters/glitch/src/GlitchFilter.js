@@ -11,29 +11,33 @@ import fragment from './glitch.frag';
  * @param {object} options - The optional parameters of the filter.
  */
 export default class GlitchFilter extends PIXI.Filter {
-    constructor(bandCount = 3, offset = 100, options = {}) {
+    constructor(slices = 3, offset = 100, direction = 0, options = {}) {
 
-        const maxBandCount = Math.max(options.maxBandCount || 0 , bandCount);
-
-        super(vertex,
-            fragment.replace(/%MAX_BAND_COUNT%/gi, maxBandCount)
-        );
+        super(vertex, fragment);
 
         Object.assign(this, {
             average: false,
             red: [0, 0],
             green: [2, 0],
             blue: [-2, 0],
-            loop: false,
+            fillMode: 0,
             seed: 0.5,
-            vertical: false, // TODO
+            displaceMap: null,
+            displaceMapSize: 512,
         }, options);
 
         this.offset = offset;
-        this.maxBandCount = maxBandCount;
+        this.direction = direction;
 
-        this._bandCount = 0;
-        this.bandCount = bandCount;
+        if (!this.displaceMap) {
+            this.displaceMapCanvas = document.createElement('canvas');
+            this.displaceMapCanvas.width = 8;
+            this.displaceMapCanvas.height = this.displaceMapSize;
+            this.displaceMap = PIXI.Texture.fromCanvas(this.displaceMapCanvas, PIXI.SCALE_MODES.NEAREST);
+
+            this._slices = 0;
+            this.slices = slices;
+        }
     }
 
     /**
@@ -41,26 +45,25 @@ export default class GlitchFilter extends PIXI.Filter {
      * @private
      */
     apply(filterManager, input, output, clear) {
-        const ratioX = input.sourceFrame.width / input.size.width;
-        const ratioY = input.sourceFrame.height / input.size.height;
 
-        this.uniforms.ratio[0] = ratioX;
-        this.uniforms.ratio[1] = ratioY;
+        this.uniforms.dimensions[0] = input.sourceFrame.width;
+        this.uniforms.dimensions[1] = input.sourceFrame.height;
 
         this.uniforms.seed = this.seed;
         this.uniforms.offset = this.offset;
-        this.uniforms.loop = this.loop;
+        this.uniforms.fillMode = this.fillMode;
+
         filterManager.applyFilter(this, input, output, clear);
     }
 
-    initBandsWidth(average) {
+    initSlicesWidth(average) {
         this.average = average === undefined ? this.average : (average || false);
 
-        const arr = this.bandsWidth;
-        const last = this._bandCount - 1;
+        const arr = this.slicesWidth;
+        const last = this._slices - 1;
 
         if (this.average) {
-            const count = this._bandCount;
+            const count = this._slices;
             let rest = 1;
 
             for (let i = 0; i < last; i++) {
@@ -73,7 +76,7 @@ export default class GlitchFilter extends PIXI.Filter {
         }
         else {
             let rest = 1;
-            const ratio = Math.sqrt(1 / this._bandCount);
+            const ratio = Math.sqrt(1 / this._slices);
 
             for (let i = 0; i < last; i++) {
                 const v = ratio * rest * Math.random();
@@ -86,32 +89,16 @@ export default class GlitchFilter extends PIXI.Filter {
         this.shuffle();
     }
 
-    initBandsOffset() {
-        for (let i = 0 ; i < this._bandCount; i++) {
-            this.bandsOffset[i] = Math.random() * (Math.random() < 0.5 ? -1 : 1);
-        }
-    }
-
-    setBandsWidth(bandsWidth) {
-        const len = Math.min(this._bandCount, bandsWidth.length);
-
-        for (let i = 0; i < len; i++){
-            this.bandsWidth[i] = bandsWidth[i];
-        }
-    }
-
-    setBandsOffset(bandsOffset) {
-        const len = Math.min(this._bandCount, bandsOffset.length);
-
-        for (let i = 0; i < len; i++){
-            this.bandsOffset[i] = bandsOffset[i];
+    initSlicesOffset() {
+        for (let i = 0 ; i < this._slices; i++) {
+            this.slicesOffset[i] = Math.random() * 255 >> 0;
         }
     }
 
     shuffle() {
-        const arr = this.bandsWidth;
+        const arr = this.slicesWidth;
 
-        for (let i = this._bandCount - 1; i > 0; i--) {
+        for (let i = this._slices - 1; i > 0; i--) {
             const rand = (Math.random() * i) >> 0;
             const temp = arr[i];
 
@@ -120,23 +107,82 @@ export default class GlitchFilter extends PIXI.Filter {
         }
     }
 
-    get bandCount() {
-        return this._bandCount;
+    refresh() {
+        this.slicesWidth = new Float32Array(this._slices);
+        this.initSlicesWidth(this.average);
+        this.uniforms.slicesWidth = this.slicesWidth;
+
+        this.slicesOffset = new Float32Array(this._slices);
+        this.initSlicesOffset();
+        this.uniforms.slicesOffset = this.slicesOffset;
+
+        this.updateDisplaceMap();
     }
-    set bandCount(value) {
-        if (this._bandCount === value) {
+
+    updateDisplaceMap() {
+        let canvas = this.displaceMapCanvas;
+        let size = this.displaceMapSize;
+
+        let ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, 8, size);
+
+        let offset;
+        let y = 0;
+        for (let i = 0 ; i < this._slices; i++) {
+            offset = this.slicesOffset[i];
+            const height = this.slicesWidth[i] * size;
+            ctx.fillStyle = 'rgba(' + offset + ', 0, 0, 1)';
+            ctx.fillRect(0, y >> 0, size, height + 1 >> 0);
+            // ctx.fillRect(0, y, size, height);
+            y += height;
+        }
+        // ctx.fillRect(0, y, size, 4);
+
+        this.displaceMap._updateID++;
+        this.displaceMap.baseTexture.emit('update', this.displaceMap.baseTexture);
+        // this.displaceMap.update();
+        this.uniforms.displaceMap = this.displaceMap;
+    }
+
+    setSlicesWidth(slicesWidth) {
+        const len = Math.min(this._slices, slicesWidth.length);
+
+        for (let i = 0; i < len; i++){
+            this.slicesWidth[i] = slicesWidth[i];
+        }
+    }
+
+    setSlicesOffset(slicesOffset) {
+        const len = Math.min(this._slices, slicesOffset.length);
+
+        for (let i = 0; i < len; i++){
+            this.slicesOffset[i] = slicesOffset[i];
+        }
+    }
+
+    get slices() {
+        return this._slices;
+    }
+    set slices(value) {
+        if (this._slices === value) {
             return;
         }
-        this._bandCount = value;
-        this.uniforms.bandCount = value;
+        this._slices = value;
+        this.uniforms.slices = value;
 
-        this.bandsWidth = new Float32Array(value);
-        this.initBandsWidth(this.average);
-        this.uniforms.bandsWidth = this.bandsWidth;
+        this.refresh();
+    }
 
-        this.bandsOffset = new Float32Array(value);
-        this.initBandsOffset();
-        this.uniforms.bandsOffset = this.bandsOffset;
+    get direction() {
+        return this._direction;
+    }
+    set direction(value) {
+        if (this._direction === value) {
+            return;
+        }
+        this._direction = value;
+        this.uniforms.sinDir = Math.sin(value);
+        this.uniforms.cosDir = Math.cos(value);
     }
 
     /**

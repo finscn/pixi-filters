@@ -1,63 +1,108 @@
+// precision highp float;
+
 varying vec2 vTextureCoord;
 uniform sampler2D uSampler;
 
 uniform vec4 filterArea;
 uniform vec4 filterClamp;
+uniform vec2 dimensions;
 
-uniform float bandsWidth[%MAX_BAND_COUNT%];
-uniform float bandsOffset[%MAX_BAND_COUNT%];
-uniform int bandCount;
+uniform sampler2D displaceMap;
+uniform float offset;
+uniform float sinDir;
+uniform float cosDir;
+uniform int fillMode;
 
 uniform float seed;
-uniform float offset;
-uniform vec2 ratio;
 uniform vec2 red;
 uniform vec2 green;
 uniform vec2 blue;
-uniform bool loop;
+
+const int TRANSPARENT = 0;
+const int ORIGINAL = 1;
+const int LOOP = 2;
+const int MIRROR = 3;
 
 void main(void)
 {
-    float y = vTextureCoord.y / ratio.y;
+    vec2 coord = (vTextureCoord * filterArea.xy) / dimensions;
 
-    if (y > 1.0) {
-        gl_FragColor = texture2D(uSampler, vTextureCoord);
+    if (coord.x > 1.0 || coord.y > 1.0) {
         return;
     }
 
-    float offsetUV = offset / filterArea.x;
+    float cx = coord.x - 0.5;
+    float cy = coord.y - 0.5;
 
-    float x = vTextureCoord.x;
+    float nx = cosDir * cx + sinDir * cy + 0.5;
+    float ny = -sinDir * cx + cosDir * cy + 0.5;
 
-    vec2 tear;
-    float min = 0.;
-    for (int i = 0; i < %MAX_BAND_COUNT%; i++) {
-        if (i >= bandCount) {
-            break;
+    ny = ny < 0. ? 1. + ny : (ny > 1. ? ny - 1. : ny);
+
+    vec4 dc = texture2D(displaceMap, vec2(0.5, ny));
+
+    float displacement = (dc.r - 0.5) * (offset / filterArea.x);
+
+    coord += vec2(cosDir * displacement, sinDir * displacement);
+
+    if( coord.x > 1.0 ) {
+        if ( fillMode == ORIGINAL) {
+            gl_FragColor = texture2D(uSampler, vTextureCoord);
+            return;
+        } else if ( fillMode == LOOP) {
+            coord.x -= 1.0;
+        } else if ( fillMode == MIRROR) {
+            coord.x = 1.0 - (coord.x - 1.0);
+        } else {
+            gl_FragColor = vec4(0., 0., 0., 0.);
+            return;
         }
-        float width = bandsWidth[i];
-        float max = min + width;
-        if (y >= min && y < max) {
-            tear.x = bandsOffset[i] * offsetUV;
-            break;
+    } else if( coord.x < 0.0 ) {
+        if ( fillMode == ORIGINAL) {
+            gl_FragColor = texture2D(uSampler, vTextureCoord);
+            return;
+        } else if ( fillMode == LOOP) {
+            coord.x += 1.0;
+        } else if ( fillMode == MIRROR) {
+            coord.x *= -1.0;
+        } else {
+            gl_FragColor = vec4(0., 0., 0., 0.);
+            return;
         }
-        min = max;
     }
 
-    tear += vTextureCoord;
-
-    if (!loop && (tear.x < filterClamp.x || tear.x > filterClamp.z)) {
-        gl_FragColor = vec4(0., 0., 0., 0.);
-        return;
+    if( coord.y > 1.0 ) {
+        if ( fillMode == ORIGINAL) {
+            gl_FragColor = texture2D(uSampler, vTextureCoord);
+            return;
+        } else if ( fillMode == LOOP) {
+            coord.y -= 1.0;
+        } else if ( fillMode == MIRROR) {
+            coord.y = 1.0 - (coord.y - 1.0);
+        } else {
+            gl_FragColor = vec4(0., 0., 0., 0.);
+            return;
+        }
+    } else if( coord.y < 0.0 ) {
+        if ( fillMode == ORIGINAL) {
+            gl_FragColor = texture2D(uSampler, vTextureCoord);
+            return;
+        } else if ( fillMode == LOOP) {
+            coord.y += 1.0;
+        } else if ( fillMode == MIRROR) {
+            coord.y *= -1.0;
+        } else {
+            gl_FragColor = vec4(0., 0., 0., 0.);
+            return;
+        }
     }
 
-    tear.x = tear.x < filterClamp.x ? filterClamp.z + (tear.x - filterClamp.x) :
-            (
-                tear.x > filterClamp.z ? filterClamp.x + (tear.x - filterClamp.z) : tear.x
-            );
+    coord = (coord * dimensions) / filterArea.xy;
 
-    gl_FragColor.r = texture2D(uSampler, tear + red * (1.0 - seed * 0.4) / filterArea.xy).r;
-    gl_FragColor.g = texture2D(uSampler, tear + green * (0.9 - seed * 0.3) / filterArea.xy).g;
-    gl_FragColor.b = texture2D(uSampler, tear + blue * (0.8 - seed * 0.2) / filterArea.xy).b;
-    gl_FragColor.a = texture2D(uSampler, tear).a;
+    // gl_FragColor = texture2D(uSampler, coord);
+
+    gl_FragColor.r = texture2D(uSampler, coord + red * (1.0 - seed * 0.4) / filterArea.xy).r;
+    gl_FragColor.g = texture2D(uSampler, coord + green * (1.0 - seed * 0.3) / filterArea.xy).g;
+    gl_FragColor.b = texture2D(uSampler, coord + blue * (1.0 - seed * 0.2) / filterArea.xy).b;
+    gl_FragColor.a = texture2D(uSampler, coord).a;
 }
