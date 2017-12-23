@@ -46,8 +46,12 @@ export default class GlitchFilter extends PIXI.Filter {
      */
     apply(filterManager, input, output, clear) {
 
-        this.uniforms.dimensions[0] = input.sourceFrame.width;
-        this.uniforms.dimensions[1] = input.sourceFrame.height;
+        const width = input.sourceFrame.width;
+        const height = input.sourceFrame.height;
+
+        this.uniforms.dimensions[0] = width;
+        this.uniforms.dimensions[1] = height;
+        this.uniforms.aspect = height / width;
 
         this.uniforms.seed = this.seed;
         this.uniforms.offset = this.offset;

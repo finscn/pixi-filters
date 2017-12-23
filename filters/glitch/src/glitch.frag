@@ -6,6 +6,7 @@ uniform sampler2D uSampler;
 uniform vec4 filterArea;
 uniform vec4 filterClamp;
 uniform vec2 dimensions;
+uniform float aspect;
 
 uniform sampler2D displacementMap;
 uniform float offset;
@@ -32,10 +33,9 @@ void main(void)
     }
 
     float cx = coord.x - 0.5;
-    float cy = coord.y - 0.5;
+    float cy = (coord.y - 0.5) * aspect;
 
-    float nx = cosDir * cx + sinDir * cy + 0.5;
-    float ny = -sinDir * cx + cosDir * cy + 0.5;
+    float ny = (-sinDir * cx + cosDir * cy) / aspect + 0.5;
 
     ny = ny < 0. ? 1. + ny : (ny > 1. ? ny - 1. : ny);
 
@@ -43,7 +43,7 @@ void main(void)
 
     float displacement = (dc.r - 0.5) * (offset / filterArea.x);
 
-    coord += vec2(cosDir * displacement, sinDir * displacement);
+    coord += vec2(cosDir * displacement, sinDir * displacement * aspect);
 
     if( coord.x > 1.0 ) {
         if ( fillMode == ORIGINAL) {
