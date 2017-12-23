@@ -24,6 +24,7 @@ export default class GlitchFilter extends PIXI.Filter {
             seed: 0.5,
             displacementMap: null,
             displacementMapSize: 512,
+            minSliceWidth: 8,
         }, options);
 
         this.offset = offset;
@@ -65,6 +66,8 @@ export default class GlitchFilter extends PIXI.Filter {
 
         const arr = this.slicesWidth;
         const last = this._slices - 1;
+        const size = this.displacementMapSize;
+        const min = Math.min(this.minSliceWidth / size, 0.9 / this._slices);
 
         if (this.average) {
             const count = this._slices;
@@ -72,7 +75,7 @@ export default class GlitchFilter extends PIXI.Filter {
 
             for (let i = 0; i < last; i++) {
                 const average = rest / (count - i);
-                const v = average * (1 - Math.random() * 0.6);
+                const v =  Math.max(average * (1 - Math.random() * 0.6), min);
                 arr[i] = v;
                 rest -= v;
             }
@@ -83,7 +86,7 @@ export default class GlitchFilter extends PIXI.Filter {
             const ratio = Math.sqrt(1 / this._slices);
 
             for (let i = 0; i < last; i++) {
-                const v = ratio * rest * Math.random();
+                const v = Math.max(ratio * rest * Math.random(), min);
                 arr[i] = v;
                 rest -= v;
             }
