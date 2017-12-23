@@ -4,7 +4,7 @@ export default function() {
         enabled: true,
         global: false,
         opened: false,
-        args: [8, app.initWidth / 4 >> 0, 0, {
+        args: [8, 200, 0, {
             average: false,
             red: [2, 2],
             green: [-10, 4],
@@ -29,7 +29,7 @@ export default function() {
             folder.add(this, 'slices', 2, 20).onChange(function(value) {
                 filter.slices = value >> 0;
             });
-            folder.add(this, 'offset', 0, app.initWidth * 0.75 >> 0);
+            folder.add(this, 'offset', -400, 400);
             folder.add(this, 'direction', -3.14159, 3.14159);
             folder.add(this, 'fillMode',[0, 1, 2, 3]);
             folder.add(this.red, '0', -50, 50).name('red.x');
