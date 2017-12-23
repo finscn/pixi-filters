@@ -5,6 +5,7 @@ export default function() {
         global: false,
         opened: false,
         args: [10, 200, 0, {
+            fillMode: 2,
             average: false,
             red: [2, 2],
             green: [-10, 4],
