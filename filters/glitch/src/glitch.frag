@@ -37,7 +37,11 @@ void main(void)
 
     float ny = (-sinDir * cx + cosDir * cy) / aspect + 0.5;
 
-    ny = ny < 0. ? 1. + ny : (ny > 1. ? ny - 1. : ny);
+    // repeat
+    // ny = ny > 1.0 ? ny - 1.0 : (ny < 0.0 ? 1.0 + ny : ny);
+
+    // mirror
+    ny = ny > 1.0 ? 2.0 - ny : (ny < 0.0 ? -ny : ny);
 
     vec4 dc = texture2D(displacementMap, vec2(0.5, ny));
 
@@ -52,7 +56,7 @@ void main(void)
         } else if ( fillMode == LOOP) {
             coord.x -= 1.0;
         } else if ( fillMode == MIRROR) {
-            coord.x = 1.0 - (coord.x - 1.0);
+            coord.x = 2.0 - coord.x;
         } else {
             gl_FragColor = vec4(0., 0., 0., 0.);
             return;
@@ -78,7 +82,7 @@ void main(void)
         } else if ( fillMode == LOOP) {
             coord.y -= 1.0;
         } else if ( fillMode == MIRROR) {
-            coord.y = 1.0 - (coord.y - 1.0);
+            coord.y = 2.0 - coord.y;
         } else {
             gl_FragColor = vec4(0., 0., 0., 0.);
             return;
