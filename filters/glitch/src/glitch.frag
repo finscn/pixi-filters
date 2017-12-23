@@ -7,7 +7,7 @@ uniform vec4 filterArea;
 uniform vec4 filterClamp;
 uniform vec2 dimensions;
 
-uniform sampler2D displaceMap;
+uniform sampler2D displacementMap;
 uniform float offset;
 uniform float sinDir;
 uniform float cosDir;
@@ -39,7 +39,7 @@ void main(void)
 
     ny = ny < 0. ? 1. + ny : (ny > 1. ? ny - 1. : ny);
 
-    vec4 dc = texture2D(displaceMap, vec2(0.5, ny));
+    vec4 dc = texture2D(displacementMap, vec2(0.5, ny));
 
     float displacement = (dc.r - 0.5) * (offset / filterArea.x);
 

@@ -22,18 +22,18 @@ export default class GlitchFilter extends PIXI.Filter {
             blue: [-2, 0],
             fillMode: 0,
             seed: 0.5,
-            displaceMap: null,
-            displaceMapSize: 512,
+            displacementMap: null,
+            displacementMapSize: 512,
         }, options);
 
         this.offset = offset;
         this.direction = direction;
 
-        if (!this.displaceMap) {
-            this.displaceMapCanvas = document.createElement('canvas');
-            this.displaceMapCanvas.width = 8;
-            this.displaceMapCanvas.height = this.displaceMapSize;
-            this.displaceMap = PIXI.Texture.fromCanvas(this.displaceMapCanvas, PIXI.SCALE_MODES.NEAREST);
+        if (!this.displacementMap) {
+            this.displacementMapCanvas = document.createElement('canvas');
+            this.displacementMapCanvas.width = 8;
+            this.displacementMapCanvas.height = this.displacementMapSize;
+            this.displacementMap = PIXI.Texture.fromCanvas(this.displacementMapCanvas, PIXI.SCALE_MODES.NEAREST);
 
             this._slices = 0;
             this.slices = slices;
@@ -116,12 +116,12 @@ export default class GlitchFilter extends PIXI.Filter {
         this.initSlicesOffset();
         this.uniforms.slicesOffset = this.slicesOffset;
 
-        this.updateDisplaceMap();
+        this.updateDisplacementMap();
     }
 
-    updateDisplaceMap() {
-        let canvas = this.displaceMapCanvas;
-        let size = this.displaceMapSize;
+    updateDisplacementMap() {
+        let canvas = this.displacementMapCanvas;
+        let size = this.displacementMapSize;
 
         let ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, 8, size);
@@ -136,10 +136,10 @@ export default class GlitchFilter extends PIXI.Filter {
             y += height;
         }
 
-        this.displaceMap._updateID++;
-        this.displaceMap.baseTexture.emit('update', this.displaceMap.baseTexture);
-        // this.displaceMap.update();
-        this.uniforms.displaceMap = this.displaceMap;
+        this.displacementMap._updateID++;
+        this.displacementMap.baseTexture.emit('update', this.displacementMap.baseTexture);
+        // this.displacementMap.update();
+        this.uniforms.displacementMap = this.displacementMap;
     }
 
     setSlicesWidth(slicesWidth) {
