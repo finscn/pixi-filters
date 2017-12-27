@@ -23,6 +23,9 @@ float rand(vec2 co) {
 
 void main(void)
 {
+    gl_FragColor = texture2D(uSampler, vTextureCoord);
+    vec3 rgb = gl_FragColor.rgb;
+
     vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
     vec2 coord = pixelCoord / dimensions;
 
@@ -31,8 +34,6 @@ void main(void)
     float d = length(st * 0.5 * st * 0.5);
     vec2 uv = curvature > 0. ? st * d + st * 0.935 : st;
 
-    vec4 color = texture2D(uSampler, vTextureCoord);
-    vec3 rgb = color.rgb;
 
     float y = uv.y * lineWidth + time;
     float showScanlines = 1.;
@@ -60,5 +61,5 @@ void main(void)
         float alpha = min(m*200., 1.);
     // }
 
-    gl_FragColor = vec4(rgb/color.a * alpha, alpha);
+    gl_FragColor = vec4(rgb/gl_FragColor.a * alpha, alpha);
 }
