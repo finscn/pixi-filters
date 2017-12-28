@@ -28,11 +28,6 @@ float rand(vec2 co) {
 
 void main(void)
 {
-    curvature;
-
-    gl_FragColor = texture2D(uSampler, vTextureCoord);
-    vec3 rgb = gl_FragColor.rgb;
-
     vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
     vec2 coord = pixelCoord / dimensions;
 
@@ -42,9 +37,12 @@ void main(void)
     float k = curvature > 0. ?(length(dir * dir) * 0.25 * _c * _c + 0.935 * _c) : 1.;
     vec2 uv = dir * k;
 
+    gl_FragColor = texture2D(uSampler, vTextureCoord);
+    vec3 rgb = gl_FragColor.rgb;
+
     if (lineWidth > 0.0) {
         float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 2.0 / lineWidth ) / _c;
-        float j = 1. + cos(v * 1.2 + time) * 0.5 * lineContrast;
+        float j = 1. + cos(v * 1.2 - time) * 0.5 * lineContrast;
         rgb *= j;
         float segment = verticalLine ? mod((dir.x + .5) * dimensions.x, 4.) : mod((dir.y + .5) * dimensions.y, 4.);
         rgb *= 0.99 + ceil(segment) * 0.015;
