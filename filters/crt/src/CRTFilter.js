@@ -32,6 +32,9 @@ export default class CRTFilter extends PIXI.Filter {
         Object.assign(this, {
             curvature: 1.0,
             lineWidth: 1.0,
+            lineContrast: 0.2,
+            verticalLine: false,
+
             noise: 0.0,
             noiseSize: 1.0,
 
@@ -53,7 +56,9 @@ export default class CRTFilter extends PIXI.Filter {
         this.uniforms.dimensions[1] = input.sourceFrame.height;
 
         this.uniforms.curvature = this.curvature;
-        this.uniforms.lineWidth = Math.max(this.lineWidth, 0.0001);
+        this.uniforms.lineWidth = this.lineWidth;
+        this.uniforms.lineContrast = this.lineContrast;
+        this.uniforms.verticalLine = this.verticalLine;
         this.uniforms.seed = this.seed;
         this.uniforms.time = this.time;
 

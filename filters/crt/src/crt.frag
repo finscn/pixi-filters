@@ -2,9 +2,7 @@ varying vec2 vTextureCoord;
 uniform sampler2D uSampler;
 
 uniform vec4 filterArea;
-// uniform vec4 filterClamp;
 uniform vec2 dimensions;
-// uniform float aspect;
 
 const float SQRT_2 = 1.414213;
 
@@ -12,6 +10,8 @@ const float light = 1.0;
 
 uniform float curvature;
 uniform float lineWidth;
+uniform float lineContrast;
+uniform bool verticalLine;
 uniform float noise;
 uniform float noiseSize;
 
@@ -28,26 +28,29 @@ float rand(vec2 co) {
 
 void main(void)
 {
+    curvature;
+
     gl_FragColor = texture2D(uSampler, vTextureCoord);
     vec3 rgb = gl_FragColor.rgb;
 
     vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
     vec2 coord = pixelCoord / dimensions;
 
-    // vec2 st = coord - vec2(.5);
     vec2 dir = vec2(coord - vec2(0.5, 0.5));
 
-    float d = length(dir * 0.5 * dir * 0.5);
-    vec2 uv = curvature > 0. ? dir * (1.0 + curvature * (d + 0.535)): dir;
+    float _c = curvature > 0. ? curvature : 1.;
+    float k = curvature > 0. ?(length(dir * dir) * 0.25 * _c * _c + 0.935 * _c) : 1.;
+    vec2 uv = dir * k;
 
-    float scanlines = 1.;
-    float y = uv.y * (1.0 / lineWidth) + time;
-    float s = 1. - smoothstep(320., 1440., dimensions.y) + 1.;
-    float j = cos(dimensions.y * y * s) * .1; // values between .01 to .25 are ok.
-    rgb = abs(scanlines - 1.) * rgb + scanlines * (rgb - rgb * j);
-    rgb *= 1. - (.01 + ceil(mod((dir.x + .5) * dimensions.x, 3.)) * (.995 - 1.01)) * scanlines;
+    if (lineWidth > 0.0) {
+        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 1.0 / lineWidth ) / _c + time;
+        float j = 1. + cos(v * 1.2) * 0.5 * lineContrast;
+        rgb *= j;
+        float segment = verticalLine ? mod((dir.x + .5) * dimensions.x, 4.) : mod((dir.y + .5) * dimensions.y, 4.);
+        rgb *= 0.99 + ceil(segment) * 0.015;
+    }
 
-    if (noise > 0.0 && noiseSize > 0.0)
+    if (noise > 0.0)
     {
         pixelCoord.x = floor(pixelCoord.x / noiseSize);
         pixelCoord.y = floor(pixelCoord.y / noiseSize);
@@ -55,15 +58,14 @@ void main(void)
         rgb += _noise * noise;
     }
 
-    if (vignetting > 0.0)
+    if (vignetting > 110.0)
     {
         float outter = SQRT_2 - vignetting * SQRT_2;
-        // dir.y *= dimensions.y / dimensions.x;
         float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);
         rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);
     }
 
-    float m = max(0.0, 1. - 2.*max(abs(uv.x), abs(uv.y)));
+    float m = max(0.0, 1.0 - 2. * max(abs(uv.x), abs(uv.y)) / _c);
     float alpha = min(m * 200., 1.);
 
     gl_FragColor = vec4(rgb / gl_FragColor.a * alpha, alpha);

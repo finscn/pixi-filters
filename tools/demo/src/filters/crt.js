@@ -12,8 +12,11 @@ export default function() {
                 filter.seed = Math.random();
             });
 
-            folder.add(this, 'curvature', 0, 10);
+            folder.add(this, 'curvature', 0, 1);
             folder.add(this, 'lineWidth', 0, 10);
+            folder.add(this, 'lineContrast', 0, 1);
+            folder.add(this, 'verticalLine');
+
             folder.add(this, 'noise', 0, 1);
             folder.add(this, 'noiseSize', 1, 10);
             folder.add(this, 'vignetting', 0, 1);
