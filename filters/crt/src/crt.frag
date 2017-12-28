@@ -43,8 +43,8 @@ void main(void)
     vec2 uv = dir * k;
 
     if (lineWidth > 0.0) {
-        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 2.0 / lineWidth ) / _c + time;
-        float j = 1. + cos(v * 1.2) * 0.5 * lineContrast;
+        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 2.0 / lineWidth ) / _c;
+        float j = 1. + cos(v * 1.2 + time) * 0.5 * lineContrast;
         rgb *= j;
         float segment = verticalLine ? mod((dir.x + .5) * dimensions.x, 4.) : mod((dir.y + .5) * dimensions.y, 4.);
         rgb *= 0.99 + ceil(segment) * 0.015;

@@ -34,14 +34,11 @@ export default class CRTFilter extends PIXI.Filter {
             lineWidth: 1.0,
             lineContrast: 0.2,
             verticalLine: false,
-
             noise: 0.0,
             noiseSize: 1.0,
-
             vignetting: 0.3,
             vignettingAlpha: 1.0,
             vignettingBlur: 0.3,
-
             seed: 0.0,
             time: 0.0,
         }, options);
@@ -55,14 +52,42 @@ export default class CRTFilter extends PIXI.Filter {
         this.uniforms.dimensions[0] = input.sourceFrame.width;
         this.uniforms.dimensions[1] = input.sourceFrame.height;
 
-        this.uniforms.curvature = this.curvature;
-        this.uniforms.lineWidth = this.lineWidth;
-        this.uniforms.lineContrast = this.lineContrast;
-        this.uniforms.verticalLine = this.verticalLine;
         this.uniforms.seed = this.seed;
         this.uniforms.time = this.time;
 
         filterManager.applyFilter(this, input, output, clear);
+    }
+
+    set curvature(value) {
+        this.uniforms.curvature = value;
+    }
+
+    get curvature() {
+        return this.uniforms.curvature;
+    }
+
+    set lineWidth(value) {
+        this.uniforms.lineWidth = value;
+    }
+
+    get lineWidth() {
+        return this.uniforms.lineWidth;
+    }
+
+    set lineContrast(value) {
+        this.uniforms.lineContrast = value;
+    }
+
+    get lineContrast() {
+        return this.uniforms.lineContrast;
+    }
+
+    set verticalLine(value) {
+        this.uniforms.verticalLine = value;
+    }
+
+    get verticalLine() {
+        return this.uniforms.verticalLine;
     }
 
     /**
