@@ -2,27 +2,30 @@
 declare namespace PIXI.filters {
     class CRTFilter extends PIXI.Filter<{}> {
         constructor(options?: CRTOptions);
-        sepia: number;
+        curvature: number;
+        lineWidth: number;
+        lineContrast: number;
+        verticalLine: number;
         noise: number;
         noiseSize: number;
-        scratch: number;
-        scratchDensity: number;
-        scratchWidth: number;
+        seed: number;
         vignetting: number;
         vignettingAlpha: number;
         vignettingBlur: number;
-        seed: number;
+        time: number;
     }
     interface CRTOptions {
-        sepia?: number;
+        curvature?: number;
+        lineWidth?: number;
+        lineContrast?: number;
+        verticalLine?: number;
         noise?: number;
         noiseSize?: number;
-        scratch?: number;
-        scratchDensity?: number;
-        scratchWidth?: number;
+        seed?: number;
         vignetting?: number;
         vignettingAlpha?: number;
         vignettingBlur?: number;
+        time?: number;
     }
 }
 

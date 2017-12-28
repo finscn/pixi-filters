@@ -494,6 +494,20 @@
             }]
         },
         {
+            "name": "AdjustmentFilter",
+            "filename": "adjustment",
+            "arguments": [{
+                "gamma": 2,
+                "saturation": 2,
+                "contrast": 2,
+                "brightness": 2,
+                "red": 2,
+                "green": 2,
+                "blue": 2,
+                "alpha": 0.75
+            }]
+        },
+        {
             "name": "CRTFilter",
             "filename": "crt",
             "arguments": [{

@@ -6,12 +6,20 @@ declare namespace PIXI.filters {
         contrast: number;
         saturation: number;
         brightness: number;
+        red: number;
+        green: number;
+        blue: number;
+        alpha: number;
     }
     interface AdjustmentOptions {
         gamma?: number;
         contrast?: number;
         saturation?: number;
         brightness?: number;
+        red?: number;
+        green?: number;
+        blue?: number;
+        alpha?: number;
     }
 }
 
