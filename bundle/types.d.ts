@@ -21,6 +21,19 @@ declare namespace PIXI.filters {
         resolution?: number;
         kernelSize?: number;
     }
+    class BasicAdjustmentFilter extends PIXI.Filter<{}> {
+        constructor(options?: BasicAdjustmentOptions);
+        gamma: number;
+        contrast: number;
+        saturation: number;
+        brightness: number;
+    }
+    interface BasicAdjustmentOptions {
+        gamma?: number;
+        contrast?: number;
+        saturation?: number;
+        brightness?: number;
+    }
     class BloomFilter extends PIXI.Filter<{}> {
         constructor(blur?:number|PIXI.Point|number[], quality?:number, resolution?:number, kernelSize?:number);
         blur:number;

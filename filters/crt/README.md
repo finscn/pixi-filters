@@ -1,4 +1,4 @@
-# OldFilmFilter
+# AdjustBasicFilter
 
 PixiJS v4 filter to render CRT effect.
 
@@ -11,7 +11,7 @@ npm install @pixi/filter-crt
 ## Usage
 
 ```js
-import { OldFilmFilter } from '@pixi/filter-crt';
+import { CRTFilter } from '@pixi/filter-crt';
 
 const container = new PIXI.Container();
 container.filters = [new CRTFilter()];

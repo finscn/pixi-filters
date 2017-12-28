@@ -8,6 +8,7 @@ Filters include:
 
 * **AdvancedBloomFilter** _@pixi/filter-advanced-bloom_
 * **AsciiFilter** _@pixi/filter-ascii_
+* **BasicAdjustmentFilter** _@pixi/filter-basic-adjustment_
 * **BloomFilter** _@pixi/filter-bloom_
 * **BulgePinchFilter** _@pixi/filter-bulge-pinch_
 * **ColorReplaceFilter** _@pixi/filter-color-replace_

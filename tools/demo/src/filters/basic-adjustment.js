@@ -1,19 +1,19 @@
 export default function() {
     const app = this;
-    app.addFilter('CRTFilter', {
-        enabled: !true,
+    app.addFilter('BasicAdjustmentFilter', {
+        enabled: true,
         global: false,
         opened: false,
         // args: [[app.initWidth / 2, app.initHeight / 2]],
         oncreate(folder) {
-            const filter = this;
-
-            app.events.on('animate', function() {
-                filter.seed = Math.random();
-            });
-
-            folder.add(this, 'seed', 0, 1);
-            folder.add(this, 'time', 0, 300);
+            folder.add(this, 'gamma', 0, 10);
+            folder.add(this, 'saturation', 0, 10);
+            folder.add(this, 'contrast', 0, 10);
+            folder.add(this, 'brightness', 0, 10);
+            folder.add(this, 'red', 0, 10);
+            folder.add(this, 'green', 0, 10);
+            folder.add(this, 'blue', 0, 10);
+            folder.add(this, 'alpha', 0, 1);
             // folder.add(this, 'noise', 0, 1);
             // folder.add(this, 'noiseSize', 1, 10);
             // folder.add(this, 'scratch', -1, 1);

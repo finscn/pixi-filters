@@ -33,6 +33,7 @@
   "dependencies": {
     "@pixi/filter-advanced-bloom": "^2.4.0",
     "@pixi/filter-ascii": "^2.4.0",
+    "@pixi/filter-basic-adjustment": "^2.4.0",
     "@pixi/filter-bloom": "^2.4.0",
     "@pixi/filter-bulge-pinch": "^2.4.0",
     "@pixi/filter-color-replace": "^2.4.0",
