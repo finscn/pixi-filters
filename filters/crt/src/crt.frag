@@ -6,16 +6,21 @@ uniform vec4 filterArea;
 uniform vec2 dimensions;
 // uniform float aspect;
 
-const float curvature = 1.0;
-const float lineWidth = 1.0;
-const float time = 1.0;
+const float SQRT_2 = 1.414213;
 
-const float vignetting = 1.0;
 const float light = 1.0;
 
-// uniform float noise;
-// uniform float noiseSize;
-// uniform float seed;
+uniform float curvature;
+uniform float lineWidth;
+uniform float noise;
+uniform float noiseSize;
+
+uniform float vignetting;
+uniform float vignettingAlpha;
+uniform float vignettingBlur;
+
+uniform float seed;
+uniform float time;
 
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
@@ -29,37 +34,37 @@ void main(void)
     vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
     vec2 coord = pixelCoord / dimensions;
 
-    vec2 st = coord - vec2(.5);
+    // vec2 st = coord - vec2(.5);
+    vec2 dir = vec2(coord - vec2(0.5, 0.5));
 
-    float d = length(st * 0.5 * st * 0.5);
-    vec2 uv = curvature > 0. ? st * d + st * 0.935 : st;
+    float d = length(dir * 0.5 * dir * 0.5);
+    vec2 uv = curvature > 0. ? dir * (1.0 + curvature * (d + 0.535)): dir;
 
-
-    float y = uv.y * lineWidth + time;
-    float showScanlines = 1.;
-    if (dimensions.y < 360.) {
-        // showScanlines = 0.;
-    }
+    float scanlines = 1.;
+    float y = uv.y * (1.0 / lineWidth) + time;
     float s = 1. - smoothstep(320., 1440., dimensions.y) + 1.;
-    float j = cos(y*dimensions.y*s)*.1; // values between .01 to .25 are ok.
-    rgb = abs(showScanlines-1.)*rgb + showScanlines*(rgb - rgb*j);
-    rgb *= 1. - ( .01 + ceil(mod( (st.x+.5)*dimensions.x, 3.) ) * (.995-1.01) )*showScanlines;
+    float j = cos(dimensions.y * y * s) * .1; // values between .01 to .25 are ok.
+    rgb = abs(scanlines - 1.) * rgb + scanlines * (rgb - rgb * j);
+    rgb *= 1. - (.01 + ceil(mod((dir.x + .5) * dimensions.x, 3.)) * (.995 - 1.01)) * scanlines;
 
-    // if (noise > 0.0 && noiseSize > 0.0)
-    // {
-    //     pixelCoord.x = floor(pixelCoord.x / noiseSize);
-    //     pixelCoord.y = floor(pixelCoord.y / noiseSize);
-    //     float _noise = rand(pixelCoord * noiseSize * seed) - 0.5;
-    //     rgb += _noise * noise;
-    // }
-    //
-    // if (vignetting > 0.0)
-    // {
-        rgb = rgb * (light > 0.0 ? 1. - min(1., d*light) : 1.0);
+    if (noise > 0.0 && noiseSize > 0.0)
+    {
+        pixelCoord.x = floor(pixelCoord.x / noiseSize);
+        pixelCoord.y = floor(pixelCoord.y / noiseSize);
+        float _noise = rand(pixelCoord * noiseSize * seed) - 0.5;
+        rgb += _noise * noise;
+    }
 
-        float m = max(0.0, 1. - 2.*max(abs(uv.x), abs(uv.y) ) );
-        float alpha = min(m*200., 1.);
-    // }
+    if (vignetting > 0.0)
+    {
+        float outter = SQRT_2 - vignetting * SQRT_2;
+        // dir.y *= dimensions.y / dimensions.x;
+        float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);
+        rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);
+    }
 
-    gl_FragColor = vec4(rgb/gl_FragColor.a * alpha, alpha);
+    float m = max(0.0, 1. - 2.*max(abs(uv.x), abs(uv.y)));
+    float alpha = min(m * 200., 1.);
+
+    gl_FragColor = vec4(rgb / gl_FragColor.a * alpha, alpha);
 }

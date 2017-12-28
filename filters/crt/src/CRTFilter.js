@@ -30,6 +30,15 @@ export default class CRTFilter extends PIXI.Filter {
         super(vertex, fragment);
 
         Object.assign(this, {
+            curvature: 1.0,
+            lineWidth: 1.0,
+            noise: 0.0,
+            noiseSize: 1.0,
+
+            vignetting: 0.3,
+            vignettingAlpha: 1.0,
+            vignettingBlur: 0.3,
+
             seed: 0.0,
             time: 0.0,
         }, options);
@@ -43,12 +52,84 @@ export default class CRTFilter extends PIXI.Filter {
         this.uniforms.dimensions[0] = input.sourceFrame.width;
         this.uniforms.dimensions[1] = input.sourceFrame.height;
 
-        // this.uniforms.seed = this.seed;
-        // this.uniforms.time = this.time;
+        this.uniforms.curvature = this.curvature;
+        this.uniforms.lineWidth = Math.max(this.lineWidth, 0.0001);
+        this.uniforms.seed = this.seed;
+        this.uniforms.time = this.time;
 
         filterManager.applyFilter(this, input, output, clear);
     }
 
+    /**
+     * Opacity/intensity of the noise effect between `0` and `1`
+     *
+     * @member {number}
+     * @default 0
+     */
+    set noise(value) {
+        this.uniforms.noise = value;
+    }
+
+    get noise() {
+        return this.uniforms.noise;
+    }
+
+    /**
+     * The size of the noise particles
+     *
+     * @member {number}
+     * @default 0
+     */
+    set noiseSize(value) {
+        this.uniforms.noiseSize = value;
+    }
+
+    get noiseSize() {
+        return this.uniforms.noiseSize;
+    }
+
+    /**
+     * The radius of the vignette effect, smaller
+     * values produces a smaller vignette
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignetting(value) {
+        this.uniforms.vignetting = value;
+    }
+
+    get vignetting() {
+        return this.uniforms.vignetting;
+    }
+
+    /**
+     * Amount of opacity of vignette
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignettingAlpha(value) {
+        this.uniforms.vignettingAlpha = value;
+    }
+
+    get vignettingAlpha() {
+        return this.uniforms.vignettingAlpha;
+    }
+
+    /**
+     * Blur intensity of the vignette
+     *
+     * @member {number}
+     * @default 0
+     */
+    set vignettingBlur(value) {
+        this.uniforms.vignettingBlur = value;
+    }
+
+    get vignettingBlur() {
+        return this.uniforms.vignettingBlur;
+    }
 }
 
 // Export to PixiJS namespace

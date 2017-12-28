@@ -1,7 +1,7 @@
 export default function() {
     const app = this;
     app.addFilter('BasicAdjustmentFilter', {
-        enabled: true,
+        enabled: false,
         global: false,
         opened: false,
         // args: [[app.initWidth / 2, app.initHeight / 2]],
