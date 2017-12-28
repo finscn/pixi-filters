@@ -21,14 +21,14 @@ declare namespace PIXI.filters {
         resolution?: number;
         kernelSize?: number;
     }
-    class BasicAdjustmentFilter extends PIXI.Filter<{}> {
-        constructor(options?: BasicAdjustmentOptions);
+    class AdjustmentFilter extends PIXI.Filter<{}> {
+        constructor(options?: AdjustmentOptions);
         gamma: number;
         contrast: number;
         saturation: number;
         brightness: number;
     }
-    interface BasicAdjustmentOptions {
+    interface AdjustmentOptions {
         gamma?: number;
         contrast?: number;
         saturation?: number;

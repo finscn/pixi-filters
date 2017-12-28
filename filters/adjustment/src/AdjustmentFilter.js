@@ -1,10 +1,10 @@
 import {vertex} from '@tools/fragments';
-import fragment from './basic-adjustment.frag';
+import fragment from './adjustment.frag';
 
 /**
- * The BasicAdjustmentFilter to adjust gamma/contrast/saturation/brightness.
+ * The AdjustmentFilter to adjust gamma/contrast/saturation/brightness.
 .<br>
- * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/basic-adjustment.gif)
+ * ![original](../tools/screenshots/dist/original.png)![filter](../tools/screenshots/dist/adjustment.gif)
  *
  * @class
  * @extends PIXI.Filter
@@ -26,7 +26,7 @@ import fragment from './basic-adjustment.frag';
  * @param {number} [options.vignettingBlur=0.3] - Blur intensity of the vignette
  * @param {number} [seed=0] - A see value to apply to the random noise generation
  */
-export default class BasicAdjustmentFilter extends PIXI.Filter {
+export default class AdjustmentFilter extends PIXI.Filter {
     constructor(options) {
         super(vertex, fragment);
 
@@ -62,4 +62,4 @@ export default class BasicAdjustmentFilter extends PIXI.Filter {
 }
 
 // Export to PixiJS namespace
-PIXI.filters.BasicAdjustmentFilter = BasicAdjustmentFilter;
+PIXI.filters.AdjustmentFilter = AdjustmentFilter;

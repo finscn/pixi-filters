@@ -1,10 +1,10 @@
 {
-  "name": "@pixi/filter-basic-adjustment",
+  "name": "@pixi/filter-adjustment",
   "version": "2.4.0",
-  "main": "lib/filter-basic-adjustment.js",
+  "main": "lib/filter-adjustment.js",
   "description": "CRT effect filter",
   "author": "finscn <finscn@gmail.com>",
-  "module": "lib/filter-basic-adjustment.es.js",
+  "module": "lib/filter-adjustment.es.js",
   "types": "types.d.ts",
   "homepage": "http://pixijs.com/",
   "bugs": "https://github.com/pixijs/pixi-filters/issues",

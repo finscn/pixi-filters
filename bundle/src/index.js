@@ -1,6 +1,6 @@
+export {AdjustmentFilter} from '@pixi/filter-adjustment';
 export {AdvancedBloomFilter} from '@pixi/filter-advanced-bloom';
 export {AsciiFilter} from '@pixi/filter-ascii';
-export {BasicAdjustmentFilter} from '@pixi/filter-basic-adjustment';
 export {BloomFilter} from '@pixi/filter-bloom';
 export {BulgePinchFilter} from '@pixi/filter-bulge-pinch';
 export {ColorReplaceFilter} from '@pixi/filter-color-replace';
