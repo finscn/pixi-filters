@@ -9,21 +9,19 @@ import fragment from './crt.frag';
  * @extends PIXI.Filter
  * @memberof PIXI.filters
  *
- * @param {object|number} [options] - The optional parameters of old film effect.
- *                        When options is a number , it will be `seed`
- * @param {number} [options.sepia=0.3] - The amount of saturation of sepia effect,
- *        a value of `1` is more saturation and closer to `0` is less, and a value of
- *        `0` produces no sepia effect
+ * @param {object} [options] - The optional parameters of CRT effect.
+ * @param {number} [options.curvature=1.0] - TODO
+ * @param {number} [options.lineWidth=1.0] - TODO
+ * @param {number} [options.lineContrast=0.25] - TODO
+ * @param {number} [options.verticalLine=false] - TODO
  * @param {number} [options.noise=0.3] - Opacity/intensity of the noise effect between `0` and `1`
  * @param {number} [options.noiseSize=1.0] - The size of the noise particles
- * @param {number} [options.scratch=0.5] - How often scratches appear
- * @param {number} [options.scratchDensity=0.3] - The density of the number of scratches
- * @param {number} [options.scratchWidth=1.0] - The width of the scratches
+ * @param {number} [seed=0] - A see value to apply to the random noise generation
  * @param {number} [options.vignetting=0.3] - The radius of the vignette effect, smaller
  *        values produces a smaller vignette
  * @param {number} [options.vignettingAlpha=1.0] - Amount of opacity of vignette
  * @param {number} [options.vignettingBlur=0.3] - Blur intensity of the vignette
- * @param {number} [seed=0] - A see value to apply to the random noise generation
+ * @param {number} [time=0] - TODO
  */
 export default class CRTFilter extends PIXI.Filter {
     constructor(options) {
@@ -32,14 +30,14 @@ export default class CRTFilter extends PIXI.Filter {
         Object.assign(this, {
             curvature: 1.0,
             lineWidth: 1.0,
-            lineContrast: 0.2,
+            lineContrast: 0.25,
             verticalLine: false,
             noise: 0.0,
             noiseSize: 1.0,
+            seed: 0.0,
             vignetting: 0.3,
             vignettingAlpha: 1.0,
             vignettingBlur: 0.3,
-            seed: 0.0,
             time: 0.0,
         }, options);
     }
