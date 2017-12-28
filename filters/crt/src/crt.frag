@@ -43,7 +43,7 @@ void main(void)
     vec2 uv = dir * k;
 
     if (lineWidth > 0.0) {
-        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 1.0 / lineWidth ) / _c + time;
+        float v = (verticalLine ? uv.x * dimensions.x : uv.y * dimensions.y) * min(1.0, 2.0 / lineWidth ) / _c + time;
         float j = 1. + cos(v * 1.2) * 0.5 * lineContrast;
         rgb *= j;
         float segment = verticalLine ? mod((dir.x + .5) * dimensions.x, 4.) : mod((dir.y + .5) * dimensions.y, 4.);
@@ -58,15 +58,16 @@ void main(void)
         rgb += _noise * noise;
     }
 
-    if (vignetting > 110.0)
+    if (vignetting > 0.0)
     {
         float outter = SQRT_2 - vignetting * SQRT_2;
         float darker = clamp((outter - length(dir) * SQRT_2) / ( 0.00001 + vignettingBlur * SQRT_2), 0.0, 1.0);
         rgb *= darker + (1.0 - darker) * (1.0 - vignettingAlpha);
     }
 
-    float m = max(0.0, 1.0 - 2. * max(abs(uv.x), abs(uv.y)) / _c);
-    float alpha = min(m * 200., 1.);
+    gl_FragColor.rgb = rgb;
 
-    gl_FragColor = vec4(rgb / gl_FragColor.a * alpha, alpha);
+    // float m = max(0.0, 1.0 - 2. * max(abs(uv.x), abs(uv.y)) / _c);
+    // float alpha = min(m * 200., 1.);
+    // gl_FragColor = vec4(rgb / gl_FragColor.a * alpha, alpha);
 }
