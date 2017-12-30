@@ -6,7 +6,7 @@ uniform vec2 dimensions;
 
 uniform float boundary;
 uniform vec2 offset;
-uniform vec2 density;
+uniform vec2 waveLength;
 uniform vec2 alpha;
 uniform float seed;
 uniform float time;
@@ -33,11 +33,11 @@ void main(void)
 
     float k = (coord.y - boundary)/(1. - boundary + 0.0001);
 
-    float _offset = (offset.y - offset.x) * k + offset.x;
-    float _density = (density.y - density.x) * k + density.x;
+    float _offset = ((offset.y - offset.x) * k + offset.x ) / filterArea.x;
+    float _waveLength = ((waveLength.y - waveLength.x) * k + waveLength.x) / filterArea.y;
     float _alpha = (alpha.y - alpha.x) * k + alpha.x;
 
-    float x = vTextureCoord.x + cos(y * 100. * _density - time) * _offset / filterArea.x;
+    float x = vTextureCoord.x + cos(y * 6.28 / _waveLength - time) * _offset;
 
     vec4 color = texture2D(uSampler, vec2(x, y));
 

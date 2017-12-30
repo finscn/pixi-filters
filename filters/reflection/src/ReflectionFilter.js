@@ -29,8 +29,8 @@ export default class ReflectionFilter extends PIXI.Filter {
 
         Object.assign(this, {
             boundary: 0.5,
-            offset: [0, 30],
-            density: [1, 0],
+            offset: [0, 20],
+            waveLength: [30, 100],
             alpha: [1, 1],
             seed: 0.0,
             time: 0.0,
@@ -48,8 +48,8 @@ export default class ReflectionFilter extends PIXI.Filter {
         this.uniforms.boundary = this.boundary;
         this.uniforms.offset[0] = this.offset[0];
         this.uniforms.offset[1] = this.offset[1];
-        this.uniforms.density[0] = this.density[0];
-        this.uniforms.density[1] = this.density[1];
+        this.uniforms.waveLength[0] = this.waveLength[0];
+        this.uniforms.waveLength[1] = this.waveLength[1];
         this.uniforms.alpha[0] = this.alpha[0];
         this.uniforms.alpha[1] = this.alpha[1];
         this.uniforms.seed = this.seed;
