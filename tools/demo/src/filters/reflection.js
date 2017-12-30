@@ -1,15 +1,10 @@
 export default function() {
     const app = this;
-    app.addFilter('CRTFilter', {
-        enabled: false,
+    app.addFilter('ReflectionFilter', {
+        enabled: true,
         global: false,
         opened: false,
-        args: [{
-            lineWidth: 3,
-            lineContrast: 0.3,
-            noise:0.2,
-            time:0.5,
-        }],
+        args: [],
         oncreate(folder) {
             const filter = this;
 
@@ -24,21 +19,20 @@ export default function() {
             app.events.on('animate', function() {
                 if (filter.animating) {
                     filter.seed = Math.random();
-                    filter.time += 0.5;
+                    filter.time += 0.1;
                 }
             });
 
             folder.add(this, 'animating').name('(animating)');
-            folder.add(this, 'curvature', 0, 10);
-            folder.add(this, 'lineWidth', 0, 5);
-            folder.add(this, 'lineContrast', 0, 1);
-            folder.add(this, 'verticalLine');
 
-            folder.add(this, 'noise', 0, 1);
-            folder.add(this, 'noiseSize', 1, 10);
-            folder.add(this, 'vignetting', 0, 1);
-            folder.add(this, 'vignettingAlpha', 0, 1);
-            folder.add(this, 'vignettingBlur', 0, 1);
+
+            folder.add(this, 'boundary', 0, 1);
+            folder.add(this.offset, '0', 0, 50).name('offset.start');
+            folder.add(this.offset, '1', 0, 50).name('offset.end');
+            folder.add(this.density, '0', 0, 1).name('density.start');
+            folder.add(this.density, '1', 0, 1).name('density.end');
+            folder.add(this.alpha, '0', 0, 1).name('alpha.start');
+            folder.add(this.alpha, '1', 0, 1).name('alpha.end');
             folder.add(this, 'seed', 0, 1);
             folder.add(this, 'time', 0, 20);
         }
