@@ -1,34 +1,22 @@
 /// <reference types="pixi.js" />
 declare namespace PIXI.filters {
-    class CRTFilter extends PIXI.Filter<{}> {
-        constructor(options?: CRTOptions);
-        curvature: number;
-        lineWidth: number;
-        lineContrast: number;
-        verticalLine: number;
-        noise: number;
-        noiseSize: number;
-        seed: number;
-        vignetting: number;
-        vignettingAlpha: number;
-        vignettingBlur: number;
+    class ReflectionFilter extends PIXI.Filter<{}> {
+        constructor(options?: ReflectionOptions);
+        boundary: number;
+        offset: number[];
+        waveLength: number[];
+        alpha: number[];
         time: number;
     }
-    interface CRTOptions {
-        curvature?: number;
-        lineWidth?: number;
-        lineContrast?: number;
-        verticalLine?: number;
-        noise?: number;
-        noiseSize?: number;
-        seed?: number;
-        vignetting?: number;
-        vignettingAlpha?: number;
-        vignettingBlur?: number;
+    interface ReflectionOptions {
+        boundary?: number;
+        offset?: number[];
+        waveLength?: number[];
+        alpha?: number[];
         time?: number;
     }
 }
 
-declare module "@pixi/filter-crt" {
+declare module "@pixi/filter-reflection" {
     export = PIXI.filters;
 }
