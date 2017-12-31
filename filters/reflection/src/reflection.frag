@@ -2,13 +2,13 @@ varying vec2 vTextureCoord;
 uniform sampler2D uSampler;
 
 uniform vec4 filterArea;
+uniform vec4 filterClamp;
 uniform vec2 dimensions;
 
 uniform float boundary;
 uniform vec2 offset;
 uniform vec2 waveLength;
 uniform vec2 alpha;
-uniform float seed;
 uniform float time;
 
 float rand(vec2 co) {
@@ -17,9 +17,6 @@ float rand(vec2 co) {
 
 void main(void)
 {
-    seed;
-    time;
-
     vec2 pixelCoord = vTextureCoord.xy * filterArea.xy;
     vec2 coord = pixelCoord / dimensions;
 
@@ -38,6 +35,7 @@ void main(void)
     float _alpha = (alpha.y - alpha.x) * k + alpha.x;
 
     float x = vTextureCoord.x + cos(y * 6.28 / _waveLength - time) * _offset;
+    x = clamp(x, filterClamp.x, filterClamp.z);
 
     vec4 color = texture2D(uSampler, vec2(x, y));
 

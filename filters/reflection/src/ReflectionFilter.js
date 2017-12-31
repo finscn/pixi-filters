@@ -9,18 +9,11 @@ import fragment from './reflection.frag';
  * @extends PIXI.Filter
  * @memberof PIXI.filters
  *
- * @param {object} [options] - The optional parameters of CRT effect.
- * @param {number} [options.curvature=1.0] - TODO
- * @param {number} [options.lineWidth=1.0] - TODO
- * @param {number} [options.lineContrast=0.25] - TODO
- * @param {number} [options.verticalLine=false] - TODO
- * @param {number} [options.noise=0.3] - Opacity/intensity of the noise effect between `0` and `1`
- * @param {number} [options.noiseSize=1.0] - The size of the noise particles
- * @param {number} [seed=0] - A see value to apply to the random noise generation
- * @param {number} [options.vignetting=0.3] - The radius of the vignette effect, smaller
- *        values produces a smaller vignette
- * @param {number} [options.vignettingAlpha=1.0] - Amount of opacity of vignette
- * @param {number} [options.vignettingBlur=0.3] - Blur intensity of the vignette
+ * @param {object} [options] - The optional parameters of Reflection effect.
+ * @param {number} [options.boundary=0.5] - TODO
+ * @param {number} [options.offset=[0, 20]] - TODO
+ * @param {number} [options.waveLength=[30, 100]] - TODO
+ * @param {number} [options.alpha=[1, 1]] - TODO
  * @param {number} [time=0] - TODO
  */
 export default class ReflectionFilter extends PIXI.Filter {
@@ -32,8 +25,7 @@ export default class ReflectionFilter extends PIXI.Filter {
             offset: [0, 20],
             waveLength: [30, 100],
             alpha: [1, 1],
-            seed: 0.0,
-            time: 0.0,
+            time: 0,
         }, options);
     }
 
@@ -45,18 +37,46 @@ export default class ReflectionFilter extends PIXI.Filter {
         this.uniforms.dimensions[0] = input.sourceFrame.width;
         this.uniforms.dimensions[1] = input.sourceFrame.height;
 
-        this.uniforms.boundary = this.boundary;
-        this.uniforms.offset[0] = this.offset[0];
-        this.uniforms.offset[1] = this.offset[1];
-        this.uniforms.waveLength[0] = this.waveLength[0];
-        this.uniforms.waveLength[1] = this.waveLength[1];
-        this.uniforms.alpha[0] = this.alpha[0];
-        this.uniforms.alpha[1] = this.alpha[1];
-        this.uniforms.seed = this.seed;
         this.uniforms.time = this.time;
 
         filterManager.applyFilter(this, input, output, clear);
     }
+
+    set boundary(value) {
+        this.uniforms.boundary = value;
+    }
+
+    get boundary() {
+        return this.uniforms.boundary;
+    }
+
+    set offset(value) {
+        this.uniforms.offset[0] = value[0];
+        this.uniforms.offset[1] = value[1];
+    }
+
+    get offset() {
+        return this.uniforms.offset;
+    }
+
+    set waveLength(value) {
+        this.uniforms.waveLength[0] = value[0];
+        this.uniforms.waveLength[1] = value[1];
+    }
+
+    get waveLength() {
+        return this.uniforms.waveLength;
+    }
+
+    set alpha(value) {
+        this.uniforms.alpha[0] = value[0];
+        this.uniforms.alpha[1] = value[1];
+    }
+
+    get alpha() {
+        return this.uniforms.alpha;
+    }
+
 }
 
 // Export to PixiJS namespace

@@ -516,6 +516,10 @@
                 "noise": 0.3,
                 "noiseSize": 1.0
             }]
+        },
+        {
+            "name": "ReflectionFilter",
+            "filename": "reflection"
         }
     ]
 }

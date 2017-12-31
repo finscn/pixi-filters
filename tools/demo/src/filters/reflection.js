@@ -32,7 +32,6 @@ export default function() {
             folder.add(this.waveLength, '1', 10, 200).name('waveLength.end');
             folder.add(this.alpha, '0', 0, 1).name('alpha.start');
             folder.add(this.alpha, '1', 0, 1).name('alpha.end');
-            folder.add(this, 'seed', 0, 1);
             folder.add(this, 'time', 0, 20);
         }
     });
