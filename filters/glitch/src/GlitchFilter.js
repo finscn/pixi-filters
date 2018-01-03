@@ -24,7 +24,7 @@ export default class GlitchFilter extends PIXI.Filter {
 
         super(vertex, fragment);
 
-        const _options = {
+        options = Object.assign({
             slices: 5,
             offset: 100,
             direction: 0,
@@ -37,22 +37,20 @@ export default class GlitchFilter extends PIXI.Filter {
             minSliceWidth: 8,
             displacementMapSize: 512,
             displacementMap: null,
-        };
+        }, options);
 
-        Object.assign(_options, options);
+        this.offset = options.offset;
+        this.direction = options.direction;
 
-        this.offset = _options.offset;
-        this.direction = _options.direction;
-
-        this.fillMode = _options.fillMode;
-        this.average = _options.average;
-        this.seed = _options.seed;
-        this.red = _options.red;
-        this.green = _options.green;
-        this.blue = _options.blue;
-        this.minSliceWidth = _options.minSliceWidth;
-        this.displacementMapSize = _options.displacementMapSize;
-        this.displacementMap = _options.displacementMap;
+        this.fillMode = options.fillMode;
+        this.average = options.average;
+        this.seed = options.seed;
+        this.red = options.red;
+        this.green = options.green;
+        this.blue = options.blue;
+        this.minSliceWidth = options.minSliceWidth;
+        this.displacementMapSize = options.displacementMapSize;
+        this.displacementMap = options.displacementMap;
 
         if (!this.displacementMap) {
             this.displacementMapCanvas = document.createElement('canvas');
@@ -61,7 +59,7 @@ export default class GlitchFilter extends PIXI.Filter {
             this.displacementMap = PIXI.Texture.fromCanvas(this.displacementMapCanvas, PIXI.SCALE_MODES.NEAREST);
 
             this._slices = 0;
-            this.slices = _options.slices;
+            this.slices = options.slices;
         }
     }
 
