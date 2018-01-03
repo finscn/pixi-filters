@@ -83,9 +83,10 @@ export default class GlitchFilter extends PIXI.Filter {
         filterManager.applyFilter(this, input, output, clear);
     }
 
-    initSlicesWidth(average) {
-        this.average = average === undefined ? this.average : (average || false);
-
+    /**
+     * @private
+     */
+    initSlicesWidth() {
         const arr = this.slicesWidth;
         const last = this._slices - 1;
         const size = this.displacementMapSize;
@@ -96,10 +97,10 @@ export default class GlitchFilter extends PIXI.Filter {
             let rest = 1;
 
             for (let i = 0; i < last; i++) {
-                const average = rest / (count - i);
-                const v =  Math.max(average * (1 - Math.random() * 0.6), min);
-                arr[i] = v;
-                rest -= v;
+                const averageWidth = rest / (count - i);
+                const w =  Math.max(averageWidth * (1 - Math.random() * 0.6), min);
+                arr[i] = w;
+                rest -= w;
             }
             arr[last] = rest;
         }
@@ -108,9 +109,9 @@ export default class GlitchFilter extends PIXI.Filter {
             const ratio = Math.sqrt(1 / this._slices);
 
             for (let i = 0; i < last; i++) {
-                const v = Math.max(ratio * rest * Math.random(), min);
-                arr[i] = v;
-                rest -= v;
+                const w = Math.max(ratio * rest * Math.random(), min);
+                arr[i] = w;
+                rest -= w;
             }
             arr[last] = rest;
         }
@@ -118,10 +119,25 @@ export default class GlitchFilter extends PIXI.Filter {
         this.shuffle();
     }
 
+    /**
+     * @private
+     */
     initSlicesOffset() {
         for (let i = 0 ; i < this._slices; i++) {
             this.slicesOffset[i] = Math.random() * (Math.random() < 0.5 ? -1 : 1);
         }
+    }
+
+    refresh() {
+        this.slicesWidth = new Float32Array(this._slices);
+        this.initSlicesWidth();
+        this.uniforms.slicesWidth = this.slicesWidth;
+
+        this.slicesOffset = new Float32Array(this._slices);
+        this.initSlicesOffset();
+        this.uniforms.slicesOffset = this.slicesOffset;
+
+        this.updateDisplacementMap();
     }
 
     shuffle() {
@@ -134,18 +150,6 @@ export default class GlitchFilter extends PIXI.Filter {
             arr[i] = arr[rand];
             arr[rand] = temp;
         }
-    }
-
-    refresh() {
-        this.slicesWidth = new Float32Array(this._slices);
-        this.initSlicesWidth(this.average);
-        this.uniforms.slicesWidth = this.slicesWidth;
-
-        this.slicesOffset = new Float32Array(this._slices);
-        this.initSlicesOffset();
-        this.uniforms.slicesOffset = this.slicesOffset;
-
-        this.updateDisplacementMap();
     }
 
     updateDisplacementMap() {
