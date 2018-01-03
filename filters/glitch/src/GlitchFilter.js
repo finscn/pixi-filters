@@ -14,9 +14,12 @@ import fragment from './glitch.frag';
  * @param {number} [options.direction=0] - The angle in degree of the offset of slices.
  * @param {number} [options.fillMode=0] - The fill mode of the space after the offset.
  *                 0: TRANSPARENT; 1: ORIGINAL; 2: LOOP; 3: CLAMP; 4: MIRROR.
+ * @param {number} [options.average=false] - TODO
+ * @param {number} [options.minSliceWidth=8] - TODO
  * @param {number} [options.red=[0,0]] - Red channel offset
  * @param {number} [options.green=[0,0]] - Green channel offset.
- * @param {number} [options.blue=[0,0]] - Blue channel offset.
+ * @param {number} [options.displacementMapSize=512] - TODO.
+ * @param {number} [options.displacementMap=null] - TODO.
  */
 export default class GlitchFilter extends PIXI.Filter {
 
@@ -128,6 +131,9 @@ export default class GlitchFilter extends PIXI.Filter {
         }
     }
 
+    /**
+     *  regenerating slicesWidth , slicesOffset & displacement bitmap by random
+     */
     refresh() {
         this.slicesWidth = new Float32Array(this._slices);
         this.initSlicesWidth();
@@ -140,6 +146,9 @@ export default class GlitchFilter extends PIXI.Filter {
         this.updateDisplacementMap();
     }
 
+    /**
+     *   shuffle the slices-width array
+     */
     shuffle() {
         const arr = this.slicesWidth;
 
@@ -152,6 +161,9 @@ export default class GlitchFilter extends PIXI.Filter {
         }
     }
 
+    /**
+     *   regenerating displacement bitmap
+     */
     updateDisplacementMap() {
         let canvas = this.displacementMapCanvas;
         let size = this.displacementMapSize;
@@ -161,6 +173,7 @@ export default class GlitchFilter extends PIXI.Filter {
 
         let offset;
         let y = 0;
+
         for (let i = 0 ; i < this._slices; i++) {
             offset = Math.floor(this.slicesOffset[i] * 256);
             const height = this.slicesWidth[i] * size;
@@ -177,6 +190,9 @@ export default class GlitchFilter extends PIXI.Filter {
         this.uniforms.displacementMap = this.displacementMap;
     }
 
+    /**
+     *   set custom slices width of displacement bitmap
+     */
     setSlicesWidth(slicesWidth) {
         const len = Math.min(this._slices, slicesWidth.length);
 
@@ -185,6 +201,9 @@ export default class GlitchFilter extends PIXI.Filter {
         }
     }
 
+    /**
+     *   set custom slices offset of displacement bitmap
+     */
     setSlicesOffset(slicesOffset) {
         const len = Math.min(this._slices, slicesOffset.length);
 
