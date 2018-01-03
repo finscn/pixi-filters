@@ -19,6 +19,7 @@ import fragment from './glitch.frag';
  * @param {number} [options.blue=[0,0]] - Blue channel offset.
  */
 export default class GlitchFilter extends PIXI.Filter {
+
     constructor(options = {}) {
 
         super(vertex, fragment);
@@ -264,6 +265,12 @@ export default class GlitchFilter extends PIXI.Filter {
         this.uniforms.blue = value;
     }
 }
+
+GlitchFilter.TRANSPARENT = 0;
+GlitchFilter.ORIGINAL = 1;
+GlitchFilter.LOOP = 2;
+GlitchFilter.CLAMP = 3;
+GlitchFilter.MIRROR = 4;
 
 // Export to PixiJS namespace
 PIXI.filters.GlitchFilter = GlitchFilter;
