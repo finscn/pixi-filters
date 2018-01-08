@@ -224,6 +224,7 @@ declare namespace PIXI.filters {
     }
     class ReflectionFilter extends PIXI.Filter<{}> {
         constructor(options?: ReflectionOptions);
+        mirror: boolean;
         boundary: number;
         amplitude: number[];
         waveLength: number[];
@@ -231,6 +232,7 @@ declare namespace PIXI.filters {
         time: number;
     }
     interface ReflectionOptions {
+        mirror?: boolean;
         boundary?: number;
         amplitude?: number[];
         waveLength?: number[];
