@@ -10,6 +10,7 @@ import fragment from './reflection.frag';
  * @memberof PIXI.filters
  *
  * @param {object} [options] - The optional parameters of Reflection effect.
+ * @param {number} [options.mirror=true] - TODO
  * @param {number} [options.boundary=0.5] - TODO
  * @param {number} [options.amplitude=[0, 20]] - TODO
  * @param {number} [options.waveLength=[30, 100]] - TODO
