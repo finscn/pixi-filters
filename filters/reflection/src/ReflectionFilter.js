@@ -21,6 +21,7 @@ export default class ReflectionFilter extends PIXI.Filter {
         super(vertex, fragment);
 
         Object.assign(this, {
+            mirror: true,
             boundary: 0.5,
             amplitude: [0, 20],
             waveLength: [30, 100],
@@ -40,6 +41,14 @@ export default class ReflectionFilter extends PIXI.Filter {
         this.uniforms.time = this.time;
 
         filterManager.applyFilter(this, input, output, clear);
+    }
+
+    set mirror(value) {
+        this.uniforms.mirror = value;
+    }
+
+    get mirror() {
+        return this.uniforms.mirror;
     }
 
     set boundary(value) {
