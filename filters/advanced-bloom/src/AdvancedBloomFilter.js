@@ -20,7 +20,8 @@ import fragment from './advanced-bloom.frag';
  * @param {number} [options.blur=8] - Sets the strength of both the blurX and blurY properties simultaneously
  * @param {number} [options.quality=4] - The quality of the blurX & blurY filter.
  * @param {number} [options.kernelSize=5] - The kernelSize of the blurX & blurY filter.Options: 5, 7, 9, 11, 13, 15.
- * @param {number} [options.kawase=null] - The options of the Kawase Blur filter.
+ * @param {boolean} [options.kawase=false] - whether use the Kawase Blur filter.
+ * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Kawase Blur filter.
  * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the blurX & blurY filter.
  */
 export default class AdvancedBloomFilter extends PIXI.Filter {
@@ -40,7 +41,8 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
             blur: 8,
             quality: 4,
             kernelSize: 5,
-            kawase: null,
+            kawase: false,
+            pixelSize: 1,
             resolution: PIXI.settings.RESOLUTION,
         }, options);
 
@@ -60,23 +62,18 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
          */
         this.brightness = options.brightness;
 
-        const { kawase, blur, quality, kernelSize, resolution } = options;
-        const { KawaseBlurFilter, BlurXFilter, BlurYFilter } = PIXI.filters;
+        const { kawase, pixelSize, blur, quality, kernelSize, resolution } = options;
 
-        this._kawase = kawase;
+        this._pixelSize = pixelSize;
         this._blur = blur;
+        this._quality = quality;
+        this._kernelSize = kernelSize;
         this._resolution = resolution;
 
         this._extract = new ExtractBrightnessFilter(options.threshold);
         this._extract.resolution = resolution;
 
-        if (KawaseBlurFilter && kawase) {
-            this._kawaseBlur = new KawaseBlurFilter(kawase.kernels, kawase.pixelSize);
-            this._kawaseBlur.resolution = resolution;
-        }
-
-        this._blurXFilter = new BlurXFilter(blur, quality, resolution, kernelSize);
-        this._blurYFilter = new BlurYFilter(blur, quality, resolution, kernelSize);
+        this.kawase = kawase;
     }
 
     /**
@@ -90,7 +87,7 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
 
         this._extract.apply(filterManager, input, brightTarget, true, currentState);
 
-        if (this._kawase && this._kawaseBlur) {
+        if (this._kawase) {
             bloomTarget = filterManager.getRenderTarget(true);
             this._kawaseBlur.apply(filterManager, brightTarget, bloomTarget, true, currentState);
         }
@@ -126,8 +123,7 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
         if (this._kawase && this._kawaseBlur) {
             this._kawaseBlur.resolution = value;
         }
-
-        if (this._blurXFilter && this._blurYFilter) {
+        else if (!this._kawase && this._blurXFilter) {
             this._blurXFilter.resolution = this._blurYFilter.resolution = value;
         }
     }
@@ -156,14 +152,38 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
     }
     set blur(value) {
         this._blur = value;
-        this._blurXFilter.blur = this._blurYFilter.blur = value;
+        if (this._kawase && this._kawaseBlur) {
+            this._kawaseBlur.blur = value;
+        }
+        else if (!this._kawase && this._blurXFilter) {
+            this._blurXFilter.blur = this._blurYFilter.blur = value;
+        }
     }
 
     /**
-     * Sets the options of the Kawase Blur filter
+     * Sets the quality of the Blur Filter
      *
-     * @member {object}
-     * @default null
+     * @member {number}
+     * @default 4
+     */
+    get quality() {
+        return this._quality;
+    }
+    set quality(value) {
+        this._quality = Math.round(value);
+        if (this._kawase && this._kawaseBlur) {
+            this._kawaseBlur.quality = value;
+        }
+        else if (!this._kawase && this._blurXFilter) {
+            this._blurXFilter.quality = this._blurYFilter.quality = value;
+        }
+    }
+
+    /**
+     * Whether use KawaseBlurFilter
+     *
+     * @member {boolean}
+     * @default true
      */
     get kawase() {
         return this._kawase;
@@ -171,17 +191,46 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
     set kawase(value) {
         this._kawase = value;
 
-        if (!value || !PIXI.filters.KawaseBlurFilter) {
-            return;
-        }
+        const { KawaseBlurFilter, BlurXFilter, BlurYFilter } = PIXI.filters;
 
-        if (!this._kawaseBlur) {
-            this._kawaseBlur = new PIXI.filters.KawaseBlurFilter(value.kernels, value.pixelSize);
+        if (value) {
+            if (!this._kawaseBlur) {
+                this._kawaseBlur = new KawaseBlurFilter(this._blur, this._quality);
+            }
+            else {
+                this._kawaseBlur.blur = this._blur;
+                this._kawaseBlur.quality = this._quality;
+            }
             this._kawaseBlur.resolution = this._resolution;
+            this._kawaseBlur.pixelSize = this._pixelSize;
         }
         else {
-            this._kawaseBlur.kernels = value.kernels;
-            this._kawaseBlur.pixelSize = value.pixelSize;
+            if (!this._blurXFilter) {
+                this._blurXFilter = new BlurXFilter(this._blur, this._quality, this._resolution, this._kernelSize);
+                this._blurYFilter = new BlurYFilter(this._blur, this._quality, this._resolution, this._kernelSize);
+            }
+            else {
+                this._blurXFilter.blur = this._blurYFilter.blur = this._blur;
+                this._blurXFilter.quality = this._blurYFilter.quality = this._quality;
+                this._blurXFilter.resolution = this._blurYFilter.resolution = this._resolution;
+            }
+        }
+    }
+
+    /**
+     * Sets the pixelSize of the Kawase Blur filter
+     *
+     * @member {number|number[]|PIXI.Point}
+     * @default 1
+     */
+    get pixelSize() {
+        return this._pixelSize;
+    }
+    set pixelSize(value) {
+        this._pixelSize = value;
+
+        if (this._kawase && this._kawaseBlur) {
+            this._kawaseBlur.pixelSize = value;
         }
     }
 }
