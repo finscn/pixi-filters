@@ -485,6 +485,15 @@
             ]
         },
         {
+            "name": "ReflectionFilter",
+            "filename": "reflection",
+            "arguments": [{
+                "alpha": [0.7, 1],
+                "amplitude": [0, 10],
+                "waveLength": [10, 50]
+            }]
+        },
+        {
             "name": "GlitchFilter",
             "filename": "glitch",
             "arguments": [{
@@ -516,10 +525,6 @@
                 "noise": 0.3,
                 "noiseSize": 1.0
             }]
-        },
-        {
-            "name": "ReflectionFilter",
-            "filename": "reflection"
         }
     ]
 }
