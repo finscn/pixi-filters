@@ -5,7 +5,6 @@ export default function() {
         folder.add(this, 'brightness', 0.5, 1.5);
         folder.add(this, 'blur', 0, 20);
         folder.add(this, 'quality', 0, 20);
-        folder.add(this, 'kawase');
 
         // this.kawase = {
         //     kernels : [3, 2, 1],

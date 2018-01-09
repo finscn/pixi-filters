@@ -460,10 +460,10 @@
         {
             "name": "KawaseBlurFilter",
             "filename": "kawase-blur",
-            "arguments": [
-                [4, 3, 2, 1],
-                [1, 1]
-            ]
+            "options": {
+                "blur": 2,
+                "quality": 3
+            }
         },
         {
             "name": "MotionBlurFilter",
@@ -485,21 +485,21 @@
             ]
         },
         {
+            "name": "GlitchFilter",
+            "filename": "glitch",
+            "arguments": [{
+                "slices": 6,
+                "offset": 50,
+                "direction": 0
+            }]
+        },
+        {
             "name": "ReflectionFilter",
             "filename": "reflection",
             "arguments": [{
                 "alpha": [0.7, 1],
                 "amplitude": [0, 10],
                 "waveLength": [10, 50]
-            }]
-        },
-        {
-            "name": "GlitchFilter",
-            "filename": "glitch",
-            "arguments": [{
-                "slices": 5,
-                "offset": 50,
-                "direction": 0
             }]
         },
         {

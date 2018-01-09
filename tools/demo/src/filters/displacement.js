@@ -3,7 +3,7 @@ export default function() {
     this.resources.map.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
     const displacementSprite = new PIXI.Sprite(this.resources.map.texture);
     this.addFilter('DisplacementFilter', {
-        enabled: false,
+        enabled: true,
         global: true,
         args: [displacementSprite, this.initWidth, this.initHeight],
         oncreate(folder) {

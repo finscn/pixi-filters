@@ -17,12 +17,11 @@ import fragment from './advanced-bloom.frag';
  * @param {number} [options.threshold=0.5] - Defines how bright a color needs to be to affect bloom.
  * @param {number} [options.bloomScale=1.0] - To adjust the strength of the bloom. Higher values is more intense brightness.
  * @param {number} [options.brightness=1.0] - The brightness, lower value is more subtle brightness, higher value is blown-out.
- * @param {number} [options.blur=8] - Sets the strength of both the blurX and blurY properties simultaneously
- * @param {number} [options.quality=4] - The quality of the blurX & blurY filter.
- * @param {number} [options.kernelSize=5] - The kernelSize of the blurX & blurY filter.Options: 5, 7, 9, 11, 13, 15.
- * @param {boolean} [options.kawase=false] - whether use the Kawase Blur filter.
- * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Kawase Blur filter.
- * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the blurX & blurY filter.
+ * @param {number} [options.blur=8] - Sets the strength of the Blur properties simultaneously
+ * @param {number} [options.quality=4] - The quality of the Blur filter.
+ * @param {number[]} [options.kernels=null] - The kernels of the Blur filter.
+ * @param {number|number[]|PIXI.Point} [options.pixelSize=1] - the pixelSize of the Blur filter.
+ * @param {number} [options.resolution=PIXI.settings.RESOLUTION] - The resolution of the Blur filter.
  */
 export default class AdvancedBloomFilter extends PIXI.Filter {
 
@@ -38,10 +37,9 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
             threshold: 0.5,
             bloomScale: 1.0,
             brightness: 1.0,
+            kernels: null,
             blur: 8,
             quality: 4,
-            kernelSize: 5,
-            kawase: false,
             pixelSize: 1,
             resolution: PIXI.settings.RESOLUTION,
         }, options);
@@ -62,18 +60,20 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
          */
         this.brightness = options.brightness;
 
-        const { kawase, pixelSize, blur, quality, kernelSize, resolution } = options;
+        const { kernels, blur, quality, pixelSize, resolution } = options;
 
-        this._pixelSize = pixelSize;
-        this._blur = blur;
-        this._quality = quality;
-        this._kernelSize = kernelSize;
-        this._resolution = resolution;
+        this._extractFilter = new ExtractBrightnessFilter(options.threshold);
+        this._extractFilter.resolution = resolution;
 
-        this._extract = new ExtractBrightnessFilter(options.threshold);
-        this._extract.resolution = resolution;
+        if (kernels) {
+            this._blurFilter = new PIXI.filters.KawaseBlurFilter(kernels);
+        }
+        else {
+            this._blurFilter = new PIXI.filters.KawaseBlurFilter(blur, quality);
+        }
 
-        this.kawase = kawase;
+        this._blurFilter.pixelSize = pixelSize;
+        this._blurFilter.resolution = resolution;
     }
 
     /**
@@ -83,19 +83,12 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
     apply(filterManager, input, output, clear, currentState) {
 
         const brightTarget = filterManager.getRenderTarget(true);
-        let bloomTarget;
 
-        this._extract.apply(filterManager, input, brightTarget, true, currentState);
+        this._extractFilter.apply(filterManager, input, brightTarget, true, currentState);
 
-        if (this._kawase) {
-            bloomTarget = filterManager.getRenderTarget(true);
-            this._kawaseBlur.apply(filterManager, brightTarget, bloomTarget, true, currentState);
-        }
-        else {
-            this._blurXFilter.apply(filterManager, brightTarget, brightTarget, true, currentState);
-            this._blurYFilter.apply(filterManager, brightTarget, brightTarget, true, currentState);
-            bloomTarget = brightTarget;
-        }
+        const bloomTarget = filterManager.getRenderTarget(true);
+
+        this._blurFilter.apply(filterManager, brightTarget, bloomTarget, true, currentState);
 
         this.uniforms.bloomScale = this.bloomScale;
         this.uniforms.brightness = this.brightness;
@@ -103,9 +96,7 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
 
         filterManager.applyFilter(this, input, output, clear);
 
-        if (bloomTarget !== brightTarget) {
-            filterManager.returnRenderTarget(bloomTarget);
-        }
+        filterManager.returnRenderTarget(bloomTarget);
         filterManager.returnRenderTarget(brightTarget);
     }
 
@@ -119,12 +110,8 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
     }
     set resolution(value) {
         this._resolution = value;
-
-        if (this._kawase && this._kawaseBlur) {
-            this._kawaseBlur.resolution = value;
-        }
-        else if (!this._kawase && this._blurXFilter) {
-            this._blurXFilter.resolution = this._blurYFilter.resolution = value;
+        if (this._blurFilter) {
+            this._blurFilter.resolution = value;
         }
     }
 
@@ -135,29 +122,36 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
      * @default 0.5
      */
     get threshold() {
-        return this._extract.threshold;
+        return this._extractFilter.threshold;
     }
     set threshold(value) {
-        this._extract.threshold = value;
+        this._extractFilter.threshold = value;
     }
 
     /**
-     * Sets the strength of both the blurX and blurY properties simultaneously
+     * Sets the strength of the Blur properties simultaneously
      *
      * @member {number}
      * @default 2
      */
     get blur() {
-        return this._blur;
+        return this._blurFilter.blur;
     }
     set blur(value) {
-        this._blur = value;
-        if (this._kawase && this._kawaseBlur) {
-            this._kawaseBlur.blur = value;
-        }
-        else if (!this._kawase && this._blurXFilter) {
-            this._blurXFilter.blur = this._blurYFilter.blur = value;
-        }
+        this._blurFilter.blur = value;
+    }
+
+    /**
+     * Sets the kernels of the Blur Filter
+     *
+     * @member {number}
+     * @default 4
+     */
+    get kernels() {
+        return this._blurFilter.kernels;
+    }
+    set kernels(value) {
+        this._blurFilter.kernels = value;
     }
 
     /**
@@ -167,54 +161,10 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
      * @default 4
      */
     get quality() {
-        return this._quality;
+        return this._blurFilter.quality;
     }
     set quality(value) {
-        this._quality = Math.round(value);
-        if (this._kawase && this._kawaseBlur) {
-            this._kawaseBlur.quality = value;
-        }
-        else if (!this._kawase && this._blurXFilter) {
-            this._blurXFilter.quality = this._blurYFilter.quality = value;
-        }
-    }
-
-    /**
-     * Whether use KawaseBlurFilter
-     *
-     * @member {boolean}
-     * @default true
-     */
-    get kawase() {
-        return this._kawase;
-    }
-    set kawase(value) {
-        this._kawase = value;
-
-        const { KawaseBlurFilter, BlurXFilter, BlurYFilter } = PIXI.filters;
-
-        if (value) {
-            if (!this._kawaseBlur) {
-                this._kawaseBlur = new KawaseBlurFilter(this._blur, this._quality);
-            }
-            else {
-                this._kawaseBlur.blur = this._blur;
-                this._kawaseBlur.quality = this._quality;
-            }
-            this._kawaseBlur.resolution = this._resolution;
-            this._kawaseBlur.pixelSize = this._pixelSize;
-        }
-        else {
-            if (!this._blurXFilter) {
-                this._blurXFilter = new BlurXFilter(this._blur, this._quality, this._resolution, this._kernelSize);
-                this._blurYFilter = new BlurYFilter(this._blur, this._quality, this._resolution, this._kernelSize);
-            }
-            else {
-                this._blurXFilter.blur = this._blurYFilter.blur = this._blur;
-                this._blurXFilter.quality = this._blurYFilter.quality = this._quality;
-                this._blurXFilter.resolution = this._blurYFilter.resolution = this._resolution;
-            }
-        }
+        this._blurFilter.quality = value;
     }
 
     /**
@@ -224,14 +174,10 @@ export default class AdvancedBloomFilter extends PIXI.Filter {
      * @default 1
      */
     get pixelSize() {
-        return this._pixelSize;
+        return this._blurFilter.pixelSize;
     }
     set pixelSize(value) {
-        this._pixelSize = value;
-
-        if (this._kawase && this._kawaseBlur) {
-            this._kawaseBlur.pixelSize = value;
-        }
+        this._blurFilter.pixelSize = value;
     }
 }
 

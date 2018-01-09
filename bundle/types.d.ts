@@ -115,28 +115,33 @@ declare namespace PIXI.filters {
     }
     class GlitchFilter extends PIXI.Filter<{}> {
         constructor(options?:GlitchOptions);
-        slices:number,
-        offset:number,
-        direction:number,
-        fillMode:number,
-        seed:number,
-        red:PIXI.Point,
-        green:PIXI.Point,
-        blue:PIXI.Point
+        slices:number;
+        offset:number;
+        direction:number;
+        fillMode:number;
+        seed:number;
+        red:PIXI.Point;
+        green:PIXI.Point;
+        blue:PIXI.Point;
+        sizes:Float32Array|number[];
+        offsets:Float32Array|number[];
+        refresh(): void;
+        shuffle(): void;
+        redraw(): void;
+        readonly texture:PIXI.Texture;
     }
     interface GlitchOptions {
-        slices:number,
-        offset:number,
-        direction:number,
-        fillMode:number,
-        average:boolean,
-        seed:number,
-        red:PIXI.Point,
-        green:PIXI.Point,
-        blue:PIXI.Point,
-        minSliceWidth:number,
-        displacementMapSize:number,
-        displacementMap:PIXI.Texture,
+        slices:number;
+        offset:number;
+        direction:number;
+        fillMode:number;
+        average:boolean;
+        seed:number;
+        red:PIXI.Point;
+        green:PIXI.Point;
+        blue:PIXI.Point;
+        minSize:number;
+        sampleSize:number;
     }
     class GlowFilter extends PIXI.Filter<{}> {
         constructor(distance?:number, outerStrength?:number, innerStrength?:number, color?:number, quality?:number);
@@ -163,9 +168,11 @@ declare namespace PIXI.filters {
         time:number;
     }
     class KawaseBlurFilter extends PIXI.Filter<{}> {
-        constructor(kernels:number[], pixelSize?:number|PIXI.Point|number[]);
+        constructor(blur?:number|number[], quality?:number);
         kernels:number[];
         pixelSize:number|PIXI.Point|number[];
+        quality:number;
+        blur:number;
     }
     class MotionBlurFilter extends PIXI.Filter<{}> {
         constructor(velocity:PIXI.Point|number[], kernelSize?:number, offset?:number);
