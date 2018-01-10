@@ -1,6 +1,6 @@
-# ZoomFilter
+# ZoomBlurFilter
 
-PixiJS v4 filter to render Zoom Blur effect.
+PixiJS v4 filter to apply zoom blur effect.
 
 ## Installation
 
@@ -11,10 +11,11 @@ npm install @pixi/filter-zoom-blur
 ## Usage
 
 ```js
-import { ZoomFilter } from '@pixi/filter-zoom-blur';
+import {ZoomBlurFilter} from '@pixi/filter-zoom-blur';
+import {Container} from 'pixi.js';
 
-const container = new PIXI.Container();
-container.filters = [new ZoomFilter()];
+const container = new Container();
+container.filters = [new ZoomBlurFilter()];
 ```
 
 ## Documentation

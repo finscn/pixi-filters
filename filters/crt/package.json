@@ -1,8 +1,8 @@
 {
   "name": "@pixi/filter-crt",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "main": "lib/filter-crt.js",
-  "description": "CRT effect filter",
+  "description": "PixiJS v4 filter to apply an effect resembling old CRT monitors",
   "author": "finscn <finscn@gmail.com>",
   "module": "lib/filter-crt.es.js",
   "types": "types.d.ts",

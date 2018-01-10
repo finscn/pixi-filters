@@ -1,8 +1,8 @@
 {
   "name": "@pixi/filter-multi-color-replace",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "main": "lib/filter-multi-color-replace.js",
-  "description": "Multi Color Replace filter",
+  "description": "PixiJS v4 filter to dynamically replace multiple colors",
   "author": "finscn",
   "contributors": [
     "finscn <finscn@gmail.com>"

@@ -4,7 +4,7 @@
 
 ## Demo
 
-Click [here](https://pixijs.github.io/pixi-filters/examples) to interactively play with filters to see how they work.
+Click [here](http://pixijs.io/pixi-filters/tools/demo/) to interactively play with filters to see how they work.
 
 ## Filters
 
@@ -20,7 +20,7 @@ All filters work with PixiJS v4.
 | **ColorReplaceFilter**<br>_@pixi/filter-color-replace_ | ![color-replace](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/color-replace.png?v=2) |
 | **ConvolutionFilter**<br>_@pixi/filter-convolution_ | ![convolution](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/convolution.png?v=2) |
 | **CrossHatchFilter**<br>_@pixi/filter-cross-hatch_ | ![cross-hatch](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/cross-hatch.png?v=2) |
-| **CRTFilter**<br>_@pixi/filter-crt_ | ![crt](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/crt.gif?v=2) |
+| **CRTFilter**<br>_@pixi/filter-crt_ | ![crt](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/crt.png?v=2) |
 | **DotFilter**<br>_@pixi/filter-dot_ | ![dot](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/dot.png?v=2) |
 | **DropShadowFilter**<br>_@pixi/filter-drop-shadow_| ![drop-shadow](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/drop-shadow.png?v=2) |
 | **EmbossFilter**<br>_@pixi/filter-emboss_ | ![emboss](https://pixijs.github.io/pixi-filters/tools/screenshots/dist/emboss.png?v=2) |
