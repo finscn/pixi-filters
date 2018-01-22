@@ -14,7 +14,7 @@ export {default as colorAdjust} from './color-adjust';
 export {default as crt} from './crt';
 // export {default as displacement} from './displacement';
 // export {default as dot} from './dot';
-// export {default as dropShadow} from './drop-shadow';
+export {default as dropShadow} from './drop-shadow';
 // export {default as emboss} from './emboss';
 export {default as glitch} from './glitch';
 // export {default as glow} from './glow';
