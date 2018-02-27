@@ -531,8 +531,8 @@
             }]
         },
         {
-            "name": "ColorAdjustFilter",
-            "filename": "color-adjust"
+            "name": "ColorMapFilter",
+            "filename": "color-map"
         }
     ]
 }

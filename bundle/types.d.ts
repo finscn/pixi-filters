@@ -76,7 +76,7 @@ declare namespace PIXI.filters {
         radius:number;
         strength:number;
     }
-    class ColorAdjustFilter extends PIXI.Filter<{}> {
+    class ColorMapFilter extends PIXI.Filter<{}> {
         constructor(colorMap?:HTMLImageElement|HTMLCanvasElement|PIXI.BaseTexture|PIXI.Texture, nearest?:boolean);
         colorMap:PIXI.Texture;
         nearest:boolean;
