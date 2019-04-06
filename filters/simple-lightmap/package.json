@@ -1,13 +1,13 @@
 {
   "name": "@pixi/filter-simple-lightmap",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "main": "lib/filter-simple-lightmap.js",
   "description": "PixiJS v4 filter to create a light-map from a texture",
   "author": "Mat Groves",
   "contributors": [
     "Matt Karl <matt@mattkarl.com>"
   ],
-  "module": "lib/filter-simple-lightmap.es.js",
+  "module": "lib/filter-simple-lightmap.esm.js",
   "types": "types.d.ts",
   "homepage": "http://pixijs.com/",
   "bugs": "https://github.com/pixijs/pixi-filters/issues",
@@ -24,7 +24,7 @@
     "types.d.ts"
   ],
   "peerDependencies": {
-    "pixi.js": "^4.0.0"
+    "pixi.js": ">=4.0.0"
   },
   "devDependencies": {
     "@tools/fragments": "^2.0.0"

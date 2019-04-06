@@ -1,9 +1,9 @@
 {
-  "lerna": "2.9.0",
+  "lerna": "3.8.5",
   "packages": [
     "bundle",
     "filters/*",
     "tools/*"
   ],
-  "version": "2.6.1"
+  "version": "2.7.1"
 }
