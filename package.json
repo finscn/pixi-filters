@@ -16,7 +16,7 @@
     "prebuild": "npm run lint",
     "build": "npm run build:prod && npm run build:tools",
     "build:dev": "rollup -c",
-    "build:prod": "cross-env NODE_ENV=production rollup -c",
+    "build:prod": "cross-env NODE_ENV=production rollup -c && uglifyjs -c -m --source-map -o bundle/dist/pixi-filters.min.js bundle/dist/pixi-filters.js",
     "build:tools": "lerna run build --scope @tools/*",
     "watch:tools": "lerna run watch --parallel --scope @tools/*",
     "watch": "rollup -cw",

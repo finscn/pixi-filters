@@ -7,7 +7,7 @@ import buble from 'rollup-plugin-buble';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import string from 'rollup-plugin-string';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 import MagicString from 'magic-string';
 
@@ -103,13 +103,13 @@ async function main() {
     ];
 
     if (process.env.NODE_ENV === 'production') {
-        plugins.push(terser({
-            output: {
-                comments: function(node, comment) {
-                    return comment.line === 1;
-                }
-            }
-        }));
+        // plugins.push(terser({
+        //     output: {
+        //         comments: function(node, comment) {
+        //             return comment.line === 1;
+        //         }
+        //     }
+        // }));
     }
 
     const compiled = (new Date()).toUTCString().replace(/GMT/g, 'UTC');
