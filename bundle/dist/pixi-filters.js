@@ -1,6 +1,6 @@
 /*!
  * pixi-filters - v2.7.1
- * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+ * Compiled Wed, 17 Apr 2019 11:13:38 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -10,7 +10,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-adjustment - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-adjustment is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -137,7 +137,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-kawase-blur - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-kawase-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -355,7 +355,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-advanced-bloom - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-advanced-bloom is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -599,7 +599,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-ascii - v2.7.1
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-ascii is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -658,7 +658,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-bevel - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-bevel is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -811,7 +811,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-bloom - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-bloom is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -930,7 +930,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-bulge-pinch - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-bulge-pinch is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1020,7 +1020,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-color-map - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-color-map is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1180,7 +1180,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-color-replace - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-color-replace is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1302,7 +1302,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-convolution - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-convolution is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1393,7 +1393,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-cross-hatch - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-cross-hatch is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1425,7 +1425,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-crt - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-crt is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1638,7 +1638,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-dot - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-dot is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1711,7 +1711,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-drop-shadow - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-drop-shadow is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1977,7 +1977,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-emboss - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-emboss is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2029,7 +2029,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-glitch - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-glitch is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2480,7 +2480,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-glow - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-glow is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2591,7 +2591,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-godray - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-godray is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2770,7 +2770,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-motion-blur - v2.6.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-motion-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2876,7 +2876,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-multi-color-replace - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-multi-color-replace is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3036,7 +3036,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-old-film - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-old-film is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3260,7 +3260,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-outline - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-outline is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3268,7 +3268,7 @@ var __filters = (function (exports, pixi_js) {
 
     var vertex$k = vertex;
 
-    var fragment$k = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec2 thickness;\nuniform vec4 outlineColor;\nuniform vec4 filterClamp;\n\nconst float DOUBLE_PI = 3.14159265358979323846264 * 2.;\n\nvoid main(void) {\n    vec4 ownColor = texture2D(uSampler, vTextureCoord);\n    vec4 curColor;\n    float maxAlpha = 0.;\n    vec2 displaced;\n    for (float angle = 0.; angle <= DOUBLE_PI; angle += ${angleStep}) {\n        displaced.x = vTextureCoord.x + thickness.x * cos(angle);\n        displaced.y = vTextureCoord.y + thickness.y * sin(angle);\n        curColor = texture2D(uSampler, clamp(displaced, filterClamp.xy, filterClamp.zw));\n        maxAlpha = max(maxAlpha, curColor.a);\n    }\n    float resultAlpha = max(maxAlpha, ownColor.a);\n    gl_FragColor = vec4((ownColor.rgb + outlineColor.rgb * (1. - ownColor.a)) * resultAlpha, resultAlpha);\n}\n";
+    var fragment$k = "varying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec2 thickness;\nuniform vec4 outlineColor;\nuniform vec4 filterClamp;\nuniform bool outlineOnly;\n\nconst float DOUBLE_PI = 3.14159265358979323846264 * 2.;\n\nvoid main(void) {\n    vec4 ownColor = texture2D(uSampler, vTextureCoord);\n\n    if (outlineOnly && ownColor.a > 0.0){\n        float a = 1.0 - ownColor.a;\n        gl_FragColor = vec4(outlineColor.rgb * a, a);\n        return;\n    }\n\n    vec4 curColor;\n    float maxAlpha = 0.;\n    vec2 displaced;\n    for (float angle = 0.; angle <= DOUBLE_PI; angle += ${angleStep}) {\n        displaced.x = vTextureCoord.x + thickness.x * cos(angle);\n        displaced.y = vTextureCoord.y + thickness.y * sin(angle);\n        curColor = texture2D(uSampler, clamp(displaced, filterClamp.xy, filterClamp.zw));\n        maxAlpha = max(maxAlpha, curColor.a);\n    }\n    float resultAlpha = max(maxAlpha, ownColor.a);\n\n    gl_FragColor = vec4((ownColor.rgb + outlineColor.rgb * (1. - ownColor.a)) * resultAlpha, resultAlpha);\n}\n";
 
     /**
      * OutlineFilter, originally by mishaa
@@ -3283,15 +3283,17 @@ var __filters = (function (exports, pixi_js) {
      * @param {number} [color=0x000000] The color of the outline.
      * @param {number} [quality=0.1] The quality of the outline from `0` to `1`, using a higher quality
      *        setting will result in slower performance and more accuracy.
+     * @param {boolean} [outlineOnly=false] Draw the outline without the content of texutre.
      *
      * @example
      *  someSprite.shader = new OutlineFilter(9, 0xFF0000);
      */
     var OutlineFilter = /*@__PURE__*/(function (superclass) {
-        function OutlineFilter(thickness, color, quality) {
+        function OutlineFilter(thickness, color, quality, outlineOnly) {
             if ( thickness === void 0 ) { thickness = 1; }
             if ( color === void 0 ) { color = 0x000000; }
             if ( quality === void 0 ) { quality = 0.1; }
+            if ( outlineOnly === void 0 ) { outlineOnly = false; }
 
             var samples =  Math.max(
                 quality * OutlineFilter.MAX_SAMPLES,
@@ -3313,6 +3315,13 @@ var __filters = (function (exports, pixi_js) {
             this.color = color;
 
             this.quality = quality;
+
+            /**
+             * Draw the outline without the content of texutre.
+             * @member {boolean}
+             * @default false
+             */
+            this.outlineOnly = outlineOnly;
         }
 
         if ( superclass ) { OutlineFilter.__proto__ = superclass; }
@@ -3324,6 +3333,7 @@ var __filters = (function (exports, pixi_js) {
         OutlineFilter.prototype.apply = function apply (filterManager, input, output, clear) {
             this.uniforms.thickness[0] = this.thickness / input.size.width;
             this.uniforms.thickness[1] = this.thickness / input.size.height;
+            this.uniforms.outlineOnly = this.outlineOnly;
 
             filterManager.applyFilter(this, input, output, clear);
         };
@@ -3365,7 +3375,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-pixelate - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-pixelate is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3422,7 +3432,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-radial-blur - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-radial-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3528,7 +3538,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-reflection - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-reflection is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3673,7 +3683,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-rgb-split - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-rgb-split is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3755,7 +3765,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-shockwave - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-shockwave is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3924,7 +3934,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-simple-lightmap - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-simple-lightmap is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -4039,7 +4049,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-tilt-shift - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-tilt-shift is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -4317,7 +4327,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-twist - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-twist is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -4400,7 +4410,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-zoom-blur - v2.7.0
-     * Compiled Tue, 09 Apr 2019 03:51:57 UTC
+     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
      *
      * @pixi/filter-zoom-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license

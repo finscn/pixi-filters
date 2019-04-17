@@ -15,13 +15,14 @@ import * as PIXI from 'pixi.js';
  * @param {number} [color=0x000000] The color of the outline.
  * @param {number} [quality=0.1] The quality of the outline from `0` to `1`, using a higher quality
  *        setting will result in slower performance and more accuracy.
+ * @param {boolean} [outlineOnly=false] Draw the outline without the content of texutre.
  *
  * @example
  *  someSprite.shader = new OutlineFilter(9, 0xFF0000);
  */
 export default class OutlineFilter extends PIXI.Filter {
 
-    constructor(thickness = 1, color = 0x000000, quality = 0.1) {
+    constructor(thickness = 1, color = 0x000000, quality = 0.1, outlineOnly = false) {
         const samples =  Math.max(
             quality * OutlineFilter.MAX_SAMPLES,
             OutlineFilter.MIN_SAMPLES
@@ -42,11 +43,19 @@ export default class OutlineFilter extends PIXI.Filter {
         this.color = color;
 
         this.quality = quality;
+
+        /**
+         * Draw the outline without the content of texutre.
+         * @member {boolean}
+         * @default false
+         */
+        this.outlineOnly = outlineOnly;
     }
 
     apply(filterManager, input, output, clear) {
         this.uniforms.thickness[0] = this.thickness / input.size.width;
         this.uniforms.thickness[1] = this.thickness / input.size.height;
+        this.uniforms.outlineOnly = this.outlineOnly;
 
         filterManager.applyFilter(this, input, output, clear);
     }
