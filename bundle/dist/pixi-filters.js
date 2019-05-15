@@ -1,6 +1,6 @@
 /*!
  * pixi-filters - v2.7.1
- * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+ * Compiled Wed, 15 May 2019 03:30:52 UTC
  *
  * pixi-filters is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -10,7 +10,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-adjustment - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-adjustment is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -137,7 +137,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-kawase-blur - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-kawase-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -355,7 +355,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-advanced-bloom - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-advanced-bloom is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -599,7 +599,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-ascii - v2.7.1
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-ascii is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -658,7 +658,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-bevel - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-bevel is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -811,7 +811,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-bloom - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-bloom is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -930,7 +930,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-bulge-pinch - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-bulge-pinch is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1020,7 +1020,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-color-map - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-color-map is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1180,7 +1180,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-color-replace - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-color-replace is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1302,7 +1302,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-convolution - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-convolution is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1393,7 +1393,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-cross-hatch - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-cross-hatch is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1425,7 +1425,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-crt - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-crt is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1638,7 +1638,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-dot - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-dot is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1711,7 +1711,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-drop-shadow - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-drop-shadow is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -1977,7 +1977,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-emboss - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-emboss is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2029,7 +2029,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-glitch - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-glitch is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2037,7 +2037,7 @@ var __filters = (function (exports, pixi_js) {
 
     var vertex$e = vertex;
 
-    var fragment$e = "// precision highp float;\n\nvarying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\nuniform vec4 filterClamp;\nuniform vec2 dimensions;\nuniform float aspect;\n\nuniform sampler2D displacementMap;\nuniform float offset;\nuniform float sinDir;\nuniform float cosDir;\nuniform int fillMode;\n\nuniform float seed;\nuniform vec2 red;\nuniform vec2 green;\nuniform vec2 blue;\n\nconst int TRANSPARENT = 0;\nconst int ORIGINAL = 1;\nconst int LOOP = 2;\nconst int CLAMP = 3;\nconst int MIRROR = 4;\n\nvoid main(void)\n{\n    vec2 coord = (vTextureCoord * filterArea.xy) / dimensions;\n\n    if (coord.x > 1.0 || coord.y > 1.0) {\n        return;\n    }\n\n    float cx = coord.x - 0.5;\n    float cy = (coord.y - 0.5) * aspect;\n    float ny = (-sinDir * cx + cosDir * cy) / aspect + 0.5;\n\n    // displacementMap: repeat\n    // ny = ny > 1.0 ? ny - 1.0 : (ny < 0.0 ? 1.0 + ny : ny);\n\n    // displacementMap: mirror\n    ny = ny > 1.0 ? 2.0 - ny : (ny < 0.0 ? -ny : ny);\n\n    vec4 dc = texture2D(displacementMap, vec2(0.5, ny));\n\n    float displacement = (dc.r - dc.g) * (offset / filterArea.x);\n\n    coord = vTextureCoord + vec2(cosDir * displacement, sinDir * displacement * aspect);\n\n    if (fillMode == CLAMP) {\n        coord = clamp(coord, filterClamp.xy, filterClamp.zw);\n    } else {\n        if( coord.x > filterClamp.z ) {\n            if (fillMode == ORIGINAL) {\n                gl_FragColor = texture2D(uSampler, vTextureCoord);\n                return;\n            } else if (fillMode == LOOP) {\n                coord.x -= filterClamp.z;\n            } else if (fillMode == MIRROR) {\n                coord.x = filterClamp.z * 2.0 - coord.x;\n            } else {\n                gl_FragColor = vec4(0., 0., 0., 0.);\n                return;\n            }\n        } else if( coord.x < filterClamp.x ) {\n            if (fillMode == ORIGINAL) {\n                gl_FragColor = texture2D(uSampler, vTextureCoord);\n                return;\n            } else if (fillMode == LOOP) {\n                coord.x += filterClamp.z;\n            } else if (fillMode == MIRROR) {\n                coord.x *= -filterClamp.z;\n            } else {\n                gl_FragColor = vec4(0., 0., 0., 0.);\n                return;\n            }\n        }\n\n        if( coord.y > filterClamp.w ) {\n            if (fillMode == ORIGINAL) {\n                gl_FragColor = texture2D(uSampler, vTextureCoord);\n                return;\n            } else if (fillMode == LOOP) {\n                coord.y -= filterClamp.w;\n            } else if (fillMode == MIRROR) {\n                coord.y = filterClamp.w * 2.0 - coord.y;\n            } else {\n                gl_FragColor = vec4(0., 0., 0., 0.);\n                return;\n            }\n        } else if( coord.y < filterClamp.y ) {\n            if (fillMode == ORIGINAL) {\n                gl_FragColor = texture2D(uSampler, vTextureCoord);\n                return;\n            } else if (fillMode == LOOP) {\n                coord.y += filterClamp.w;\n            } else if (fillMode == MIRROR) {\n                coord.y *= -filterClamp.w;\n            } else {\n                gl_FragColor = vec4(0., 0., 0., 0.);\n                return;\n            }\n        }\n    }\n\n    gl_FragColor.r = texture2D(uSampler, coord + red * (1.0 - seed * 0.4) / filterArea.xy).r;\n    gl_FragColor.g = texture2D(uSampler, coord + green * (1.0 - seed * 0.3) / filterArea.xy).g;\n    gl_FragColor.b = texture2D(uSampler, coord + blue * (1.0 - seed * 0.2) / filterArea.xy).b;\n    gl_FragColor.a = texture2D(uSampler, coord).a;\n}\n";
+    var fragment$e = "// precision highp float;\n\nvarying vec2 vTextureCoord;\nuniform sampler2D uSampler;\n\nuniform vec4 filterArea;\nuniform vec4 filterClamp;\nuniform vec2 dimensions;\nuniform float aspect;\n\nuniform sampler2D displacementMap;\nuniform float offset;\nuniform float sinDir;\nuniform float cosDir;\nuniform int fillMode;\n\nuniform float seed;\nuniform vec2 red;\nuniform vec2 green;\nuniform vec2 blue;\n\nconst int TRANSPARENT = 0;\nconst int ORIGINAL = 1;\nconst int LOOP = 2;\nconst int CLAMP = 3;\nconst int MIRROR = 4;\n\nvoid main(void)\n{\n    vec2 coord = (vTextureCoord * filterArea.xy) / dimensions;\n\n    if (coord.x > 1.0 || coord.y > 1.0) {\n        return;\n    }\n\n    float cx = coord.x - 0.5;\n    float cy = (coord.y - 0.5) * aspect;\n    float ny = (-sinDir * cx + cosDir * cy) / aspect + 0.5;\n\n    // displacementMap: repeat\n    // ny = ny > 1.0 ? ny - 1.0 : (ny < 0.0 ? 1.0 + ny : ny);\n\n    // displacementMap: mirror\n    ny = ny > 1.0 ? 2.0 - ny : (ny < 0.0 ? -ny : ny);\n\n    vec4 dc = texture2D(displacementMap, vec2(0.5, ny));\n\n    float displacement = (dc.r - dc.g) * (offset / filterArea.x);\n\n    coord = vTextureCoord + vec2(cosDir * displacement, sinDir * displacement * aspect);\n\n    if (fillMode == CLAMP) {\n        coord = clamp(coord, filterClamp.xy, filterClamp.zw);\n    } else {\n        if( coord.x > filterClamp.z ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.x -= filterClamp.z;\n            } else if (fillMode == MIRROR) {\n                coord.x = filterClamp.z * 2.0 - coord.x;\n            }\n        } else if( coord.x < filterClamp.x ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.x += filterClamp.z;\n            } else if (fillMode == MIRROR) {\n                coord.x *= -filterClamp.z;\n            }\n        }\n\n        if( coord.y > filterClamp.w ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.y -= filterClamp.w;\n            } else if (fillMode == MIRROR) {\n                coord.y = filterClamp.w * 2.0 - coord.y;\n            }\n        } else if( coord.y < filterClamp.y ) {\n            if (fillMode == TRANSPARENT) {\n                discard;\n            } else if (fillMode == LOOP) {\n                coord.y += filterClamp.w;\n            } else if (fillMode == MIRROR) {\n                coord.y *= -filterClamp.w;\n            }\n        }\n    }\n\n    gl_FragColor.r = texture2D(uSampler, coord + red * (1.0 - seed * 0.4) / filterArea.xy).r;\n    gl_FragColor.g = texture2D(uSampler, coord + green * (1.0 - seed * 0.3) / filterArea.xy).g;\n    gl_FragColor.b = texture2D(uSampler, coord + blue * (1.0 - seed * 0.2) / filterArea.xy).b;\n    gl_FragColor.a = texture2D(uSampler, coord).a;\n}\n";
 
     /**
      * The GlitchFilter applies a glitch effect to an object.<br>
@@ -2480,7 +2480,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-glow - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-glow is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2591,7 +2591,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-godray - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-godray is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2770,7 +2770,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-motion-blur - v2.6.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-motion-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -2876,7 +2876,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-multi-color-replace - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-multi-color-replace is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3036,7 +3036,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-old-film - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-old-film is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3260,7 +3260,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-outline - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-outline is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3375,7 +3375,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-pixelate - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-pixelate is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3432,7 +3432,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-radial-blur - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-radial-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3538,7 +3538,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-reflection - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-reflection is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3683,7 +3683,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-rgb-split - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-rgb-split is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3765,7 +3765,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-shockwave - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-shockwave is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -3934,7 +3934,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-simple-lightmap - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-simple-lightmap is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -4049,7 +4049,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-tilt-shift - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-tilt-shift is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -4327,7 +4327,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-twist - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-twist is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
@@ -4410,7 +4410,7 @@ var __filters = (function (exports, pixi_js) {
 
     /*!
      * @pixi/filter-zoom-blur - v2.7.0
-     * Compiled Wed, 17 Apr 2019 11:13:38 UTC
+     * Compiled Wed, 15 May 2019 03:30:52 UTC
      *
      * @pixi/filter-zoom-blur is licensed under the MIT License.
      * http://www.opensource.org/licenses/mit-license
