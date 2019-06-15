@@ -36,6 +36,7 @@
     "@pixi/filter-bloom": "^2.7.0",
     "@pixi/filter-bulge-pinch": "^2.7.0",
     "@pixi/filter-color-map": "^2.7.0",
+    "@pixi/filter-color-overlay": "^2.7.1",
     "@pixi/filter-color-replace": "^2.7.0",
     "@pixi/filter-convolution": "^2.7.0",
     "@pixi/filter-cross-hatch": "^2.7.0",

@@ -83,6 +83,10 @@ declare namespace PIXI.filters {
         mix:number;
         readonly colorSize:number;
     }
+    class ColorOverlayFilter extends PIXI.Filter<{}> {
+        constructor(color?:number|[number, number, number]);
+        color:number|[number, number, number];
+    }
     class ColorReplaceFilter extends PIXI.Filter<{}> {
         constructor(originalColor?:number|number[], newColor?:number|number[], epsilon?:number);
         epsilon:number;
